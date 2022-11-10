@@ -1,6 +1,14 @@
 {
   "name": "task-machine",
-  "version": "0.0.117",
+  "private": true,
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "preview": "next build && next start"
+  },
   "dependencies": {
     "next": "12.2.3",
     "react": "^18",
@@ -12,6 +20,5 @@
     "bun-framework-next": "^12.2",
     "typescript": "latest",
     "react-refresh": "0.10.0"
-  },
-  "module": "index.js"
+  }
 }
