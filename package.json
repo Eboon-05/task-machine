@@ -18,8 +18,12 @@
   "devDependencies": {
     "@types/node": "^18.11.9",
     "@types/react": "^18",
+    "@typescript-eslint/eslint-plugin": "latest",
+    "@typescript-eslint/parser": "latest",
     "autoprefixer": "^10.4.13",
     "bun-framework-next": "^12.2",
+    "eslint": "latest",
+    "eslint-plugin-react": "latest",
     "postcss": "^8.4.19",
     "react-refresh": "0.10.0",
     "tailwindcss": "^3.2.4",
