@@ -1,4 +1,4 @@
-import { Action, configureStore, PayloadAction, ThunkAction } from "@reduxjs/toolkit"
+import { configureStore, PayloadAction, ThunkAction } from "@reduxjs/toolkit"
 import { taskSlice } from "./taskSlice"
 
 export const store = configureStore({
