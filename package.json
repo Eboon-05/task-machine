@@ -27,6 +27,7 @@
     "autoprefixer": "^10.4.13",
     "bun-framework-next": "^12.2",
     "eslint": "latest",
+    "eslint-config-next": "^13.0.4",
     "eslint-plugin-react": "latest",
     "postcss": "^8.4.19",
     "react-refresh": "0.10.0",
