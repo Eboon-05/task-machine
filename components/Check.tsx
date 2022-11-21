@@ -1,5 +1,7 @@
-import classNames from 'classnames'
 import { ChangeEvent, FC } from 'react'
+import classNames from 'classnames'
+
+import { CheckIcon } from '@heroicons/react/20/solid'
 
 interface Props {
     checked: boolean,
@@ -16,11 +18,16 @@ const Check: FC<Props> = ({ checked, onChange }) => {
                 className={classNames({
                     [`
                         absolute top-0 left-0 h-full w-full bg-transparent z-[1]
-                        rounded-full border-2 border-black
+                        rounded-full border-2 border-black flex justify-center items-center
                     `]: true,
                     'bg-black': checked
                 })}
-            ></span>
+            >
+                <CheckIcon className={classNames({
+                    'h-3 w-3 text-white font-bold': true,
+                    'hidden': !checked
+                })} />
+            </span>
         </div>
     </>
 }
