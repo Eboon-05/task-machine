@@ -1,6 +1,6 @@
 import { FC } from 'react'
 
-import { useAppDispatch, useAppSelector } from 'hooks'
+import { useAppDispatch } from 'hooks'
 import { Check } from './Check'
 import { toggle } from 'redux/taskSlice'
 
@@ -11,7 +11,6 @@ const Task: FC<Task> = (task) => {
     } = task
 
     const dispatch = useAppDispatch()
-    const taskState = useAppSelector(state => state.task)
 
     const complete = () => {
         dispatch(toggle(task))
@@ -19,7 +18,7 @@ const Task: FC<Task> = (task) => {
 
     return <div className='flex justify-start items-center'>
         <div className='mr-2'>
-            <Check checked={done} onChange={ev => complete()} />
+            <Check checked={done} onChange={complete} />
         </div>
         <div>
             {name}
