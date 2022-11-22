@@ -20,7 +20,7 @@ const Task: FC<Task> = (task) => {
         <div className='mr-2'>
             <Check checked={done} onChange={complete} />
         </div>
-        <div>
+        <div className={`${done && 'line-through'}`}>
             {name}
         </div>
     </div>

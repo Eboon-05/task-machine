@@ -2,7 +2,8 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit"
 
 export interface TaskState {
     list: Task[],
-    groups: Group[]
+    groups: Group[],
+    query: string,
 }
 
 const initialState: TaskState = {
@@ -32,7 +33,8 @@ const initialState: TaskState = {
             level: 1
         },
     ],
-    groups: []
+    groups: [],
+    query: ''
 }
 
 export const taskSlice = createSlice({
@@ -64,8 +66,11 @@ export const taskSlice = createSlice({
             }
 
             state.list = newList
+        },
+        search(state, action: PayloadAction<string, 'SEARCH'>) {
+            state.query = action.payload
         }
     }
 })
 
-export const { add, toggle } = taskSlice.actions
+export const { add, toggle, search } = taskSlice.actions

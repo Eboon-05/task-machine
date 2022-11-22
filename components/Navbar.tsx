@@ -1,6 +1,9 @@
 import Link from 'next/link'
+import { useState } from 'react'
 
 import { HomeIcon, ListBulletIcon, MagnifyingGlassIcon, PlusIcon } from '@heroicons/react/24/solid'
+
+import { SearchBar } from './SearchBar'
 
 const links = [
     {
@@ -14,6 +17,8 @@ const links = [
 ]
 
 const Navbar = () => {
+    const [search, setSearch] = useState(false)
+
     return <footer
         className="w-full"
     >
@@ -28,7 +33,7 @@ const Navbar = () => {
                 {l.icon}
             </Link>)}
 
-            <button>
+            <button onClick={() => setSearch(true)}>
                 <MagnifyingGlassIcon className='h-7 w-7' />
             </button>
 
@@ -39,6 +44,11 @@ const Navbar = () => {
                 <PlusIcon className='h-7 w-7 text-white m-auto' />
             </Link>
         </nav>
+
+        <SearchBar
+            onClose={() => setSearch(false)} 
+            active={search} 
+        />
     </footer>
 }
 
