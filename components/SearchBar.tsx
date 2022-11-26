@@ -2,7 +2,7 @@ import { FC, useRef } from "react"
 
 import { MagnifyingGlassIcon, ArrowRightIcon, XMarkIcon } from '@heroicons/react/24/solid'
 
-import { TextInput } from "./TextInput"
+import { Input } from "./Input"
 import { Button } from "./Button"
 
 import { search } from "redux/taskSlice"
@@ -39,7 +39,7 @@ const SearchBar: FC<Props> = ({ active, onClose }) => {
                     Search for a task
                 </h1>
 
-                <TextInput ref={ref} Icon={MagnifyingGlassIcon} autoFocus />
+                <Input ref={ref} Icon={MagnifyingGlassIcon} autoFocus />
 
                 <Button className="m-auto mt-2" onClick={onSearch}>
                     <ArrowRightIcon className="h-6 w-6" />

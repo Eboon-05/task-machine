@@ -42,13 +42,7 @@ export const taskSlice = createSlice({
     initialState,
     reducers: {
         add(state, action: PayloadAction<Task, 'ADD'>) {
-            return {
-                ...state,
-                list: [
-                    ...state.list,
-                    action.payload
-                ]
-            }
+            state.list.push(action.payload)
         },
         toggle(state, action: PayloadAction<Task, 'TOGGLE'>) {
             const newList: Task[] = [...state.list]
