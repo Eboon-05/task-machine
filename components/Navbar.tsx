@@ -39,9 +39,10 @@ const Navbar = () => {
 
             <Link 
                 href='/new'
-                className='bg-dark-blue rounded-[1.25rem] shadow-md p-3 h-14 w-14 absolute top-[6px] -right-8'
+                className='bg-dark-blue rounded-[1.25rem] shadow-md p-3 h-14 w-14 absolute top-[6px] -right-8
+                flex items-center justify-center'
             >
-                <PlusIcon className='h-7 w-7 text-white m-auto' />
+                <PlusIcon className='h-7 w-7 text-white' />
             </Link>
         </nav>
 
