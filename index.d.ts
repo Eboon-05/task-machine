@@ -12,3 +12,8 @@ interface Group {
     name: string,
     color: string,
 }
+
+interface User {
+    username: string,
+    token: string,
+}
