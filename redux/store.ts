@@ -1,13 +1,17 @@
-import { configureStore, PayloadAction, ThunkAction } from "@reduxjs/toolkit"
-import { taskSlice } from "./taskSlice"
+import { configureStore, PayloadAction, ThunkAction, applyMiddleware } from "@reduxjs/toolkit"
+import { storage } from "./middlewares/storage"
+import { taskSlice, TaskState } from "./taskSlice"
 
 export const store = configureStore({
     reducer: {
         task: taskSlice.reducer
-    }
+    },
+    middleware: [
+        storage
+    ]
 })
 
-export type AppState = ReturnType<typeof store.getState>
+export type AppState = { task: TaskState }
 
 export type AppDispatch = typeof store.dispatch
 

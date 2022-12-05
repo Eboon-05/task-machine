@@ -4,35 +4,12 @@ export interface TaskState {
     list: Task[],
     groups: Group[],
     query: string,
+    user?: User,
 }
 
 const initialState: TaskState = {
-    list: [
-        {
-            id: 'tomate',
-            name: 'Cortar tomate',
-            done: true,
-            level: 1
-        },
-        {
-            id: 'zanahoria',
-            name: 'Cortar zanahoria',
-            done: false,
-            level: 1
-        },
-        {
-            id: 'naranja',
-            name: 'Cortar naranja',
-            done: true,
-            level: 1
-        },
-        {
-            id: 'perejil',
-            name: 'Cortar perejil',
-            done: false,
-            level: 1
-        },
-    ],
+    // ...JSON.parse(localStorage.getItem('tasks')) || { list: [], groups: [], },
+    list: [],
     groups: [],
     query: ''
 }
@@ -63,8 +40,8 @@ export const taskSlice = createSlice({
         },
         search(state, action: PayloadAction<string, 'SEARCH'>) {
             state.query = action.payload
-        }
+        },
     }
 })
 
-export const { add, toggle, search } = taskSlice.actions
+export const { add, toggle, search, } = taskSlice.actions

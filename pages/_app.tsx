@@ -1,4 +1,6 @@
+import { useAppDispatch } from "hooks";
 import { AppProps } from "next/app";
+import { useEffect } from "react";
 import { Provider } from "react-redux"
 
 import { store } from "redux/store"
@@ -11,4 +13,4 @@ function MyApp({ Component, pageProps }: AppProps) {
     </Provider>
 }
 
-export default MyApp;
+export default MyApp
