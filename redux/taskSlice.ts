@@ -1,16 +1,13 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit"
 
 export interface TaskState {
-    list: Task[],
-    groups: Group[],
+    list?: Task[],
+    groups?: Group[],
     query: string,
     user?: User,
 }
 
 const initialState: TaskState = {
-    // ...JSON.parse(localStorage.getItem('tasks')) || { list: [], groups: [], },
-    list: [],
-    groups: [],
     query: ''
 }
 
@@ -41,7 +38,15 @@ export const taskSlice = createSlice({
         search(state, action: PayloadAction<string, 'SEARCH'>) {
             state.query = action.payload
         },
+        setTasks(state, action: PayloadAction<{ list?: Task[], groups?: Group[] }, 'SET_TASKS'>) {
+            if (action.payload.list) {
+                state.list = action.payload.list
+            }
+            if (action.payload.groups) {
+                state.groups = action.payload.groups
+            }
+        }
     }
 })
 
-export const { add, toggle, search, } = taskSlice.actions
+export const { add, toggle, search, setTasks } = taskSlice.actions

@@ -13,17 +13,19 @@ const Home: NextPage = () => {
     const taskState = useAppSelector(state => state.task)
     const dispatch = useAppDispatch()
 
-    const [filtered, setFiltered] = useState(taskState.list)
+    const [filtered, setFiltered] = useState([])
 
     useEffect(() => {
-        if (taskState.query !== '') {
-            setFiltered(
-                taskState.list.filter(t => {                   
-                    return t.name.toLowerCase().includes(taskState.query.toLowerCase())
-                })
-            )
-        } else {
-            setFiltered(taskState.list)
+        if (taskState.list) {
+            if (taskState.query !== '') {
+                setFiltered(
+                    taskState.list.filter(t => {                   
+                        return t.name.toLowerCase().includes(taskState.query.toLowerCase())
+                    })
+                )
+            } else {
+                setFiltered(taskState.list)
+            }
         }
     }, [taskState.query, taskState.list])
 
