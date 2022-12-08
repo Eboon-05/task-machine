@@ -24,7 +24,7 @@ const icons = [
 ];
 
 const LevelSelect: FC<Props> = ({ level, onChange }) => {
-    const [active, setActive] = useState(true);
+    const [active, setActive] = useState(false)
 
     return (
         <div

@@ -51,13 +51,16 @@ const New: NextPage = () => {
                     </Button>
                 </div>
                 <div className='grid grid-cols-1 gap-2'>
+                    <span>Name</span>
                     <Input ref={name} Icon={PlusIcon} placeholder='Task name' />
 
+                    <span>Date:</span>
                     <Input ref={date} Icon={CalendarIcon} type='date' />
                     <span className='text-sm opacity-60'>
                         You can leave date empty
                     </span>
 
+                    <span>Difficulty:</span>
                     <LevelSelect level={level} onChange={setLevel} />
                 </div>
             </section>
