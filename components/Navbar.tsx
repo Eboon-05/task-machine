@@ -1,14 +1,14 @@
-import Link from 'next/link';
-import { useState } from 'react';
+import Link from 'next/link'
+import { useState } from 'react'
 
 import {
     HomeIcon,
     ListBulletIcon,
     MagnifyingGlassIcon,
     PlusIcon,
-} from '@heroicons/react/24/solid';
+} from '@heroicons/react/24/solid'
 
-import { SearchBar } from './SearchBar';
+import { SearchBar } from './SearchBar'
 
 const links = [
     {
@@ -19,10 +19,10 @@ const links = [
         path: '/groups',
         icon: <ListBulletIcon className='h-7 w-7' />,
     },
-];
+]
 
 const Navbar = () => {
-    const [search, setSearch] = useState(false);
+    const [search, setSearch] = useState(false)
 
     return (
         <footer className='w-full'>
@@ -53,7 +53,7 @@ const Navbar = () => {
 
             <SearchBar onClose={() => setSearch(false)} active={search} />
         </footer>
-    );
-};
+    )
+}
 
-export { Navbar };
+export { Navbar }

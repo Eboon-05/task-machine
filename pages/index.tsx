@@ -1,19 +1,19 @@
-import { NextPage } from 'next';
-import { useEffect, useState } from 'react';
+import { NextPage } from 'next'
+import { useEffect, useState } from 'react'
 
-import { XMarkIcon } from '@heroicons/react/24/solid';
+import { XMarkIcon } from '@heroicons/react/24/solid'
 
-import { useAppDispatch, useAppSelector } from 'hooks';
-import { search } from 'redux/taskSlice';
+import { useAppDispatch, useAppSelector } from 'hooks'
+import { search } from 'redux/taskSlice'
 
-import { Task } from 'components/Task';
-import { Navbar } from 'components/Navbar';
+import { Task } from 'components/Task'
+import { Navbar } from 'components/Navbar'
 
 const Home: NextPage = () => {
-    const taskState = useAppSelector(state => state.task);
-    const dispatch = useAppDispatch();
+    const taskState = useAppSelector(state => state.task)
+    const dispatch = useAppDispatch()
 
-    const [filtered, setFiltered] = useState([]);
+    const [filtered, setFiltered] = useState([])
 
     useEffect(() => {
         if (taskState.list) {
@@ -22,18 +22,18 @@ const Home: NextPage = () => {
                     taskState.list.filter(t => {
                         return t.name
                             .toLowerCase()
-                            .includes(taskState.query.toLowerCase());
+                            .includes(taskState.query.toLowerCase())
                     }),
-                );
+                )
             } else {
-                setFiltered(taskState.list);
+                setFiltered(taskState.list)
             }
         }
-    }, [taskState.query, taskState.list]);
+    }, [taskState.query, taskState.list])
 
     const clearQuery = () => {
-        dispatch(search(''));
-    };
+        dispatch(search(''))
+    }
 
     return (
         <>
@@ -66,7 +66,7 @@ const Home: NextPage = () => {
                 <Navbar />
             </section>
         </>
-    );
-};
+    )
+}
 
-export default Home;
+export default Home

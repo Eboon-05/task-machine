@@ -1,10 +1,10 @@
-import { FC, forwardRef, HTMLInputTypeAttribute } from 'react';
+import { FC, forwardRef, HTMLInputTypeAttribute } from 'react'
 
 interface Props {
-    Icon: FC<{ className: string }>;
-    autoFocus?: boolean;
-    placeholder?: string;
-    type?: HTMLInputTypeAttribute;
+    Icon: FC<{ className: string }>
+    autoFocus?: boolean
+    placeholder?: string
+    type?: HTMLInputTypeAttribute
 }
 
 const Input = forwardRef<HTMLInputElement, Props>(
@@ -25,8 +25,8 @@ const Input = forwardRef<HTMLInputElement, Props>(
                     />
                 </div>
             </>
-        );
+        )
     },
-);
+)
 
-export { Input };
+export { Input }

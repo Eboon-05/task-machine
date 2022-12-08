@@ -1,29 +1,29 @@
-import { NextPage } from 'next';
-import { useRouter } from 'next/router';
-import { useRef, useState } from 'react';
-import { nanoid } from '@reduxjs/toolkit';
+import { NextPage } from 'next'
+import { useRouter } from 'next/router'
+import { useRef, useState } from 'react'
+import { nanoid } from '@reduxjs/toolkit'
 
 import {
     ArrowRightIcon,
     PlusIcon,
     CalendarIcon,
-} from '@heroicons/react/24/solid';
+} from '@heroicons/react/24/solid'
 
-import { Button } from 'components/Button';
-import { Input } from 'components/Input';
-import { LevelSelect } from 'components/LevelSelect';
+import { Button } from 'components/Button'
+import { Input } from 'components/Input'
+import { LevelSelect } from 'components/LevelSelect'
 
-import { useAppDispatch } from 'hooks';
-import { add } from 'redux/taskSlice';
+import { useAppDispatch } from 'hooks'
+import { add } from 'redux/taskSlice'
 
 const New: NextPage = () => {
-    const dispatch = useAppDispatch();
-    const router = useRouter();
+    const dispatch = useAppDispatch()
+    const router = useRouter()
 
-    const [level, setLevel] = useState<Task['level']>(2);
+    const [level, setLevel] = useState<Task['level']>(2)
 
-    const name = useRef<HTMLInputElement>(null);
-    const date = useRef<HTMLInputElement>(null);
+    const name = useRef<HTMLInputElement>(null)
+    const date = useRef<HTMLInputElement>(null)
 
     const onCreate = () => {
         if (name.current && date.current) {
@@ -32,12 +32,12 @@ const New: NextPage = () => {
                 id: nanoid(),
                 level,
                 done: false,
-            };
+            }
 
-            dispatch(add(newTask));
-            router.push('/');
+            dispatch(add(newTask))
+            router.push('/')
         }
-    };
+    }
 
     return (
         <>
@@ -65,7 +65,7 @@ const New: NextPage = () => {
                 </div>
             </section>
         </>
-    );
-};
+    )
+}
 
-export default New;
+export default New

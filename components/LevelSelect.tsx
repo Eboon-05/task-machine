@@ -1,11 +1,11 @@
-import classNames from 'classnames';
-import { FC, useState } from 'react';
+import classNames from 'classnames'
+import { FC, useState } from 'react'
 
-import { HandThumbUpIcon, ChevronDownIcon } from '@heroicons/react/24/solid';
+import { HandThumbUpIcon, ChevronDownIcon } from '@heroicons/react/24/solid'
 
 interface Props {
-    level: Task['level'];
-    onChange?: (value: Task['level']) => void;
+    level: Task['level']
+    onChange?: (value: Task['level']) => void
 }
 
 const icons = [
@@ -21,7 +21,7 @@ const icons = [
     <span className='absolute top-[6px] left-[6px] p-3 rounded-xl bg-light-red'>
         <HandThumbUpIcon className='h-6 w-6 ' />
     </span>,
-];
+]
 
 const LevelSelect: FC<Props> = ({ level, onChange }) => {
     const [active, setActive] = useState(false)
@@ -59,8 +59,8 @@ const LevelSelect: FC<Props> = ({ level, onChange }) => {
                     <li
                         className='p-4 pl-16 w-full text-lg relative cursor-pointer'
                         onClick={() => {
-                            onChange(1);
-                            setActive(false);
+                            onChange(1)
+                            setActive(false)
                         }}
                     >
                         {icons[0]}
@@ -70,8 +70,8 @@ const LevelSelect: FC<Props> = ({ level, onChange }) => {
                     <li
                         className='p-4 pl-16 w-full text-lg relative cursor-pointer'
                         onClick={() => {
-                            onChange(2);
-                            setActive(false);
+                            onChange(2)
+                            setActive(false)
                         }}
                     >
                         {icons[1]}
@@ -81,8 +81,8 @@ const LevelSelect: FC<Props> = ({ level, onChange }) => {
                     <li
                         className='p-4 pl-16 w-full text-lg relative cursor-pointer'
                         onClick={() => {
-                            onChange(3);
-                            setActive(false);
+                            onChange(3)
+                            setActive(false)
                         }}
                     >
                         {icons[2]}
@@ -91,7 +91,7 @@ const LevelSelect: FC<Props> = ({ level, onChange }) => {
                 </ul>
             ) : null}
         </div>
-    );
-};
+    )
+}
 
-export { LevelSelect };
+export { LevelSelect }

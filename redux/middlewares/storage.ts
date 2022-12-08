@@ -1,14 +1,14 @@
-import { Middleware } from '@reduxjs/toolkit';
+import { Middleware } from '@reduxjs/toolkit'
 
-import { AppState } from 'redux/store';
+import { AppState } from 'redux/store'
 
 export const storage: Middleware<{}, AppState> = store => next => action => {
     // calls all the other middlewares and reducers
-    next(action);
+    next(action)
 
     // then runs its code
-    const state = store.getState().task;
-    const storageState = JSON.parse(localStorage.getItem('tasks')) || null;
+    const state = store.getState().task
+    const storageState = JSON.parse(localStorage.getItem('tasks')) || null
 
     if (state.list && state.groups && storageState) {
         // defined list and groups - not null storage
@@ -18,6 +18,6 @@ export const storage: Middleware<{}, AppState> = store => next => action => {
                 list: [...state.list],
                 groups: state.groups,
             }),
-        );
+        )
     }
-};
+}

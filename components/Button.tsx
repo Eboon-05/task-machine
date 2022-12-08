@@ -1,4 +1,4 @@
-import { ButtonHTMLAttributes, DetailedHTMLProps, FC } from 'react';
+import { ButtonHTMLAttributes, DetailedHTMLProps, FC } from 'react'
 
 const Button: FC<
     DetailedHTMLProps<
@@ -17,7 +17,7 @@ const Button: FC<
         >
             {props.children}
         </button>
-    );
-};
+    )
+}
 
-export { Button };
+export { Button }

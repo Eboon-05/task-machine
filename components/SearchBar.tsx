@@ -1,35 +1,35 @@
-import { FC, useRef } from 'react';
+import { FC, useRef } from 'react'
 
 import {
     MagnifyingGlassIcon,
     ArrowRightIcon,
     XMarkIcon,
-} from '@heroicons/react/24/solid';
+} from '@heroicons/react/24/solid'
 
-import { Input } from './Input';
-import { Button } from './Button';
+import { Input } from './Input'
+import { Button } from './Button'
 
-import { search } from 'redux/taskSlice';
-import { useAppDispatch } from 'hooks';
+import { search } from 'redux/taskSlice'
+import { useAppDispatch } from 'hooks'
 
 interface Props {
-    active: boolean;
-    onClose: () => void;
+    active: boolean
+    onClose: () => void
 }
 
 const SearchBar: FC<Props> = ({ active, onClose }) => {
-    const ref = useRef<HTMLInputElement | null>(null);
-    const dispatch = useAppDispatch();
+    const ref = useRef<HTMLInputElement | null>(null)
+    const dispatch = useAppDispatch()
 
     const onSearch = () => {
         if (ref.current) {
             if (ref.current.value !== '') {
-                dispatch(search(ref.current.value));
+                dispatch(search(ref.current.value))
             }
         }
 
-        onClose();
-    };
+        onClose()
+    }
 
     return active ? (
         <>
@@ -58,7 +58,7 @@ const SearchBar: FC<Props> = ({ active, onClose }) => {
                 </div>
             </div>
         </>
-    ) : null;
-};
+    ) : null
+}
 
-export { SearchBar };
+export { SearchBar }

@@ -1,11 +1,11 @@
-import { ChangeEvent, FC } from 'react';
-import classNames from 'classnames';
+import { ChangeEvent, FC } from 'react'
+import classNames from 'classnames'
 
-import { CheckIcon } from '@heroicons/react/20/solid';
+import { CheckIcon } from '@heroicons/react/20/solid'
 
 interface Props {
-    checked: boolean;
-    onChange: (ev: ChangeEvent<HTMLInputElement>) => void;
+    checked: boolean
+    onChange: (ev: ChangeEvent<HTMLInputElement>) => void
 }
 
 const Check: FC<Props> = ({ checked, onChange }) => {
@@ -36,7 +36,7 @@ const Check: FC<Props> = ({ checked, onChange }) => {
                 </span>
             </div>
         </>
-    );
-};
+    )
+}
 
-export { Check };
+export { Check }
