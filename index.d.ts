@@ -11,6 +11,7 @@ interface Group {
     id: string
     name: string
     color: string
+    list: Task[]
 }
 
 interface User {

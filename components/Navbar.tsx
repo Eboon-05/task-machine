@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 import { useState } from 'react'
 
 import {
@@ -22,6 +23,8 @@ const links = [
 ]
 
 const Navbar = () => {
+    const { asPath } = useRouter()
+
     const [search, setSearch] = useState(false)
 
     return (
@@ -43,9 +46,9 @@ const Navbar = () => {
                 </button>
 
                 <Link
-                    href='/new'
+                    href={asPath === '/' ? '/new' : '/groups/new'}
                     className='bg-dark-blue rounded-[1.25rem] shadow-md p-3 h-14 w-14 absolute top-[6px] -right-8
-                flex items-center justify-center'
+                    flex items-center justify-center'
                 >
                     <PlusIcon className='h-7 w-7 text-white' />
                 </Link>

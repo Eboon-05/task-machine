@@ -18,6 +18,9 @@ export const taskSlice = createSlice({
         add(state, action: PayloadAction<Task, 'ADD'>) {
             state.list.push(action.payload)
         },
+        addGroup(state, action: PayloadAction<Group, 'ADD_GROUP'>) {
+            state.groups.push(action.payload)
+        },
         toggle(state, action: PayloadAction<Task, 'TOGGLE'>) {
             const newList: Task[] = [...state.list]
             const i = newList.findIndex(t => t.id === action.payload.id)
@@ -55,4 +58,4 @@ export const taskSlice = createSlice({
     },
 })
 
-export const { add, toggle, search, setTasks } = taskSlice.actions
+export const { add, addGroup, toggle, search, setTasks } = taskSlice.actions
