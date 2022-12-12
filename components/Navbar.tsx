@@ -4,7 +4,7 @@ import { useMemo, useState } from 'react'
 
 import {
     HomeIcon,
-    ListBulletIcon,
+    Square2StackIcon,
     ArrowPathRoundedSquareIcon,
     PlusIcon,
 } from '@heroicons/react/24/solid'
@@ -21,7 +21,7 @@ const links = [
     {
         path: '/groups',
         name: 'Groups',
-        icon: <ListBulletIcon className='h-7 w-7' />,
+        icon: <Square2StackIcon className='h-7 w-7' />,
     },
     {
         path: '/habits',
