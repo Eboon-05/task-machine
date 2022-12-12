@@ -41,11 +41,15 @@ const New: NextPage = () => {
             if (!name.current.value) {
                 return console.error('There is no name')
             }
+
+            const realDate = new Date(date.current.value)
+
             const newTask: Task = {
                 name: name.current.value,
                 id: nanoid(),
                 level,
                 done: false,
+                due: date.current.value ? realDate : undefined
             }
 
             const id = router.query.group

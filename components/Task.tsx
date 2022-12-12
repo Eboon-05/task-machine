@@ -1,6 +1,6 @@
 import { FC } from 'react'
 
-import { TrashIcon } from '@heroicons/react/24/solid'
+import { TrashIcon, CalendarIcon } from '@heroicons/react/24/solid'
 
 import { useAppDispatch } from 'hooks'
 import { Check } from './Check'
@@ -31,7 +31,16 @@ const Task: FC<Props> = ({ task, dark, group }) => {
                 <div className='mr-2'>
                     <Check dark={dark} checked={done} onChange={complete} />
                 </div>
-                <div className={`${done && 'line-through'}`}>{name}</div>
+                <div>
+                    <div className={`${done && 'line-through'}`}>{name}</div>
+                    {task.due
+                        ? <div className='flex justify-start items-center text-sm opacity-80'>
+                            <CalendarIcon className='h-5 w-5 mr-1' />
+                            {task.due.toLocaleDateString('es-AR', { dateStyle: 'short' })}
+                        </div>
+                        : null
+                    }
+                </div>
             </div>
             <button onClick={onRemove}>
                 <TrashIcon className='h-6 w-6' />
