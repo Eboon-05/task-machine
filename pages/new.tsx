@@ -43,6 +43,7 @@ const New: NextPage = () => {
             }
 
             const realDate = new Date(date.current.value)
+            realDate.setDate(realDate.getDate() + 1)
 
             const newTask: Task = {
                 name: name.current.value,
