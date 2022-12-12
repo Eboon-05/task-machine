@@ -17,3 +17,10 @@ interface User {
     username: string
     token: string
 }
+
+interface Habit {
+    id: string
+    name: string
+    done: boolean
+    lastChecked: Date
+}
