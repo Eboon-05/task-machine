@@ -33,7 +33,7 @@ const Groups: NextPage = () => {
                 ) : null}
             </div>
 
-            {state.groups.length === 0 ? (
+            {state.groups?.length === 0 ? (
                 <div className='text-center'>
                     <Image
                         src='/meditating.svg'
