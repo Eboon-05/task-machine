@@ -153,6 +153,25 @@ export const taskSlice = createSlice({
                 state.habits = newHabits
             }
         },
+        checkHabit(
+            state,
+            action: PayloadAction<Habit, 'CHECK_HABIT'>,
+        ) {
+            const newHabits: Habit[] = [...state.habits]
+            const i = newHabits.findIndex(
+                t => t.id === action.payload.id,
+            )
+
+            if (i !== -1) {
+                newHabits[i] = {
+                    ...newHabits[i],
+                    done: false,
+                    lastChecked: new Date()
+                }
+
+                state.habits = newHabits
+            }
+        },
         search(state, action: PayloadAction<string, 'SEARCH'>) {
             state.query = action.payload
         },
@@ -176,5 +195,5 @@ export const taskSlice = createSlice({
     },
 })
 
-export const { addTask, addGroup, addHabit, toggleTask, toggleHabit, removeTask, removeHabit, search, setTasks } =
+export const { addTask, addGroup, addHabit, toggleTask, toggleHabit, removeTask, removeHabit, checkHabit, search, setTasks } =
     taskSlice.actions

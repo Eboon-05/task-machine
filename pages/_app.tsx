@@ -1,7 +1,8 @@
-import { useAppDispatch } from 'hooks'
 import { AppProps } from 'next/app'
 import { FC, useEffect } from 'react'
 import { Provider } from 'react-redux'
+
+import { useAppDispatch } from 'hooks'
 
 import { store } from 'redux/store'
 import { setTasks } from 'redux/taskSlice'
@@ -9,18 +10,22 @@ import { setTasks } from 'redux/taskSlice'
 import '../styles/globals.css'
 
 const InitState: FC = () => {
+    const dispatch = useAppDispatch()
+
     useEffect(() => {
         const state = store.getState().task
         const storageState = JSON.parse(localStorage.getItem('tasks')) || {
             list: [],
             groups: [],
+            habits: []
         }
 
         if (
             state.list !== storageState.list ||
-            state.groups !== storageState.groups
+            state.groups !== storageState.groups ||
+            state.habits !== storageState.habits
         ) {
-            store.dispatch(setTasks(storageState))
+            dispatch(setTasks(storageState))
         }
     }, [])
 

@@ -17,20 +17,20 @@ const Habits = () => {
     const [searchActive, setSearchActive] = useState(false)
 
     useEffect(() => {
-        if (state.list) {
+        if (state.habits) {
             if (state.query !== '') {
                 setFiltered(
-                    state.list.filter(t => {
+                    state.habits.filter(t => {
                         return t.name
                             .toLowerCase()
                             .includes(state.query.toLowerCase())
                     }),
                 )
             } else {
-                setFiltered(state.list)
+                setFiltered(state.habits)
             }
         }
-    }, [state.query, state.list])
+    }, [state.query, state.habits])
 
     const clearQuery = () => {
         dispatch(search(''))

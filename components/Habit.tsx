@@ -1,10 +1,11 @@
+import { useRouter } from 'next/router'
 import { FC, useLayoutEffect } from 'react'
 
-import { TrashIcon, CalendarIcon } from '@heroicons/react/24/solid'
+import { TrashIcon } from '@heroicons/react/24/solid'
 
 import { useAppDispatch } from 'hooks'
 import { Check } from './Check'
-import { removeHabit, toggleHabit } from 'redux/taskSlice'
+import { checkHabit, removeHabit, toggleHabit } from 'redux/taskSlice'
 
 interface Props {
     habit: Habit
@@ -12,9 +13,10 @@ interface Props {
 }
 
 const Habit: FC<Props> = ({ habit, dark }) => {
-    const { name, done } = habit
+    const { name, done, lastChecked } = habit
 
     const dispatch = useAppDispatch()
+    const router = useRouter()
 
     const complete = () => {
         dispatch(toggleHabit(habit))
@@ -23,6 +25,16 @@ const Habit: FC<Props> = ({ habit, dark }) => {
     const onRemove = () => {
         dispatch(removeHabit(habit))
     }
+
+    useLayoutEffect(() => {
+        const today = new Date().getDate()
+        const checkedDay = new Date(lastChecked).getDate()
+
+        if (today !== checkedDay) {
+            console.log('is diff')
+            dispatch(checkHabit(habit))
+        }
+    }, [])
 
     return (
         <div className='flex justify-between items-center'>

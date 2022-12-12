@@ -10,13 +10,15 @@ export const storage: Middleware<{}, AppState> = store => next => action => {
     const state = store.getState().task
     // const storageState = JSON.parse(localStorage.getItem('tasks')) || null
 
-    if (state.list && state.groups) {
-        // defined list and groups - not null storage
+    if (state.list && state.groups && state.habits) {
+        // defined list, groups and habits
+        // save them in the localStorage
         localStorage.setItem(
             'tasks',
             JSON.stringify({
-                list: [...state.list],
+                list: state.list,
                 groups: state.groups,
+                habits: state.habits
             }),
         )
     }

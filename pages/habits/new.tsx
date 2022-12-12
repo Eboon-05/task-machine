@@ -41,7 +41,7 @@ const New: NextPage = () => {
             </div>
             <div className='grid grid-cols-1 gap-2'>
                 <span>Name:</span>
-                <Input ref={name} Icon={PlusIcon} placeholder='Group name' />
+                <Input ref={name} Icon={PlusIcon} placeholder='Habit name' />
             </div>
         </section>
     )
