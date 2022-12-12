@@ -5,8 +5,8 @@ import { Check } from './Check'
 import { toggle } from 'redux/taskSlice'
 
 interface Props {
-    task: Task,
-    dark?: boolean,
+    task: Task
+    dark?: boolean
     group?: string
 }
 
@@ -15,7 +15,7 @@ const Task: FC<Props> = ({ task, dark, group }) => {
 
     const dispatch = useAppDispatch()
 
-    const complete = () => {        
+    const complete = () => {
         dispatch(toggle({ task, group }))
     }
 

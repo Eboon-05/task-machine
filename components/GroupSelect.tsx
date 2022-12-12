@@ -65,10 +65,7 @@ const GroupSelect: FC<Props> = ({ group, onChange }) => {
                             setActive(false)
                         }}
                     >
-                        <div
-                            className='absolute top-[6px] left-[6px] w-12 h-12 rounded-xl'
-                        ></div>
-
+                        <div className='absolute top-[6px] left-[6px] w-12 h-12 rounded-xl'></div>
                         No group
                     </li>
 
@@ -89,7 +86,7 @@ const GroupSelect: FC<Props> = ({ group, onChange }) => {
                                           }}
                                           className='absolute top-[6px] left-[6px] w-12 h-12 rounded-xl text-white p-3'
                                       >
-                                        <Square2StackIcon className='w-6 h-6' />
+                                          <Square2StackIcon className='w-6 h-6' />
                                       </div>
 
                                       {g.name}

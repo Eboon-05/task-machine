@@ -14,7 +14,7 @@ import { addGroup } from 'redux/taskSlice'
 const New: NextPage = () => {
     const dispatch = useAppDispatch()
     const router = useRouter()
-    
+
     const name = useRef<HTMLInputElement>(null)
     const [color, setColor] = useState('#000000')
 
@@ -23,7 +23,7 @@ const New: NextPage = () => {
             const newGroup: Group = {
                 id: nanoid(),
                 name: name.current.value,
-                color
+                color,
             }
 
             dispatch(addGroup(newGroup))
@@ -46,10 +46,10 @@ const New: NextPage = () => {
                 <span>Color:</span>
                 <div className='flex justify-between items-center'>
                     <span>{color}</span>
-                    <input 
+                    <input
                         onChange={ev => setColor(ev.target.value)}
-                        type="color"
-                        className='h-12 w-12 border-none bg-opacity-0' 
+                        type='color'
+                        className='h-12 w-12 border-none bg-opacity-0'
                     />
                 </div>
             </div>

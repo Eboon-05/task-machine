@@ -5,7 +5,7 @@ import { CheckIcon } from '@heroicons/react/20/solid'
 
 interface Props {
     checked: boolean
-    onChange: (ev: ChangeEvent<HTMLInputElement>) => void,
+    onChange: (ev: ChangeEvent<HTMLInputElement>) => void
     dark?: boolean
 }
 
@@ -36,7 +36,7 @@ const Check: FC<Props> = ({ checked, onChange, dark }) => {
                             'h-3 w-3 font-bold': true,
                             'text-white': !dark,
                             'text-black': dark,
-                            'hidden': !checked,
+                            hidden: !checked,
                         })}
                     />
                 </span>

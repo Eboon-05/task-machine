@@ -21,30 +21,40 @@ export const taskSlice = createSlice({
         addGroup(state, action: PayloadAction<Group, 'ADD_GROUP'>) {
             state.groups.push(action.payload)
         },
-        addToGroup(state, action: PayloadAction<{ task: Task, group: string }, 'ADD_TO_GROUP'>) {
+        addToGroup(
+            state,
+            action: PayloadAction<
+                { task: Task; group: string },
+                'ADD_TO_GROUP'
+            >,
+        ) {
             const i = state.groups.findIndex(g => action.payload.group === g.id)
 
             if (i !== -1) {
                 state.groups[i] = {
                     ...state.groups[i],
                     list: state.groups[i].list
-                        ? [
-                            ...state.groups[i].list,
-                            action.payload.task
-                        ]
+                        ? [...state.groups[i].list, action.payload.task]
                         : [action.payload.task],
                 }
             }
         },
-        toggle(state, action: PayloadAction<{ task: Task, group?: string}, 'TOGGLE'>) {
+        toggle(
+            state,
+            action: PayloadAction<{ task: Task; group?: string }, 'TOGGLE'>,
+        ) {
             if (action.payload.group) {
-                const i = state.groups.findIndex(g => action.payload.group === g.id)
-                
+                const i = state.groups.findIndex(
+                    g => action.payload.group === g.id,
+                )
+
                 if (i !== -1) {
                     const newList = [...state.groups[i].list]
                     // Toggled task index
-                    const t = newList.findIndex(t => t.id === action.payload.task.id)
-                    
+                    const t = newList.findIndex(
+                        t => t.id === action.payload.task.id,
+                    )
+
                     if (t !== -1) {
                         newList[t] = {
                             ...newList[t],
@@ -56,7 +66,9 @@ export const taskSlice = createSlice({
                 }
             } else {
                 const newList: Task[] = [...state.list]
-                const i = newList.findIndex(t => t.id === action.payload.task.id)
+                const i = newList.findIndex(
+                    t => t.id === action.payload.task.id,
+                )
 
                 if (i !== -1) {
                     newList[i] = {
@@ -67,7 +79,6 @@ export const taskSlice = createSlice({
                     state.list = newList
                 }
             }
-
         },
         search(state, action: PayloadAction<string, 'SEARCH'>) {
             state.query = action.payload
@@ -89,4 +100,5 @@ export const taskSlice = createSlice({
     },
 })
 
-export const { add, addGroup, addToGroup, toggle, search, setTasks } = taskSlice.actions
+export const { add, addGroup, addToGroup, toggle, search, setTasks } =
+    taskSlice.actions

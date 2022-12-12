@@ -23,10 +23,8 @@ const New: NextPage = () => {
     const router = useRouter()
 
     const [level, setLevel] = useState<Task['level']>(2)
-    const [group, setGroup] = useState<string|undefined>(
-        typeof router.query.group === 'string' 
-            ? router.query.group
-            : undefined
+    const [group, setGroup] = useState<string | undefined>(
+        typeof router.query.group === 'string' ? router.query.group : undefined,
     )
 
     useLayoutEffect(() => {
@@ -41,7 +39,7 @@ const New: NextPage = () => {
     const onCreate = () => {
         if (name.current && date.current) {
             if (!name.current.value) {
-                return console.error('There is no name')                
+                return console.error('There is no name')
             }
             const newTask: Task = {
                 name: name.current.value,
@@ -53,10 +51,12 @@ const New: NextPage = () => {
             const id = router.query.group
 
             if (typeof id === 'string') {
-                dispatch(addToGroup({
-                    task: newTask,
-                    group: id,
-                }))
+                dispatch(
+                    addToGroup({
+                        task: newTask,
+                        group: id,
+                    }),
+                )
                 router.push(`/groups#${id}`)
             } else {
                 dispatch(add(newTask))
