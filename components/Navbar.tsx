@@ -25,7 +25,7 @@ const links = [
 
 const Navbar = () => {
     const { route } = useRouter()
-    
+
     const [search, setSearch] = useState(false)
 
     return (
@@ -46,12 +46,11 @@ const Navbar = () => {
                     </Link>
                 ))}
 
-                {route === '/'
-                    ? <button onClick={() => setSearch(true)}>
+                {route === '/' ? (
+                    <button onClick={() => setSearch(true)}>
                         <MagnifyingGlassIcon className='h-7 w-7' />
                     </button>
-                    : null
-                }
+                ) : null}
 
                 <Link
                     href={route === '/' ? '/new' : '/groups/new'}
