@@ -80,6 +80,41 @@ export const taskSlice = createSlice({
                 }
             }
         },
+        remove(
+            state,
+            action: PayloadAction<{ task: Task; group?: string }, 'DELETE'>,
+        ) {
+            if (action.payload.group) {
+                const i = state.groups.findIndex(
+                    g => action.payload.group === g.id,
+                )
+
+                if (i !== -1) {
+                    const newList = [...state.groups[i].list]
+                    // Toggled task index
+                    const t = newList.findIndex(
+                        t => t.id === action.payload.task.id,
+                    )
+
+                    if (t !== -1) {
+                        newList.splice(t, 1)
+
+                        state.groups[i].list = newList
+                    }
+                }
+            } else {
+                const newList: Task[] = [...state.list]
+                const i = newList.findIndex(
+                    t => t.id === action.payload.task.id,
+                )
+
+                if (i !== -1) {
+                    newList.splice(i, 1)
+
+                    state.list = newList
+                }
+            }
+        },
         search(state, action: PayloadAction<string, 'SEARCH'>) {
             state.query = action.payload
         },
@@ -100,5 +135,5 @@ export const taskSlice = createSlice({
     },
 })
 
-export const { add, addGroup, addToGroup, toggle, search, setTasks } =
+export const { add, addGroup, addToGroup, toggle, remove, search, setTasks } =
     taskSlice.actions
