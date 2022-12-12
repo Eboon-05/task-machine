@@ -1,3 +1,4 @@
+import { useRouter } from 'next/router'
 import { FC, useRef } from 'react'
 
 import {
@@ -19,6 +20,7 @@ interface Props {
 
 const SearchBar: FC<Props> = ({ active, onClose }) => {
     const ref = useRef<HTMLInputElement | null>(null)
+    const router = useRouter()
     const dispatch = useAppDispatch()
 
     const onSearch = () => {
@@ -40,7 +42,7 @@ const SearchBar: FC<Props> = ({ active, onClose }) => {
             >
                 <div className='p-8 relative'>
                     <h1 className='text-center text-3xl font-bold mb-2'>
-                        Search for a task
+                        Search for a {router.route === '/habits' ? 'habit' : 'task'}
                     </h1>
 
                     <Input ref={ref} Icon={MagnifyingGlassIcon} autoFocus />

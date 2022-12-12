@@ -5,7 +5,7 @@ import { useState } from 'react'
 import {
     HomeIcon,
     ListBulletIcon,
-    MagnifyingGlassIcon,
+    ArrowPathRoundedSquareIcon,
     PlusIcon,
 } from '@heroicons/react/24/solid'
 
@@ -21,6 +21,10 @@ const links = [
         path: '/groups',
         icon: <ListBulletIcon className='h-7 w-7' />,
     },
+    {
+        path: '/habits',
+        icon: <ArrowPathRoundedSquareIcon className='h-7 w-7' />
+    }
 ]
 
 const Navbar = () => {
@@ -34,10 +38,8 @@ const Navbar = () => {
                 className={classNames({
                     [`
                     bg-light-gray w-[90%] py-5 px-8 rounded-2xl grid justify-center 
-                    items-center justify-items-center relative max-w-[330px]
+                    items-center justify-items-center relative max-w-[330px] grid-cols-3
                     `]: true,
-                    'grid-cols-3': route === '/',
-                    'grid-cols-2': route === '/groups',
                 })}
             >
                 {links.map((l, i) => (
@@ -45,12 +47,6 @@ const Navbar = () => {
                         {l.icon}
                     </Link>
                 ))}
-
-                {route === '/' ? (
-                    <button onClick={() => setSearch(true)}>
-                        <MagnifyingGlassIcon className='h-7 w-7' />
-                    </button>
-                ) : null}
 
                 <Link
                     href={route === '/' ? '/new' : '/groups/new'}
