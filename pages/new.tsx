@@ -16,12 +16,14 @@ import { GroupSelect } from 'components/GroupSelect'
 
 import { useAppDispatch } from 'hooks'
 import { addTask } from 'redux/taskSlice'
+import { Toast } from 'components/Toast'
 
 const New: NextPage = () => {
     const dispatch = useAppDispatch()
     const router = useRouter()
 
     const [level, setLevel] = useState<Task['level']>(2)
+    const [error, setError] = useState<string>('')
     const [group, setGroup] = useState<string | undefined>(
         typeof router.query.group === 'string' ? router.query.group : undefined,
     )
@@ -38,7 +40,7 @@ const New: NextPage = () => {
     const onCreate = () => {
         if (name.current && date.current) {
             if (!name.current.value) {
-                return console.error('There is no name')
+                return setError(`Task name can't be empty.`)
             }
 
             const realDate = new Date(date.current.value)
@@ -49,7 +51,7 @@ const New: NextPage = () => {
                 id: nanoid(),
                 level,
                 done: false,
-                due: date.current.value ? realDate : undefined
+                due: date.current.value ? realDate : undefined,
             }
 
             const id = router.query.group
@@ -63,41 +65,46 @@ const New: NextPage = () => {
                 )
                 router.push(`/groups#${id}`)
             } else {
-                dispatch(addTask({ task: newTask}))
+                dispatch(addTask({ task: newTask }))
                 router.push('/')
             }
         }
     }
 
     return (
-        <>
-            <section className='p-2 h-screen flex flex-col justify-start'>
-                <div className='p-5 sm:flex justify-between items-center'>
-                    <h1 className='text-4xl font-bold mb-2'>
-                        Create a new task
-                    </h1>
-                    <Button className='m-auto sm:m-0' onClick={onCreate}>
-                        <ArrowRightIcon className='h-6 w-6' />
-                    </Button>
-                </div>
-                <div className='grid grid-cols-1 gap-2'>
-                    <span>Name</span>
-                    <Input ref={name} Icon={PlusIcon} placeholder='Task name' />
+        <section className='p-2 h-screen flex flex-col justify-start'>
+            <div className='p-5 sm:flex justify-between items-center'>
+                <h1 className='text-4xl font-bold mb-2'>Create a new task</h1>
+                <Button className='m-auto sm:m-0' onClick={onCreate}>
+                    <ArrowRightIcon className='h-6 w-6' />
+                </Button>
+            </div>
+            <div className='grid grid-cols-1 gap-2'>
+                <span>Name</span>
+                <Input ref={name} Icon={PlusIcon} placeholder='Task name' />
 
-                    <span>Date:</span>
-                    <Input ref={date} Icon={CalendarIcon} type='date' />
-                    <span className='text-sm opacity-60'>
-                        You can leave date empty
-                    </span>
+                <span>Date:</span>
+                <Input ref={date} Icon={CalendarIcon} type='date' />
+                <span className='text-sm opacity-60'>
+                    You can leave date empty
+                </span>
 
-                    <span>Difficulty:</span>
-                    <LevelSelect level={level} onChange={setLevel} />
+                <span>Difficulty:</span>
+                <LevelSelect level={level} onChange={setLevel} />
 
-                    <span>Group:</span>
-                    <GroupSelect onChange={setGroup} group={group} />
-                </div>
-            </section>
-        </>
+                <span>Group:</span>
+                <GroupSelect onChange={setGroup} group={group} />
+            </div>
+
+            {error ? (
+                <Toast
+                    title='Error!'
+                    body={error}
+                    type='error'
+                    onClose={() => setError('')}
+                />
+            ) : null}
+        </section>
     )
 }
 

@@ -7,6 +7,7 @@ import { ArrowRightIcon, PlusIcon } from '@heroicons/react/24/solid'
 
 import { Button } from 'components/Button'
 import { Input } from 'components/Input'
+import { Toast } from 'components/Toast'
 
 import { useAppDispatch } from 'hooks'
 import { addHabit } from 'redux/taskSlice'
@@ -17,8 +18,14 @@ const New: NextPage = () => {
 
     const name = useRef<HTMLInputElement>(null)
 
+    const [error, setError] = useState<string>('')
+
     const onCreate = () => {
         if (name.current) {
+            if (!name.current.value) {
+                return setError(`Habit name can't be empty.`)
+            }
+
             const newHabit: Habit = {
                 id: nanoid(),
                 name: name.current.value,
@@ -43,6 +50,15 @@ const New: NextPage = () => {
                 <span>Name:</span>
                 <Input ref={name} Icon={PlusIcon} placeholder='Habit name' />
             </div>
+
+            {error ? (
+                <Toast
+                    title='Error!'
+                    body={error}
+                    type='error'
+                    onClose={() => setError('')}
+                />
+            ) : null}
         </section>
     )
 }

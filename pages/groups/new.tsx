@@ -7,6 +7,7 @@ import { ArrowRightIcon, PlusIcon } from '@heroicons/react/24/solid'
 
 import { Button } from 'components/Button'
 import { Input } from 'components/Input'
+import { Toast } from 'components/Toast'
 
 import { useAppDispatch } from 'hooks'
 import { addGroup } from 'redux/taskSlice'
@@ -17,11 +18,14 @@ const New: NextPage = () => {
     const router = useRouter()
 
     const name = useRef<HTMLInputElement>(null)
+    const [error, setError] = useState<string>('')
     const [color, setColor] = useState('#000000')
 
     const onCreate = () => {
         if (name.current) {
-            if (!name.current.value) return console.error('There is no name')            
+            if (!name.current.value) {
+                return setError(`Group name can't be empty.`)
+            }
 
             const newGroup: Group = {
                 id: nanoid(),
@@ -50,6 +54,15 @@ const New: NextPage = () => {
                 <span>Color:</span>
                 <ColorPicker onChange={setColor} />
             </div>
+
+            {error ? (
+                <Toast
+                    title='Error!'
+                    body={error}
+                    type='error'
+                    onClose={() => setError('')}
+                />
+            ) : null}
         </section>
     )
 }
