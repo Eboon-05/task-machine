@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import { useEffect, useState } from 'react'
 
 import { MagnifyingGlassIcon, XMarkIcon } from '@heroicons/react/24/outline'
@@ -66,6 +67,23 @@ const Habits = () => {
                     </ul>
                 </div>
             </div>
+
+            {state.habits.length === 0 ? (
+                <div className='text-center'>
+                    <Image
+                        src='/plant.svg'
+                        alt='plant'
+                        width={400}
+                        height={400}
+                        className='h-auto w-auto'
+                    />
+                    <p>
+                        You have no habits. Habits are the key for building a
+                        better you! Try something like "water my plants" or
+                        "read for 10 minutes".
+                    </p>
+                </div>
+            ) : null}
 
             <Navbar />
             <SearchBar

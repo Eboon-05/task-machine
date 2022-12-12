@@ -1,4 +1,5 @@
 import { NextPage } from 'next'
+import Image from 'next/image'
 import { useEffect, useState } from 'react'
 
 import { XMarkIcon, MagnifyingGlassIcon } from '@heroicons/react/24/outline'
@@ -65,6 +66,22 @@ const Home: NextPage = () => {
                     </ul>
                 </div>
             </div>
+
+            {filtered.length === 0 ? (
+                <div className='text-center'>
+                    <Image
+                        src='/ice-cream.svg'
+                        alt='ice-cream'
+                        width={400}
+                        height={400}
+                        className='h-auto w-auto'
+                    />
+                    <p>
+                        Seems like you have no tasks. You can create one, or go
+                        and get an ice cream!
+                    </p>
+                </div>
+            ) : null}
 
             <Navbar />
             <SearchBar

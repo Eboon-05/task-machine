@@ -1,4 +1,5 @@
 import { NextPage } from 'next'
+import Image from 'next/image'
 
 import { Navbar } from 'components/Navbar'
 import { useAppSelector } from 'hooks'
@@ -25,18 +26,29 @@ const Groups: NextPage = () => {
 
                 {state.groups ? (
                     <div>
-                        {state.groups.length ? (
-                            <>
-                                {state.groups.map(g => (
-                                    <Group key={g.id} {...g} />
-                                ))}
-                            </>
-                        ) : (
-                            <>There are no groups. You should create one.</>
-                        )}
+                        {state.groups.map(g => (
+                            <Group key={g.id} {...g} />
+                        ))}
                     </div>
                 ) : null}
             </div>
+
+            {state.groups.length === 0 ? (
+                <div className='text-center'>
+                    <Image
+                        src='/meditating.svg'
+                        alt='meditating'
+                        width={400}
+                        height={400}
+                        className='h-auto w-auto'
+                    />
+                    <p>
+                        You haven't created any group yet. Separating your tasks
+                        into groups can make things easier. Try creating a group
+                        for work and another for pets!
+                    </p>
+                </div>
+            ) : null}
 
             <Navbar />
         </section>
