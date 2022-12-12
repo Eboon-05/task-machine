@@ -5,6 +5,7 @@ import { TrashIcon, CalendarIcon } from '@heroicons/react/24/solid'
 import { useAppDispatch } from 'hooks'
 import { Check } from './Check'
 import { removeTask, toggleTask } from 'redux/taskSlice'
+import { getLevelIcon } from 'utils/getLevelIcon'
 
 interface Props {
     task: Task
@@ -13,7 +14,7 @@ interface Props {
 }
 
 const Task: FC<Props> = ({ task, dark, group }) => {
-    const { done, name } = task
+    const { done, name, level } = task
 
     const dispatch = useAppDispatch()
 
@@ -42,9 +43,12 @@ const Task: FC<Props> = ({ task, dark, group }) => {
                     }
                 </div>
             </div>
-            <button onClick={onRemove}>
-                <TrashIcon className='h-6 w-6' />
-            </button>
+            <div className='flex'>
+                {getLevelIcon(level)}
+                <button onClick={onRemove} className='ml-2'>
+                    <TrashIcon className='h-6 w-6' />
+                </button>
+            </div>
         </div>
     )
 }

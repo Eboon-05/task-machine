@@ -1,27 +1,15 @@
-import classNames from 'classnames'
+import Image from 'next/image'
 import { FC, useState } from 'react'
 
+import classNames from 'classnames'
+
 import { HandThumbUpIcon, ChevronDownIcon } from '@heroicons/react/24/solid'
+import { getLevelIcon } from 'utils/getLevelIcon'
 
 interface Props {
     level: Task['level']
     onChange?: (value: Task['level']) => void
 }
-
-const icons = [
-    // Cold
-    <span className='absolute top-[6px] left-[6px] p-3 rounded-xl bg-light-blue'>
-        <HandThumbUpIcon className='h-6 w-6 ' />
-    </span>,
-    // Medium
-    <span className='absolute top-[6px] left-[6px] p-3 rounded-xl bg-light-orange'>
-        <HandThumbUpIcon className='h-6 w-6 ' />
-    </span>,
-    // Hot
-    <span className='absolute top-[6px] left-[6px] p-3 rounded-xl bg-light-red'>
-        <HandThumbUpIcon className='h-6 w-6 ' />
-    </span>,
-]
 
 const LevelSelect: FC<Props> = ({ level, onChange }) => {
     const [active, setActive] = useState(false)
@@ -39,7 +27,7 @@ const LevelSelect: FC<Props> = ({ level, onChange }) => {
             {/* Selected option */}
 
             {/* Get the right icon */}
-            {icons[level - 1]}
+            {getLevelIcon(level, true)}
 
             {/* Get the right name */}
             {classNames({
@@ -68,7 +56,7 @@ const LevelSelect: FC<Props> = ({ level, onChange }) => {
                             setActive(false)
                         }}
                     >
-                        {icons[0]}
+                        {getLevelIcon(1, true)}
                         Low
                     </li>
 
@@ -79,7 +67,7 @@ const LevelSelect: FC<Props> = ({ level, onChange }) => {
                             setActive(false)
                         }}
                     >
-                        {icons[1]}
+                        {getLevelIcon(2, true)}
                         Medium
                     </li>
 
@@ -90,7 +78,7 @@ const LevelSelect: FC<Props> = ({ level, onChange }) => {
                             setActive(false)
                         }}
                     >
-                        {icons[2]}
+                        {getLevelIcon(3, true)}
                         Hard
                     </li>
                 </ul>
