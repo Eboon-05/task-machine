@@ -1,6 +1,6 @@
 import { NextPage } from 'next'
 import { useRouter } from 'next/router'
-import { useRef, useState } from 'react'
+import { useLayoutEffect, useRef, useState } from 'react'
 import { nanoid } from '@reduxjs/toolkit'
 
 import {
@@ -12,21 +12,37 @@ import {
 import { Button } from 'components/Button'
 import { Input } from 'components/Input'
 import { LevelSelect } from 'components/LevelSelect'
+import { GroupSelect } from 'components/GroupSelect'
 
-import { useAppDispatch } from 'hooks'
-import { add } from 'redux/taskSlice'
+import { useAppDispatch, useAppSelector } from 'hooks'
+import { add, addToGroup } from 'redux/taskSlice'
 
 const New: NextPage = () => {
+    // const state = useAppSelector(s => s.task)
     const dispatch = useAppDispatch()
     const router = useRouter()
 
     const [level, setLevel] = useState<Task['level']>(2)
+    const [group, setGroup] = useState<string|undefined>(
+        typeof router.query.group === 'string' 
+            ? router.query.group
+            : undefined
+    )
+
+    useLayoutEffect(() => {
+        if (typeof router.query.group === 'string') {
+            setGroup(router.query.group)
+        }
+    }, [router.query])
 
     const name = useRef<HTMLInputElement>(null)
     const date = useRef<HTMLInputElement>(null)
 
     const onCreate = () => {
         if (name.current && date.current) {
+            if (!name.current.value) {
+                return console.error('There is no name')                
+            }
             const newTask: Task = {
                 name: name.current.value,
                 id: nanoid(),
@@ -34,8 +50,18 @@ const New: NextPage = () => {
                 done: false,
             }
 
-            dispatch(add(newTask))
-            router.push('/')
+            const id = router.query.group
+
+            if (typeof id === 'string') {
+                dispatch(addToGroup({
+                    task: newTask,
+                    group: id,
+                }))
+                router.push(`/groups#${id}`)
+            } else {
+                dispatch(add(newTask))
+                router.push('/')
+            }
         }
     }
 
@@ -62,6 +88,9 @@ const New: NextPage = () => {
 
                     <span>Difficulty:</span>
                     <LevelSelect level={level} onChange={setLevel} />
+
+                    <span>Group:</span>
+                    <GroupSelect onChange={setGroup} group={group} />
                 </div>
             </section>
         </>

@@ -54,9 +54,9 @@ const Home: NextPage = () => {
                             </div>
                         ) : null}
                         <ul>
-                            {filtered.map((t, i) => (
-                                <li key={i} className='mb-6'>
-                                    <Task {...t} />
+                            {filtered.map((t) => (
+                                <li key={t.id} className='mb-6'>
+                                    <Task task={t} />
                                 </li>
                             ))}
                         </ul>

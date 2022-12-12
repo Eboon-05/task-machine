@@ -23,7 +23,7 @@ const Groups: NextPage = () => {
                 ? <div>
                     {state.groups.length
                         ? <>
-                            {state.groups.map(g => <Group {...g} />)}
+                            {state.groups.map(g => <Group key={g.id} {...g} />)}
                         </>
                         : <>
                             There are no groups. You should create one.
