@@ -1,10 +1,20 @@
 import Link from 'next/link'
 import { FC } from 'react'
 
-import { Square2StackIcon, PlusIcon } from '@heroicons/react/24/outline'
+import { Square2StackIcon, PlusIcon, TrashIcon } from '@heroicons/react/24/outline'
+
 import { Task } from './Task'
 
+import { useAppDispatch } from 'hooks'
+import { removeGroup } from 'redux/taskSlice'
+
 const Group: FC<Group> = ({ name, color, id, list }) => {
+    const dispatch = useAppDispatch()
+
+    const onRemove = () => {
+        dispatch(removeGroup(id))
+    }
+
     return (
         <div className='group p-2 rounded-xl mb-6'>
             {/* Header of the group card */}
@@ -13,7 +23,10 @@ const Group: FC<Group> = ({ name, color, id, list }) => {
                     <Square2StackIcon className='h-6 w-6 mr-2' />
                     {name}
                 </div>
-                <div className='text-white'>
+                <div className='text-white flex items-center'>
+                    <button onClick={onRemove}>
+                        <TrashIcon className='h-6 w-6 mr-2' />
+                    </button>
                     <Link href={`/new?group=${id}`}>
                         <PlusIcon className='h-6 w-6' />
                     </Link>

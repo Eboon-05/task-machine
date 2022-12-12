@@ -138,6 +138,21 @@ export const taskSlice = createSlice({
                 }
             }
         },
+        removeGroup(
+            state,
+            action: PayloadAction<string, 'DELETE_GROUP'>,
+        ) {
+            const newGroups: Group[] = [...state.groups]
+            const i = newGroups.findIndex(
+                t => t.id === action.payload,
+            )
+
+            if (i !== -1) {
+                newGroups.splice(i, 1)
+
+                state.groups = newGroups
+            }
+        },
         removeHabit(
             state,
             action: PayloadAction<Habit, 'DELETE_HABIT'>,
@@ -195,5 +210,5 @@ export const taskSlice = createSlice({
     },
 })
 
-export const { addTask, addGroup, addHabit, toggleTask, toggleHabit, removeTask, removeHabit, checkHabit, search, setTasks } =
+export const { addTask, addGroup, addHabit, toggleTask, toggleHabit, removeTask, removeGroup, removeHabit, checkHabit, search, setTasks } =
     taskSlice.actions
