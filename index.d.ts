@@ -4,7 +4,6 @@ interface Task {
     done: boolean
     due?: Date
     level: 1 | 2 | 3
-    group?: number
 }
 
 interface Group {
