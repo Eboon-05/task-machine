@@ -25,9 +25,7 @@ const links = [
 
 const Navbar = () => {
     const { route } = useRouter()
-
-    console.log(route)    
-
+    
     const [search, setSearch] = useState(false)
 
     return (
