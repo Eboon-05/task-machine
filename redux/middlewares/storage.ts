@@ -6,8 +6,6 @@ export const storage: Middleware<{}, AppState> = store => next => action => {
     // calls all the other middlewares and reducers
     next(action)
 
-    console.log('Here')
-
     // then runs its code
     const state = store.getState().task
     // const storageState = JSON.parse(localStorage.getItem('tasks')) || null
