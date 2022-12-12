@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
 
 import {
     HomeIcon,
@@ -31,6 +31,17 @@ const Navbar = () => {
     const { route } = useRouter()
 
     const [search, setSearch] = useState(false)
+    const newLink = useMemo(() => {
+        switch (route) {
+            case '/groups':
+                return '/groups/new'
+            case '/habits':
+                return '/habits/new'      
+            default:
+                // Home page
+                return '/new'
+        }
+    }, [route])
 
     return (
         <footer className='w-full'>
@@ -49,7 +60,7 @@ const Navbar = () => {
                 ))}
 
                 <Link
-                    href={route === '/' ? '/new' : '/groups/new'}
+                    href={newLink}
                     className='bg-dark-blue rounded-[1.25rem] shadow-md p-3 h-14 w-14 absolute top-[6px] -right-8
                     flex items-center justify-center'
                 >

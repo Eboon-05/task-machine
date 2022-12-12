@@ -1,28 +1,27 @@
-import { FC } from 'react'
+import { FC, useLayoutEffect } from 'react'
 
 import { TrashIcon, CalendarIcon } from '@heroicons/react/24/solid'
 
 import { useAppDispatch } from 'hooks'
 import { Check } from './Check'
-import { removeTask, toggleTask } from 'redux/taskSlice'
+import { removeHabit, toggleHabit } from 'redux/taskSlice'
 
 interface Props {
-    task: Task
+    habit: Habit
     dark?: boolean
-    group?: string
 }
 
-const Task: FC<Props> = ({ task, dark, group }) => {
-    const { done, name } = task
+const Habit: FC<Props> = ({ habit, dark }) => {
+    const { name, done } = habit
 
     const dispatch = useAppDispatch()
 
     const complete = () => {
-        dispatch(toggleTask({ task, group }))
+        dispatch(toggleHabit(habit))
     }
 
     const onRemove = () => {
-        dispatch(removeTask({ task, group }))
+        dispatch(removeHabit(habit))
     }
 
     return (
@@ -33,13 +32,6 @@ const Task: FC<Props> = ({ task, dark, group }) => {
                 </div>
                 <div>
                     <div className={`${done && 'line-through'}`}>{name}</div>
-                    {task.due
-                        ? <div className='flex justify-start items-center text-sm opacity-80'>
-                            <CalendarIcon className='h-5 w-5 mr-1' />
-                            {task.due.toLocaleDateString('es-AR', { dateStyle: 'medium' })}
-                        </div>
-                        : null
-                    }
                 </div>
             </div>
             <button onClick={onRemove}>
@@ -49,4 +41,4 @@ const Task: FC<Props> = ({ task, dark, group }) => {
     )
 }
 
-export { Task }
+export { Habit }

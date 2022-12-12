@@ -14,11 +14,10 @@ import { Input } from 'components/Input'
 import { LevelSelect } from 'components/LevelSelect'
 import { GroupSelect } from 'components/GroupSelect'
 
-import { useAppDispatch, useAppSelector } from 'hooks'
-import { add, addToGroup } from 'redux/taskSlice'
+import { useAppDispatch } from 'hooks'
+import { addTask } from 'redux/taskSlice'
 
 const New: NextPage = () => {
-    // const state = useAppSelector(s => s.task)
     const dispatch = useAppDispatch()
     const router = useRouter()
 
@@ -57,14 +56,14 @@ const New: NextPage = () => {
 
             if (typeof id === 'string') {
                 dispatch(
-                    addToGroup({
+                    addTask({
                         task: newTask,
                         group: id,
                     }),
                 )
                 router.push(`/groups#${id}`)
             } else {
-                dispatch(add(newTask))
+                dispatch(addTask({ task: newTask}))
                 router.push('/')
             }
         }
