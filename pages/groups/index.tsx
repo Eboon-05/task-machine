@@ -13,7 +13,7 @@ const Groups: NextPage = () => {
         <section className='p-2 h-screen flex flex-col justify-between'>
             <div>
                 <div className='p-5'>
-                    <h1 className='text-4xl font-bold'>Groups</h1>
+                    <h1 className='text-4xl font-varela'>Groups</h1>
                     <p>
                         {state.groups ? state.groups.length : 0} group
                         {state.groups

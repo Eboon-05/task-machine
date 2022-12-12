@@ -34,10 +34,12 @@ const InitState: FC = () => {
 
 function MyApp({ Component, pageProps }: AppProps) {
     return (
-        <Provider store={store}>
-            <InitState />
-            <Component {...pageProps} />
-        </Provider>
+        <main className='font-roboto'>
+            <Provider store={store}>
+                <InitState />
+                <Component {...pageProps} />
+            </Provider>
+        </main>
     )
 }
 

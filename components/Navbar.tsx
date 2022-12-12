@@ -49,21 +49,18 @@ const Navbar = () => {
     return (
         <footer className='w-full'>
             <nav
-                className={classNames({
-                    [`
-                    bg-light-gray w-[90%] py-5 px-8 rounded-2xl grid justify-center 
-                    items-center justify-items-center relative max-w-[330px] grid-cols-3
-                    `]: true,
-                })}
+                className='bg-light-gray w-[90%] py-5 px-8 rounded-2xl grid justify-center 
+                items-center justify-items-center relative max-w-[330px] grid-cols-3 font-varela'
             >
                 {links.map((l, i) => (
                     <Link
                         href={l.path}
                         key={i}
                         className={classNames({
-                            'grid justify-center justify-items-center items-center': true,
+                            'grid justify-center justify-items-center items-center':
+                                true,
                             'opacity-50': route !== l.path,
-                            'grid-cols-2': route === l.path
+                            'grid-cols-2': route === l.path,
                         })}
                     >
                         {l.icon}

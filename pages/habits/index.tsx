@@ -42,7 +42,7 @@ const Habits = () => {
             <div>
                 {/* Page title */}
                 <div className='p-5 flex justify-between items-center'>
-                    <h1 className='text-4xl font-bold'>Habits</h1>
+                    <h1 className='text-4xl font-varela'>Habits</h1>
                     {/* Search button */}
                     <button onClick={() => setSearchActive(true)}>
                         <MagnifyingGlassIcon className='h-7 w-7' />

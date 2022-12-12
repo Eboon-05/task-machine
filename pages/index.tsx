@@ -42,7 +42,7 @@ const Home: NextPage = () => {
         <section className='p-2 h-screen flex flex-col justify-between'>
             <div>
                 <div className='p-5 flex justify-between items-center'>
-                    <h1 className='text-4xl font-bold'>Task machine</h1>
+                    <h1 className='text-4xl font-varela'>Task machine</h1>
                     <button onClick={() => setSearchActive(true)}>
                         <MagnifyingGlassIcon className='h-7 w-7' />
                     </button>{' '}

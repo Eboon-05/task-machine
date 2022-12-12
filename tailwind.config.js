@@ -1,3 +1,5 @@
+const { fontFamily } = require('tailwindcss/defaultTheme')
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
     content: [
@@ -6,7 +8,12 @@ module.exports = {
         './components/**/*.{js,ts,jsx,tsx}',
     ],
     theme: {
-        extend: {},
+        extend: {
+            fontFamily: {
+                'roboto': ['Roboto', fontFamily.sans],
+                'varela': ['Varela', fontFamily.sans],
+            }
+        },
         colors: {
             'dark-blue': '#0A113C',
             white: '#FFF',

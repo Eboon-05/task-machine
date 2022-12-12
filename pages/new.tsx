@@ -74,7 +74,7 @@ const New: NextPage = () => {
     return (
         <section className='p-2 h-screen flex flex-col justify-start'>
             <div className='p-5 sm:flex justify-between items-center'>
-                <h1 className='text-4xl font-bold mb-2'>Create a new task</h1>
+                <h1 className='text-4xl mb-2 font-varela'>Create a new task</h1>
                 <Button className='m-auto sm:m-0' onClick={onCreate}>
                     <ArrowRightIcon className='h-6 w-6' />
                 </Button>
