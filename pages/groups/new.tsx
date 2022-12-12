@@ -10,6 +10,7 @@ import { Input } from 'components/Input'
 
 import { useAppDispatch } from 'hooks'
 import { addGroup } from 'redux/taskSlice'
+import { ColorPicker } from 'components/ColorPicker'
 
 const New: NextPage = () => {
     const dispatch = useAppDispatch()
@@ -20,6 +21,8 @@ const New: NextPage = () => {
 
     const onCreate = () => {
         if (name.current) {
+            if (!name.current.value) return console.error('There is no name')            
+
             const newGroup: Group = {
                 id: nanoid(),
                 name: name.current.value,
@@ -45,14 +48,7 @@ const New: NextPage = () => {
                 <Input ref={name} Icon={PlusIcon} placeholder='Group name' />
 
                 <span>Color:</span>
-                <div className='flex justify-between items-center'>
-                    <span>{color}</span>
-                    <input
-                        onChange={ev => setColor(ev.target.value)}
-                        type='color'
-                        className='h-12 w-12 border-none bg-opacity-0'
-                    />
-                </div>
+                <ColorPicker onChange={setColor} />
             </div>
         </section>
     )
