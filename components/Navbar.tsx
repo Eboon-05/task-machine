@@ -15,16 +15,19 @@ import classNames from 'classnames'
 const links = [
     {
         path: '/',
+        name: 'Home',
         icon: <HomeIcon className='h-7 w-7' />,
     },
     {
         path: '/groups',
+        name: 'Groups',
         icon: <ListBulletIcon className='h-7 w-7' />,
     },
     {
         path: '/habits',
-        icon: <ArrowPathRoundedSquareIcon className='h-7 w-7' />
-    }
+        name: 'Habits',
+        icon: <ArrowPathRoundedSquareIcon className='h-7 w-7' />,
+    },
 ]
 
 const Navbar = () => {
@@ -36,7 +39,7 @@ const Navbar = () => {
             case '/groups':
                 return '/groups/new'
             case '/habits':
-                return '/habits/new'      
+                return '/habits/new'
             default:
                 // Home page
                 return '/new'
@@ -54,8 +57,17 @@ const Navbar = () => {
                 })}
             >
                 {links.map((l, i) => (
-                    <Link href={l.path} key={i}>
+                    <Link
+                        href={l.path}
+                        key={i}
+                        className={classNames({
+                            'grid justify-center justify-items-center items-center': true,
+                            'opacity-50': route !== l.path,
+                            'grid-cols-2': route === l.path
+                        })}
+                    >
                         {l.icon}
+                        {l.path === route ? l.name : null}
                     </Link>
                 ))}
 
