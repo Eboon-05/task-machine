@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import { useEffect, useState } from 'react'
+import { useLayoutEffect, useState } from 'react'
 
 import { MagnifyingGlassIcon, XMarkIcon } from '@heroicons/react/24/outline'
 
@@ -17,7 +17,7 @@ const Habits = () => {
     const [filtered, setFiltered] = useState([])
     const [searchActive, setSearchActive] = useState(false)
 
-    useEffect(() => {
+    useLayoutEffect(() => {
         if (state.habits) {
             if (state.query !== '') {
                 setFiltered(

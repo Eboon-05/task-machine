@@ -1,6 +1,6 @@
 import { NextPage } from 'next'
 import Image from 'next/image'
-import { useEffect, useState } from 'react'
+import { useLayoutEffect, useState } from 'react'
 
 import { XMarkIcon, MagnifyingGlassIcon } from '@heroicons/react/24/outline'
 
@@ -18,7 +18,7 @@ const Home: NextPage = () => {
     const [filtered, setFiltered] = useState([])
     const [searchActive, setSearchActive] = useState(false)
 
-    useEffect(() => {
+    useLayoutEffect(() => {
         if (taskState.list) {
             if (taskState.query !== '') {
                 setFiltered(
