@@ -5,12 +5,14 @@ import { Navbar } from 'components/Navbar'
 import { useAppSelector } from 'hooks'
 
 import Group from 'components/Group'
+import MyHead from 'components/MyHead'
 
 const Groups: NextPage = () => {
     const state = useAppSelector(s => s.task)
 
     return (
         <section className='p-2 h-screen flex flex-col justify-between'>
+            <MyHead title='Groups' />
             <div>
                 <div className='p-5'>
                     <h1 className='text-4xl font-varela'>Groups</h1>

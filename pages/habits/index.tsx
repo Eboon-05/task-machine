@@ -9,6 +9,7 @@ import { Navbar } from 'components/Navbar'
 import { SearchBar } from 'components/SearchBar'
 import { search } from 'redux/taskSlice'
 import { Habit } from 'components/Habit'
+import MyHead from 'components/MyHead'
 
 const Habits = () => {
     const state = useAppSelector(state => state.task)
@@ -39,6 +40,7 @@ const Habits = () => {
 
     return (
         <section className='p-2 h-screen flex flex-col justify-between'>
+            <MyHead title='Habits' />
             <div>
                 {/* Page title */}
                 <div className='p-5 flex justify-between items-center'>

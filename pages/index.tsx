@@ -10,6 +10,7 @@ import { search } from 'redux/taskSlice'
 import { Task } from 'components/Task'
 import { Navbar } from 'components/Navbar'
 import { SearchBar } from 'components/SearchBar'
+import MyHead from 'components/MyHead'
 
 const Home: NextPage = () => {
     const taskState = useAppSelector(state => state.task)
@@ -40,6 +41,7 @@ const Home: NextPage = () => {
 
     return (
         <section className='p-2 h-screen flex flex-col justify-between'>
+            <MyHead />
             <div>
                 <div className='p-5 flex justify-between items-center'>
                     <h1 className='text-4xl font-varela'>Task machine</h1>

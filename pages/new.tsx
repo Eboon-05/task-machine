@@ -18,6 +18,7 @@ import { GroupSelect } from 'components/GroupSelect'
 import { useAppDispatch } from 'hooks'
 import { addTask } from 'redux/taskSlice'
 import { Toast } from 'components/Toast'
+import MyHead from 'components/MyHead'
 
 const New: NextPage = () => {
     const dispatch = useAppDispatch()
@@ -74,6 +75,7 @@ const New: NextPage = () => {
 
     return (
         <section className='p-2 h-screen flex flex-col justify-start'>
+            <MyHead title='Create a new task' />
             <div className='p-5 sm:flex justify-between items-center'>
                 <h1 className='text-4xl mb-2 font-varela'>Create a new task</h1>
                 <Button className='m-auto sm:m-0' onClick={onCreate}>
