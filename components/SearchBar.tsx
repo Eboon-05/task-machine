@@ -41,7 +41,7 @@ const SearchBar: FC<Props> = ({ active, onClose }) => {
             '
             >
                 <div className='p-8 relative'>
-                    <h1 className='text-center text-3xl font-bold mb-2'>
+                    <h1 className='text-center text-3xl mb-2 font-varela'>
                         Search for a {router.route === '/habits' ? 'habit' : 'task'}
                     </h1>
 
