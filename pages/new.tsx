@@ -1,6 +1,6 @@
 import { NextPage } from 'next'
 import { useRouter } from 'next/router'
-import { useLayoutEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { nanoid } from '@reduxjs/toolkit'
 import { DateTime } from 'luxon'
 
@@ -29,7 +29,7 @@ const New: NextPage = () => {
         typeof router.query.group === 'string' ? router.query.group : undefined,
     )
 
-    useLayoutEffect(() => {
+    useEffect(() => {
         if (typeof router.query.group === 'string') {
             setGroup(router.query.group)
         }
