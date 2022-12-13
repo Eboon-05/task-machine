@@ -2,6 +2,7 @@ import { NextPage } from 'next'
 import { useRouter } from 'next/router'
 import { useLayoutEffect, useRef, useState } from 'react'
 import { nanoid } from '@reduxjs/toolkit'
+import { DateTime } from 'luxon'
 
 import {
     ArrowRightIcon,
@@ -43,15 +44,15 @@ const New: NextPage = () => {
                 return setError(`Task name can't be empty.`)
             }
 
-            const realDate = new Date(date.current.value)
-            realDate.setDate(realDate.getDate() + 1)
-
+            const newDate = DateTime.fromISO(date.current.value).toFormat('dd/MM/yyyy')
+            
             const newTask: Task = {
-                name: name.current.value,
                 id: nanoid(),
+                createdAt: DateTime.now().toISO(),
+                name: name.current.value,
                 level,
                 done: false,
-                due: date.current.value ? realDate : undefined,
+                due: date.current.value ? newDate : undefined
             }
 
             const id = router.query.group

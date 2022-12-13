@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { DateTime } from 'luxon'
 
 export interface TaskState {
     list?: Task[]
@@ -181,7 +182,7 @@ export const taskSlice = createSlice({
                 newHabits[i] = {
                     ...newHabits[i],
                     done: false,
-                    lastChecked: new Date()
+                    lastChecked: DateTime.now().toISO()
                 }
 
                 state.habits = newHabits

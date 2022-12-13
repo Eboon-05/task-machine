@@ -2,6 +2,7 @@ import { NextPage } from 'next'
 import { useRouter } from 'next/router'
 import { useRef, useState } from 'react'
 import { nanoid } from '@reduxjs/toolkit'
+import { DateTime } from 'luxon'
 
 import { ArrowRightIcon, PlusIcon } from '@heroicons/react/24/solid'
 
@@ -11,6 +12,7 @@ import { Toast } from 'components/Toast'
 
 import { useAppDispatch } from 'hooks'
 import { addHabit } from 'redux/taskSlice'
+import { LevelSelect } from 'components/LevelSelect'
 
 const New: NextPage = () => {
     const dispatch = useAppDispatch()
@@ -19,6 +21,7 @@ const New: NextPage = () => {
     const name = useRef<HTMLInputElement>(null)
 
     const [error, setError] = useState<string>('')
+    const [level, setLevel] = useState<Task['level']>(2)
 
     const onCreate = () => {
         if (name.current) {
@@ -30,7 +33,8 @@ const New: NextPage = () => {
                 id: nanoid(),
                 name: name.current.value,
                 done: false,
-                lastChecked: new Date(),
+                level,
+                lastChecked: DateTime.now().toISO(),
             }
 
             dispatch(addHabit(newHabit))
@@ -49,6 +53,9 @@ const New: NextPage = () => {
             <div className='grid grid-cols-1 gap-2'>
                 <span>Name:</span>
                 <Input ref={name} Icon={PlusIcon} placeholder='Habit name' />
+
+                <span>Difficulty:</span>
+                <LevelSelect level={level} onChange={setLevel} />
             </div>
 
             {error ? (

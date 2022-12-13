@@ -1,10 +1,14 @@
 import { useRouter } from 'next/router'
 import { FC, useLayoutEffect } from 'react'
+import { DateTime } from 'luxon'
 
 import { TrashIcon } from '@heroicons/react/24/solid'
 
-import { useAppDispatch } from 'hooks'
 import { Check } from './Check'
+
+import { getLevelIcon } from 'utils/getLevelIcon'
+
+import { useAppDispatch } from 'hooks'
 import { checkHabit, removeHabit, toggleHabit } from 'redux/taskSlice'
 
 interface Props {
@@ -13,7 +17,7 @@ interface Props {
 }
 
 const Habit: FC<Props> = ({ habit, dark }) => {
-    const { name, done, lastChecked } = habit
+    const { name, done, lastChecked, level } = habit
 
     const dispatch = useAppDispatch()
     const router = useRouter()
@@ -27,11 +31,10 @@ const Habit: FC<Props> = ({ habit, dark }) => {
     }
 
     useLayoutEffect(() => {
-        const today = new Date().getDate()
-        const checkedDay = new Date(lastChecked).getDate()
+        const today = DateTime.now().day
+        const checkedDay = DateTime.fromISO(lastChecked).day
 
         if (today !== checkedDay) {
-            console.log('is diff')
             dispatch(checkHabit(habit))
         }
     }, [])
@@ -46,9 +49,12 @@ const Habit: FC<Props> = ({ habit, dark }) => {
                     <div className={`${done && 'line-through'}`}>{name}</div>
                 </div>
             </div>
-            <button onClick={onRemove}>
-                <TrashIcon className='h-6 w-6' />
-            </button>
+            <div className='flex'>
+                {getLevelIcon(level)}
+                <button onClick={onRemove} className='ml-2'>
+                    <TrashIcon className='h-6 w-6' />
+                </button>
+            </div>
         </div>
     )
 }

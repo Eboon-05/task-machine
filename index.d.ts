@@ -1,8 +1,9 @@
 interface Task {
     id: string
+    createdAt: string
     name: string
     done: boolean
-    due?: Date
+    due?: string
     level: 1 | 2 | 3
 }
 
@@ -22,5 +23,6 @@ interface Habit {
     id: string
     name: string
     done: boolean
-    lastChecked: Date
+    level: 1 | 2 | 3
+    lastChecked: string
 }

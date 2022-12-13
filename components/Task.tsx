@@ -37,7 +37,7 @@ const Task: FC<Props> = ({ task, dark, group }) => {
                     {task.due
                         ? <div className='flex justify-start items-center text-sm opacity-80'>
                             <CalendarIcon className='h-5 w-5 mr-1' />
-                            {new Date(task.due).toLocaleDateString('es-AR', { dateStyle: 'medium' })}
+                            {task.due}
                         </div>
                         : null
                     }
