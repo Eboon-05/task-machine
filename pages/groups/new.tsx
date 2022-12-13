@@ -19,7 +19,7 @@ const New: NextPage = () => {
 
     const name = useRef<HTMLInputElement>(null)
     const [error, setError] = useState<string>('')
-    const [color, setColor] = useState('#000000')
+    const [color, setColor] = useState('#e63946')
 
     const onCreate = () => {
         if (name.current) {
