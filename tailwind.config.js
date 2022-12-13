@@ -24,5 +24,8 @@ module.exports = {
             'light-red': '#FFCCD2',
         },
     },
+    safelist: [
+        { pattern: /^bg-light/ },
+    ],
     plugins: [],
 }
