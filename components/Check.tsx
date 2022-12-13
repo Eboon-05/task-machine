@@ -24,6 +24,7 @@ const Check: FC<Props> = ({ checked, onChange, dark }) => {
                         [`
                             absolute top-0 left-0 h-full w-full bg-transparent z-[1]
                             rounded-full border-2 flex justify-center items-center
+                            transition-colors duration-100
                         `]: true,
                         'border-black': !dark,
                         'border-white': dark,
@@ -33,7 +34,7 @@ const Check: FC<Props> = ({ checked, onChange, dark }) => {
                 >
                     <CheckIcon
                         className={classNames({
-                            'h-3 w-3 font-bold': true,
+                            'h-3 w-3 font-bold animate__animated animate__bounceIn': true,
                             'text-white': !dark,
                             'text-black': dark,
                             hidden: !checked,
