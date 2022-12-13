@@ -1,7 +1,12 @@
+import Image from 'next/image'
 import Link from 'next/link'
 import { FC } from 'react'
 
-import { Square2StackIcon, PlusIcon, TrashIcon } from '@heroicons/react/24/outline'
+import {
+    Square2StackIcon,
+    PlusIcon,
+    TrashIcon,
+} from '@heroicons/react/24/outline'
 
 import { Task } from './Task'
 
@@ -42,6 +47,20 @@ const Group: FC<Group> = ({ name, color, id, list }) => {
                           </li>
                       ))
                     : null}
+                {list.length === 0 ? (
+                    <div className='text-center'>
+                        <Image
+                            src='/dancing.png'
+                            alt='dancing'
+                            width={200}
+                            height={200}
+                            className='h-auto w-auto m-auto'
+                        />
+                        <p>
+                            This group is empty. Create a task!
+                        </p>
+                    </div>
+                ) : null}
             </ul>
 
             <style jsx>{`
