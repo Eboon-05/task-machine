@@ -27,7 +27,7 @@ const Task: FC<Props> = ({ task, dark, group }) => {
     }
 
     return (
-        <div className='flex justify-between items-center'>
+        <div className='flex justify-between items-center animate__animated animate__fadeIn'>
             <div className='flex justify-start items-center'>
                 <div className='mr-2'>
                     <Check dark={dark} checked={done} onChange={complete} />

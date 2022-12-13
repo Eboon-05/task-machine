@@ -7,6 +7,7 @@ import { useAppDispatch } from 'hooks'
 import { store } from 'redux/store'
 import { setTasks } from 'redux/taskSlice'
 
+import 'animate.css'
 import '../styles/globals.css'
 
 const InitState: FC = () => {
