@@ -6,6 +6,7 @@ import { useAppSelector } from 'hooks'
 
 import Group from 'components/Group'
 import MyHead from 'components/MyHead'
+import { Header } from 'components/Header'
 
 const Groups: NextPage = () => {
     const state = useAppSelector(s => s.task)
@@ -14,17 +15,7 @@ const Groups: NextPage = () => {
         <section className='p-2 h-screen flex flex-col justify-between'>
             <MyHead title='Groups' />
             <div>
-                <div className='p-5'>
-                    <h1 className='text-4xl font-varela'>Groups</h1>
-                    <p>
-                        {state.groups ? state.groups.length : 0} group
-                        {state.groups
-                            ? state.groups.length !== 1
-                                ? 's'
-                                : null
-                            : null}
-                    </p>
-                </div>
+                <Header title='Groups' />
 
                 {state.groups ? (
                     <div>
@@ -42,7 +33,7 @@ const Groups: NextPage = () => {
                         alt='meditating'
                         width={400}
                         height={400}
-                        className='h-auto w-auto'
+                        className='h-auto w-auto sm:max-w-[400px] m-auto'
                     />
                     <p>
                         You haven't created any group yet. Separating your tasks

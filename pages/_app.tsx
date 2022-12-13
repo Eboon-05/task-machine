@@ -35,7 +35,7 @@ const InitState: FC = () => {
 
 function MyApp({ Component, pageProps }: AppProps) {
     return (
-        <main className='font-roboto'>
+        <main className='font-roboto max-w-[768px] m-auto'>
             <Provider store={store}>
                 <InitState />
                 <Component {...pageProps} />

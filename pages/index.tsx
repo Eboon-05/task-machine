@@ -11,13 +11,13 @@ import { Task } from 'components/Task'
 import { Navbar } from 'components/Navbar'
 import { SearchBar } from 'components/SearchBar'
 import MyHead from 'components/MyHead'
+import { Header } from 'components/Header'
 
 const Home: NextPage = () => {
     const taskState = useAppSelector(state => state.task)
     const dispatch = useAppDispatch()
 
     const [filtered, setFiltered] = useState([])
-    const [searchActive, setSearchActive] = useState(false)
 
     useLayoutEffect(() => {
         if (taskState.list) {
@@ -43,12 +43,7 @@ const Home: NextPage = () => {
         <section className='p-2 h-screen flex flex-col justify-between'>
             <MyHead />
             <div>
-                <div className='p-5 flex justify-between items-center'>
-                    <h1 className='text-4xl font-varela'>Task machine</h1>
-                    <button onClick={() => setSearchActive(true)}>
-                        <MagnifyingGlassIcon className='h-7 w-7' />
-                    </button>{' '}
-                </div>
+                <Header title='Task machine' search />
 
                 <div>
                     {taskState.query ? (
@@ -76,7 +71,7 @@ const Home: NextPage = () => {
                         alt='ice-cream'
                         width={400}
                         height={400}
-                        className='h-auto w-auto'
+                        className='h-auto w-auto sm:max-w-[400px] m-auto'
                     />
                     <p>
                         Seems like you have no tasks. You can create one, or go
@@ -86,10 +81,6 @@ const Home: NextPage = () => {
             ) : null}
 
             <Navbar />
-            <SearchBar
-                onClose={() => setSearchActive(false)}
-                active={searchActive}
-            />
         </section>
     )
 }

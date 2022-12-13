@@ -10,6 +10,7 @@ import { SearchBar } from 'components/SearchBar'
 import { search } from 'redux/taskSlice'
 import { Habit } from 'components/Habit'
 import MyHead from 'components/MyHead'
+import { Header } from 'components/Header'
 
 const Habits = () => {
     const state = useAppSelector(state => state.task)
@@ -42,14 +43,7 @@ const Habits = () => {
         <section className='p-2 h-screen flex flex-col justify-between'>
             <MyHead title='Habits' />
             <div>
-                {/* Page title */}
-                <div className='p-5 flex justify-between items-center'>
-                    <h1 className='text-4xl font-varela'>Habits</h1>
-                    {/* Search button */}
-                    <button onClick={() => setSearchActive(true)}>
-                        <MagnifyingGlassIcon className='h-7 w-7' />
-                    </button>{' '}
-                </div>
+                <Header title='Habits' search />
 
                 <div>
                     {state.query ? (
@@ -77,7 +71,7 @@ const Habits = () => {
                         alt='plant'
                         width={400}
                         height={400}
-                        className='h-auto w-auto'
+                        className='h-auto w-auto sm:max-w-[400px] m-auto'
                     />
                     <p>
                         You have no habits. Habits are the key for building a
@@ -88,10 +82,6 @@ const Habits = () => {
             ) : null}
 
             <Navbar />
-            <SearchBar
-                onClose={() => setSearchActive(false)}
-                active={searchActive}
-            />
         </section>
     )
 }

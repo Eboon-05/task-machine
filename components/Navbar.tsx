@@ -51,10 +51,10 @@ const Navbar = () => {
             <div className='h-[68px]'></div>
 
             <nav
-                className='fixed bottom-2 inset-x-2 w-[90%] mx-auto'
+                className='fixed bottom-2 inset-x-2 pr-1 w-[80%] mx-auto'
             >
                 <div
-                    className='bg-light-gray  py-5 px-8 rounded-2xl grid justify-center 
+                    className='bg-light-gray py-2 pr-3 sm:py-5 sm:px-8 rounded-2xl grid justify-center 
                     items-center justify-items-center max-w-[400px] grid-cols-3 font-varela
                     w-full h-full relative mx-auto'
                 >
@@ -66,13 +66,15 @@ const Navbar = () => {
                                 'grid justify-center justify-items-center items-center':
                                     true,
                                 'opacity-50': route !== l.path,
-                                'grid-cols-2': route === l.path,
+                                'grid-rows-2 sm:grid-rows-1 sm:grid-cols-2': route === l.path,
                             })}
                         >
                             {l.icon}
                             {l.path === route ? l.name : null}
                         </Link>
                     ))}
+
+                    <div></div>
 
                     <Link
                         href={newLink}
