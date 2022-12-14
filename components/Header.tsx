@@ -6,7 +6,7 @@ import { MagnifyingGlassIcon } from '@heroicons/react/24/outline'
 import { SearchBar } from './SearchBar'
 import { Button } from './Button'
 
-import { search as searchReducer } from 'redux/taskSlice'
+import { search as searchReducer } from 'redux/slices/task'
 import { useAppDispatch } from 'hooks'
 
 interface Props {

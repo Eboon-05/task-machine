@@ -6,7 +6,7 @@ import { XMarkIcon } from '@heroicons/react/24/outline'
 import { useAppDispatch, useAppSelector } from 'hooks'
 
 import { Navbar } from 'components/Navbar'
-import { search } from 'redux/taskSlice'
+import { search } from 'redux/slices/task'
 import { Habit } from 'components/Habit'
 import MyHead from 'components/MyHead'
 import { Header } from 'components/Header'

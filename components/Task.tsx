@@ -4,7 +4,7 @@ import { TrashIcon, CalendarIcon } from '@heroicons/react/24/solid'
 
 import { useAppDispatch } from 'hooks'
 import { Check } from './Check'
-import { removeTask, toggleTask } from 'redux/taskSlice'
+import { removeTask, toggleTask } from 'redux/slices/task'
 import { getLevelIcon } from 'utils/getLevelIcon'
 
 interface Props {

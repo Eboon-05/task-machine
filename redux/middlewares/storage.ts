@@ -7,19 +7,23 @@ export const storage: Middleware<object, AppState> = store => next => action => 
     next(action)
 
     // then runs its code
-    const state = store.getState().task
+    const { task, theme } = store.getState()
     // const storageState = JSON.parse(localStorage.getItem('tasks')) || null
 
-    if (state.list && state.groups && state.habits) {
+    if (task.list && task.groups && task.habits) {
         // defined list, groups and habits
         // save them in the localStorage
         localStorage.setItem(
             'tasks',
             JSON.stringify({
-                list: state.list,
-                groups: state.groups,
-                habits: state.habits
+                list: task.list,
+                groups: task.groups,
+                habits: task.habits
             }),
         )
+    }
+
+    if (theme.dark !== undefined) {
+        localStorage.setItem('dark', `${theme.dark}`)
     }
 }

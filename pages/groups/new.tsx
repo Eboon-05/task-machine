@@ -10,7 +10,7 @@ import { Input } from 'components/Input'
 import { Toast } from 'components/Toast'
 
 import { useAppDispatch } from 'hooks'
-import { addGroup } from 'redux/taskSlice'
+import { addGroup } from 'redux/slices/task'
 import { ColorPicker } from 'components/ColorPicker'
 import MyHead from 'components/MyHead'
 

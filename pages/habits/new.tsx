@@ -11,7 +11,7 @@ import { Input } from 'components/Input'
 import { Toast } from 'components/Toast'
 
 import { useAppDispatch } from 'hooks'
-import { addHabit } from 'redux/taskSlice'
+import { addHabit } from 'redux/slices/task'
 import { LevelSelect } from 'components/LevelSelect'
 import MyHead from 'components/MyHead'
 

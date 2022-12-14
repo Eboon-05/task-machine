@@ -16,7 +16,7 @@ import { LevelSelect } from 'components/LevelSelect'
 import { GroupSelect } from 'components/GroupSelect'
 
 import { useAppDispatch } from 'hooks'
-import { addTask } from 'redux/taskSlice'
+import { addTask } from 'redux/slices/task'
 import { Toast } from 'components/Toast'
 import MyHead from 'components/MyHead'
 

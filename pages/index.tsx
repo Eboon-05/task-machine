@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react'
 import { XMarkIcon } from '@heroicons/react/24/outline'
 
 import { useAppDispatch, useAppSelector } from 'hooks'
-import { search } from 'redux/taskSlice'
+import { search } from 'redux/slices/task'
 
 import { Task } from 'components/Task'
 import { Navbar } from 'components/Navbar'
