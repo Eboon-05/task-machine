@@ -15,5 +15,7 @@ parserOptions:
 plugins:
     - react
     - '@typescript-eslint'
+ignorePatterns:
+    - '**/*.config.js'
 rules: 
     react/display-name: 0
