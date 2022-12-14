@@ -17,5 +17,5 @@ plugins:
     - '@typescript-eslint'
 ignorePatterns:
     - '**/*.config.js'
-rules: 
+rules:
     react/display-name: 0

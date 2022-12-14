@@ -48,9 +48,7 @@ const Navbar = () => {
         <footer className='w-full'>
             <div className='h-[68px]'></div>
 
-            <nav
-                className='fixed bottom-2 inset-x-2 pr-1 w-[80%] mx-auto'
-            >
+            <nav className='fixed bottom-2 inset-x-2 pr-1 w-[80%] mx-auto'>
                 <div
                     className='bg-light-gray py-2 pr-3 sm:py-5 sm:px-8 rounded-2xl grid justify-center 
                     items-center justify-items-center max-w-[400px] grid-cols-3 font-varela
@@ -64,12 +62,11 @@ const Navbar = () => {
                                 'grid justify-center justify-items-center items-center':
                                     true,
                                 'opacity-50': route !== l.path,
-                                'grid-rows-2 sm:grid-rows-1 sm:grid-cols-2': route === l.path,
+                                'grid-rows-2 sm:grid-rows-1 sm:grid-cols-2':
+                                    route === l.path,
                             })}
                         >
-                            <span>
-                                {l.icon}
-                            </span>
+                            <span>{l.icon}</span>
                             <span className='animate__animated animate__fadeInUp'>
                                 {l.path === route ? l.name : null}
                             </span>

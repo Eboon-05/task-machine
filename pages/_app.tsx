@@ -20,7 +20,7 @@ const InitState: FC = () => {
         const storageTask = JSON.parse(localStorage.getItem('tasks')) || {
             list: [],
             groups: [],
-            habits: []
+            habits: [],
         }
 
         const storageDark = JSON.parse(localStorage.getItem('dark'))
@@ -36,7 +36,9 @@ const InitState: FC = () => {
         if (theme.dark === undefined && typeof storageDark === 'boolean') {
             dispatch(storageDark ? dark() : light())
         } else if (theme.dark === undefined && storageDark === null) {
-            const match = window.matchMedia('(prefers-color-scheme: dark)').matches
+            const match = window.matchMedia(
+                '(prefers-color-scheme: dark)',
+            ).matches
             dispatch(match ? dark() : light())
         }
     }, [dispatch])

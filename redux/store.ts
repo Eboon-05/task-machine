@@ -1,8 +1,4 @@
-import {
-    configureStore,
-    PayloadAction,
-    ThunkAction,
-} from '@reduxjs/toolkit'
+import { configureStore, PayloadAction, ThunkAction } from '@reduxjs/toolkit'
 
 import { taskSlice, TaskState } from './slices/task'
 import { themeSlice, ThemeState } from './slices/theme'
@@ -18,7 +14,7 @@ export const store = configureStore({
     middleware: [storage, dark],
 })
 
-export type AppState = { task: TaskState, theme: ThemeState }
+export type AppState = { task: TaskState; theme: ThemeState }
 
 export type AppDispatch = typeof store.dispatch
 

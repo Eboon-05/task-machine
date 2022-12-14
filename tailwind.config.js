@@ -10,9 +10,9 @@ module.exports = {
     theme: {
         extend: {
             fontFamily: {
-                'roboto': ['Roboto', fontFamily.sans],
-                'varela': ['Varela', fontFamily.sans],
-            }
+                roboto: ['Roboto', fontFamily.sans],
+                varela: ['Varela', fontFamily.sans],
+            },
         },
         colors: {
             'dark-blue': '#0A113C',
@@ -24,9 +24,7 @@ module.exports = {
             'light-red': '#FFCCD2',
         },
     },
-    safelist: [
-        { pattern: /^bg-light/ },
-    ],
+    safelist: [{ pattern: /^bg-light/ }],
     plugins: [],
-    darkMode: 'class'
+    darkMode: 'class',
 }

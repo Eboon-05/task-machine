@@ -36,9 +36,9 @@ const Groups: NextPage = () => {
                         className='h-auto w-auto sm:max-w-[400px] m-auto'
                     />
                     <p>
-                        You haven&apos;t created any group yet. Separating your tasks
-                        into groups can make things easier. Try creating a group
-                        for work and another for pets!
+                        You haven&apos;t created any group yet. Separating your
+                        tasks into groups can make things easier. Try creating a
+                        group for work and another for pets!
                     </p>
                 </div>
             ) : null}

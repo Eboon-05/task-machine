@@ -1,11 +1,11 @@
-import { createSlice } from "@reduxjs/toolkit"
+import { createSlice } from '@reduxjs/toolkit'
 
 export interface ThemeState {
     dark?: boolean
 }
 
 const initialState: ThemeState = {
-    dark: undefined
+    dark: undefined,
 }
 
 export const themeSlice = createSlice({
@@ -21,7 +21,7 @@ export const themeSlice = createSlice({
         toggle(state) {
             state.dark = !state.dark
         },
-    }
+    },
 })
 
 export const { light, dark, toggle } = themeSlice.actions

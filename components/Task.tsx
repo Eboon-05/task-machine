@@ -34,13 +34,12 @@ const Task: FC<Props> = ({ task, dark, group }) => {
                 </div>
                 <div>
                     <div className={`${done && 'line-through'}`}>{name}</div>
-                    {task.due
-                        ? <div className='flex justify-start items-center text-sm opacity-80'>
+                    {task.due ? (
+                        <div className='flex justify-start items-center text-sm opacity-80'>
                             <CalendarIcon className='h-5 w-5 mr-1' />
                             {task.due}
                         </div>
-                        : null
-                    }
+                    ) : null}
                 </div>
             </div>
             <div className='flex'>

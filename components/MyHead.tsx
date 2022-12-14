@@ -6,9 +6,14 @@ interface Props {
 }
 
 const MyHead: FC<Props> = ({ title }) => {
-    return <Head>
-        <title>{title}{title ? ' - ' : ''}Task Machine</title>
-    </Head>
+    return (
+        <Head>
+            <title>
+                {title}
+                {title ? ' - ' : ''}Task Machine
+            </title>
+        </Head>
+    )
 }
 
 export default MyHead

@@ -56,9 +56,7 @@ const Group: FC<Group> = ({ name, color, id, list }) => {
                             height={200}
                             className='h-auto w-auto m-auto'
                         />
-                        <p>
-                            This group is empty. Create a task!
-                        </p>
+                        <p>This group is empty. Create a task!</p>
                     </div>
                 ) : null}
             </ul>

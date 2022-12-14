@@ -47,7 +47,9 @@ const Home: NextPage = () => {
                 <div>
                     {taskState.query ? (
                         <div className='flex justify-between items-center bg-light-gray p-5 mb-6 rounded-xl'>
-                            <span>Looking for &quot;{taskState.query}&quot;</span>
+                            <span>
+                                Looking for &quot;{taskState.query}&quot;
+                            </span>
                             <button onClick={clearQuery}>
                                 <XMarkIcon className='h-6 w-6' />
                             </button>

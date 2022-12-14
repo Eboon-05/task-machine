@@ -45,15 +45,17 @@ const New: NextPage = () => {
                 return setError(`Task name can't be empty.`)
             }
 
-            const newDate = DateTime.fromISO(date.current.value).toFormat('dd/MM/yyyy')
-            
+            const newDate = DateTime.fromISO(date.current.value).toFormat(
+                'dd/MM/yyyy',
+            )
+
             const newTask: Task = {
                 id: nanoid(),
                 createdAt: DateTime.now().toISO(),
                 name: name.current.value,
                 level,
                 done: false,
-                due: date.current.value ? newDate : undefined
+                due: date.current.value ? newDate : undefined,
             }
 
             const id = router.query.group
@@ -78,7 +80,11 @@ const New: NextPage = () => {
             <MyHead title='Create a new task' />
             <div className='p-5 sm:flex justify-between items-center'>
                 <h1 className='text-4xl mb-2 font-varela'>Create a new task</h1>
-                <Button className='m-auto sm:m-0' onClick={onCreate} color='primary'>
+                <Button
+                    className='m-auto sm:m-0'
+                    onClick={onCreate}
+                    color='primary'
+                >
                     <ArrowRightIcon className='h-6 w-6' />
                 </Button>
             </div>

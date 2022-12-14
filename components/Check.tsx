@@ -34,7 +34,8 @@ const Check: FC<Props> = ({ checked, onChange, dark }) => {
                 >
                     <CheckIcon
                         className={classNames({
-                            'h-3 w-3 font-bold animate__animated animate__bounceIn': true,
+                            'h-3 w-3 font-bold animate__animated animate__bounceIn':
+                                true,
                             'text-white': !dark,
                             'text-black': dark,
                             hidden: !checked,

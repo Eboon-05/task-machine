@@ -32,7 +32,7 @@ const New: NextPage = () => {
                 id: nanoid(),
                 name: name.current.value,
                 color,
-                list: []
+                list: [],
             }
 
             dispatch(addGroup(newGroup))
@@ -44,8 +44,14 @@ const New: NextPage = () => {
         <section className='p-2 h-screen flex flex-col justify-start'>
             <MyHead title='Create a new group' />
             <div className='p-5 sm:flex justify-between items-center'>
-                <h1 className='text-4xl mb-2 font-varela'>Create a new group</h1>
-                <Button className='m-auto sm:m-0' onClick={onCreate} color='primary'>
+                <h1 className='text-4xl mb-2 font-varela'>
+                    Create a new group
+                </h1>
+                <Button
+                    className='m-auto sm:m-0'
+                    onClick={onCreate}
+                    color='primary'
+                >
                     <ArrowRightIcon className='h-6 w-6' />
                 </Button>
             </div>

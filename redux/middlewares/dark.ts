@@ -8,7 +8,7 @@ export const dark: Middleware<object, AppState> = store => next => action => {
 
     // then runs its code
     const { theme } = store.getState()
-        
+
     if (theme.dark) {
         document.documentElement.classList.add('dark')
     } else {

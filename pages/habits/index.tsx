@@ -73,8 +73,8 @@ const Habits = () => {
                     />
                     <p>
                         You have no habits. Habits are the key for building a
-                        better you! Try something like &quot;water my plants&quot; or
-                        &quot;read for 10 minutes&quot;.
+                        better you! Try something like &quot;water my
+                        plants&quot; or &quot;read for 10 minutes&quot;.
                     </p>
                 </div>
             ) : null}
