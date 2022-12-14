@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import { useMemo, useState } from 'react'
+import { useMemo } from 'react'
 
 import {
     HomeIcon,
@@ -32,7 +32,6 @@ const links = [
 const Navbar = () => {
     const { route } = useRouter()
 
-    const [search, setSearch] = useState(false)
     const newLink = useMemo(() => {
         switch (route) {
             case '/groups':
@@ -68,8 +67,12 @@ const Navbar = () => {
                                 'grid-rows-2 sm:grid-rows-1 sm:grid-cols-2': route === l.path,
                             })}
                         >
-                            {l.icon}
-                            {l.path === route ? l.name : null}
+                            <span>
+                                {l.icon}
+                            </span>
+                            <span className='animate__animated animate__fadeInUp'>
+                                {l.path === route ? l.name : null}
+                            </span>
                         </Link>
                     ))}
 
