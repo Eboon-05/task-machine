@@ -26,9 +26,9 @@ const Check: FC<Props> = ({ checked, onChange, dark }) => {
                             rounded-full border-2 flex justify-center items-center
                             transition-colors duration-100
                         `]: true,
-                        'border-black': !dark,
+                        'border-black dark:border-white': !dark,
                         'border-white': dark,
-                        'bg-black': checked && !dark,
+                        'bg-black dark:bg-white': checked && !dark,
                         'bg-white': checked && dark,
                     })}
                 >
@@ -36,7 +36,7 @@ const Check: FC<Props> = ({ checked, onChange, dark }) => {
                         className={classNames({
                             'h-3 w-3 font-bold animate__animated animate__bounceIn':
                                 true,
-                            'text-white': !dark,
+                            'text-white dark:text-black': !dark,
                             'text-black': dark,
                             hidden: !checked,
                         })}

@@ -18,7 +18,7 @@ const Toast: FC<Props> = ({ title, body, onClose, type }) => {
                     fixed bottom-4 inset-x-4 rounded-xl shadow-lg p-4
                     animate__animated animate__bounceInUp animate__fast
                 `]: true,
-                'bg-light-red': type === 'error',
+                'bg-light-red text-black': type === 'error',
             })}
         >
             <div className='w-full h-full relative'>

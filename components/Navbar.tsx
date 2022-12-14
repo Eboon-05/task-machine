@@ -10,6 +10,7 @@ import {
 } from '@heroicons/react/24/solid'
 
 import classNames from 'classnames'
+import { Button } from './Button'
 
 const links = [
     {
@@ -46,11 +47,11 @@ const Navbar = () => {
 
     return (
         <footer className='w-full'>
-            <div className='h-[68px]'></div>
+            <div className='mb-2 h-[72px] sm:h-[68px]'></div>
 
             <nav className='fixed bottom-2 inset-x-2 pr-1 w-[80%] mx-auto'>
                 <div
-                    className='bg-light-gray py-2 pr-3 sm:py-5 sm:px-8 rounded-2xl grid justify-center 
+                    className='bg-light-gray dark:text-black py-2 pr-3 sm:py-5 sm:px-8 rounded-2xl grid justify-center 
                     items-center justify-items-center max-w-[400px] grid-cols-3 font-varela
                     w-full h-full relative mx-auto'
                 >
@@ -75,13 +76,14 @@ const Navbar = () => {
 
                     <div></div>
 
-                    <Link
-                        href={newLink}
-                        className='bg-dark-blue rounded-[1.25rem] shadow-md p-3 h-14 w-14 absolute top-[6px] -right-8
-                        flex items-center justify-center'
-                    >
-                        <PlusIcon className='h-7 w-7 text-white' />
-                    </Link>
+                    <Button className='p-0 absolute top-[6px] -right-8 h-14 w-14' color='primary'>
+                        <Link
+                            href={newLink}
+                            className='p-3 h-full w-full flex items-center justify-center'
+                        >
+                            <PlusIcon className='h-7 w-7 text-white' />
+                        </Link>
+                    </Button>
                 </div>
             </nav>
         </footer>

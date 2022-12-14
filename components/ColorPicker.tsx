@@ -53,7 +53,10 @@ const ColorPicker: FC<Props> = ({ onChange }) => {
             </span>
 
             {active ? (
-                <ul className='absolute w-full shadow-md bg-white inset-x-0 rounded-xl top-[64px] z-10'>
+                <ul
+                    className='absolute w-full shadow-md bg-white inset-x-0 rounded-xl top-[64px] z-10
+                    dark:bg-black dark:border-2 dark:border-light-gray'
+                >
                     {colors.map(c => {
                         return (
                             <li

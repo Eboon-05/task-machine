@@ -57,7 +57,10 @@ const GroupSelect: FC<Props> = ({ group, onChange }) => {
             </span>
 
             {active ? (
-                <ul className='absolute w-full shadow-md bg-white inset-x-0 rounded-xl top-[64px] z-10'>
+                <ul 
+                    className='absolute w-full shadow-md bg-white inset-x-0 rounded-xl top-[64px] z-10
+                    dark:bg-black dark:border-2 dark:border-light-gray'
+                >
                     <li
                         className='p-4 pl-16 w-full text-lg relative cursor-pointer'
                         onClick={() => {

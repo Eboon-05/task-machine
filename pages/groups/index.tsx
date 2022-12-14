@@ -9,27 +9,27 @@ import MyHead from 'components/MyHead'
 import { Header } from 'components/Header'
 
 const Groups: NextPage = () => {
-    const state = useAppSelector(s => s.task)
+    const { task, theme: { dark }} = useAppSelector(s => s)
 
     return (
-        <section className='p-2 h-screen flex flex-col justify-between'>
+        <section className='p-2 min-h-screen flex flex-col justify-between'>
             <MyHead title='Groups' />
             <div>
                 <Header title='Groups' />
 
-                {state.groups ? (
+                {task.groups ? (
                     <div>
-                        {state.groups.map(g => (
+                        {task.groups.map(g => (
                             <Group key={g.id} {...g} />
                         ))}
                     </div>
                 ) : null}
             </div>
 
-            {state.groups?.length === 0 ? (
+            {task.groups?.length === 0 ? (
                 <div className='text-center'>
                     <Image
-                        src='/meditating.svg'
+                        src={dark ? '/dark/meditating.svg' : '/meditating.svg'}
                         alt='meditating'
                         width={400}
                         height={400}

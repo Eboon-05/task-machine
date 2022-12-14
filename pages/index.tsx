@@ -13,7 +13,7 @@ import MyHead from 'components/MyHead'
 import { Header } from 'components/Header'
 
 const Home: NextPage = () => {
-    const taskState = useAppSelector(state => state.task)
+    const { task: taskState, theme: { dark }} = useAppSelector(state => state)
     const dispatch = useAppDispatch()
 
     const [filtered, setFiltered] = useState([])
@@ -39,7 +39,7 @@ const Home: NextPage = () => {
     }
 
     return (
-        <section className='p-2 h-screen flex flex-col justify-between'>
+        <section className='p-2 min-h-screen flex flex-col justify-between'>
             <MyHead />
             <div>
                 <Header title='Task machine' search />
@@ -68,7 +68,7 @@ const Home: NextPage = () => {
             {filtered.length === 0 ? (
                 <div className='text-center'>
                     <Image
-                        src='/ice-cream.svg'
+                        src={dark ? '/dark/ice-cream.svg' : '/ice-cream.svg'}
                         alt='ice-cream'
                         width={400}
                         height={400}

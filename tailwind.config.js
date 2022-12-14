@@ -22,6 +22,7 @@ module.exports = {
             'light-blue': '#D6F2FF',
             'light-orange': '#FFE4C7',
             'light-red': '#FFCCD2',
+            'sky': '#82C3EC',
         },
     },
     safelist: [{ pattern: /^bg-light/ }],

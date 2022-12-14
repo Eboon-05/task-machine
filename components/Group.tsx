@@ -11,7 +11,7 @@ import {
 import { Task } from './Task'
 
 import { useAppDispatch } from 'hooks'
-import { removeGroup } from 'redux/taskSlice'
+import { removeGroup } from 'redux/slices/task'
 
 const Group: FC<Group> = ({ name, color, id, list }) => {
     const dispatch = useAppDispatch()
@@ -50,7 +50,7 @@ const Group: FC<Group> = ({ name, color, id, list }) => {
                 {list.length === 0 ? (
                     <div className='text-center'>
                         <Image
-                            src='/dancing.png'
+                            src='/dark/dancing.svg'
                             alt='dancing'
                             width={200}
                             height={200}

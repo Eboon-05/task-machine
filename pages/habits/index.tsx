@@ -12,41 +12,41 @@ import MyHead from 'components/MyHead'
 import { Header } from 'components/Header'
 
 const Habits = () => {
-    const state = useAppSelector(state => state.task)
+    const { task, theme: { dark }} = useAppSelector(s => s)
     const dispatch = useAppDispatch()
 
     const [filtered, setFiltered] = useState([])
 
     useLayoutEffect(() => {
-        if (state.habits) {
-            if (state.query !== '') {
+        if (task.habits) {
+            if (task.query !== '') {
                 setFiltered(
-                    state.habits.filter(t => {
+                    task.habits.filter(t => {
                         return t.name
                             .toLowerCase()
-                            .includes(state.query.toLowerCase())
+                            .includes(task.query.toLowerCase())
                     }),
                 )
             } else {
-                setFiltered(state.habits)
+                setFiltered(task.habits)
             }
         }
-    }, [state.query, state.habits])
+    }, [task.query, task.habits])
 
     const clearQuery = () => {
         dispatch(search(''))
     }
 
     return (
-        <section className='p-2 h-screen flex flex-col justify-between'>
+        <section className='p-2 min-h-screen flex flex-col justify-between'>
             <MyHead title='Habits' />
             <div>
                 <Header title='Habits' search />
 
                 <div>
-                    {state.query ? (
+                    {task.query ? (
                         <div className='flex justify-between items-center bg-light-gray p-5 mb-6 rounded-xl'>
-                            <span>Looking for &quot;{state.query}&quot;</span>
+                            <span>Looking for &quot;{task.query}&quot;</span>
                             <button onClick={clearQuery}>
                                 <XMarkIcon className='h-6 w-6' />
                             </button>
@@ -65,7 +65,7 @@ const Habits = () => {
             {filtered.length === 0 ? (
                 <div className='text-center'>
                     <Image
-                        src='/plant.svg'
+                        src={dark ? '/dark/plant.svg' : '/plant.svg'}
                         alt='plant'
                         width={400}
                         height={400}
