@@ -1,15 +1,14 @@
 import { NextPage } from 'next'
 import Image from 'next/image'
-import { useLayoutEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 
-import { XMarkIcon, MagnifyingGlassIcon } from '@heroicons/react/24/outline'
+import { XMarkIcon } from '@heroicons/react/24/outline'
 
 import { useAppDispatch, useAppSelector } from 'hooks'
 import { search } from 'redux/taskSlice'
 
 import { Task } from 'components/Task'
 import { Navbar } from 'components/Navbar'
-import { SearchBar } from 'components/SearchBar'
 import MyHead from 'components/MyHead'
 import { Header } from 'components/Header'
 
@@ -19,7 +18,7 @@ const Home: NextPage = () => {
 
     const [filtered, setFiltered] = useState([])
 
-    useLayoutEffect(() => {
+    useEffect(() => {
         if (taskState.list) {
             if (taskState.query !== '') {
                 setFiltered(
@@ -48,7 +47,7 @@ const Home: NextPage = () => {
                 <div>
                     {taskState.query ? (
                         <div className='flex justify-between items-center bg-light-gray p-5 mb-6 rounded-xl'>
-                            <span>Looking for "{taskState.query}"</span>
+                            <span>Looking for &quot;{taskState.query}&quot;</span>
                             <button onClick={clearQuery}>
                                 <XMarkIcon className='h-6 w-6' />
                             </button>

@@ -3,10 +3,6 @@ import type { NextApiRequest, NextApiResponse } from 'next'
 import { clientPromise } from 'db/client'
 import { ObjectId } from 'mongodb'
 
-type Data = {
-    name: string
-}
-
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     console.log('here')
 

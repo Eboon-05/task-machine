@@ -2,7 +2,6 @@ import {
     configureStore,
     PayloadAction,
     ThunkAction,
-    applyMiddleware,
 } from '@reduxjs/toolkit'
 import { storage } from './middlewares/storage'
 import { taskSlice, TaskState } from './taskSlice'

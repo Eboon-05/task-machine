@@ -1,4 +1,3 @@
-import { useRouter } from 'next/router'
 import { FC, useLayoutEffect } from 'react'
 import { DateTime } from 'luxon'
 
@@ -20,7 +19,6 @@ const Habit: FC<Props> = ({ habit, dark }) => {
     const { name, done, lastChecked, level } = habit
 
     const dispatch = useAppDispatch()
-    const router = useRouter()
 
     const complete = () => {
         dispatch(toggleHabit(habit))
@@ -37,7 +35,7 @@ const Habit: FC<Props> = ({ habit, dark }) => {
         if (today !== checkedDay) {
             dispatch(checkHabit(habit))
         }
-    }, [])
+    }, [dispatch, habit, lastChecked])
 
     return (
         <div className='flex justify-between items-center animate__animated animate__fadeIn'>

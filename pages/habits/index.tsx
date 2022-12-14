@@ -1,12 +1,11 @@
 import Image from 'next/image'
 import { useLayoutEffect, useState } from 'react'
 
-import { MagnifyingGlassIcon, XMarkIcon } from '@heroicons/react/24/outline'
+import { XMarkIcon } from '@heroicons/react/24/outline'
 
 import { useAppDispatch, useAppSelector } from 'hooks'
 
 import { Navbar } from 'components/Navbar'
-import { SearchBar } from 'components/SearchBar'
 import { search } from 'redux/taskSlice'
 import { Habit } from 'components/Habit'
 import MyHead from 'components/MyHead'
@@ -17,7 +16,6 @@ const Habits = () => {
     const dispatch = useAppDispatch()
 
     const [filtered, setFiltered] = useState([])
-    const [searchActive, setSearchActive] = useState(false)
 
     useLayoutEffect(() => {
         if (state.habits) {
@@ -48,7 +46,7 @@ const Habits = () => {
                 <div>
                     {state.query ? (
                         <div className='flex justify-between items-center bg-light-gray p-5 mb-6 rounded-xl'>
-                            <span>Looking for "{state.query}"</span>
+                            <span>Looking for &quot;{state.query}&quot;</span>
                             <button onClick={clearQuery}>
                                 <XMarkIcon className='h-6 w-6' />
                             </button>
@@ -75,8 +73,8 @@ const Habits = () => {
                     />
                     <p>
                         You have no habits. Habits are the key for building a
-                        better you! Try something like "water my plants" or
-                        "read for 10 minutes".
+                        better you! Try something like &quot;water my plants&quot; or
+                        &quot;read for 10 minutes&quot;.
                     </p>
                 </div>
             ) : null}

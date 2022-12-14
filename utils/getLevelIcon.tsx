@@ -1,37 +1,30 @@
+import classNames from 'classnames'
 import Image from 'next/image'
 
 export const getLevelIcon = (level: Task['level'], absolute?: boolean) => {
     const icons = [
         // Cold
-        <span className='p-3 rounded-xl bg-light-blue'>
+        <span key={1} className={classNames({
+            'p-3 rounded-xl bg-light-blue': true,
+            'absolute top-[6px] left-[6px]': absolute
+        })}>
             <Image src='/icons/snowflake.svg' alt='snowflake' width={24} height={24} />
         </span>,
         // Medium
-        <span className='p-3 rounded-xl bg-light-orange'>
+        <span key={2} className={classNames({
+            'p-3 rounded-xl bg-light-orange': true,
+            'absolute top-[6px] left-[6px]': absolute
+        })}>
             <Image src='/icons/smile.svg' alt='smile' width={24} height={24} />
         </span>,
         // Hot
-        <span className='p-3 rounded-xl bg-light-red'>
-            <Image src='/icons/fire.svg' alt='fire' width={24} height={24} />
-        </span>,
-    ]
-
-    const iconsAbsolute = [
-        // Cold
-        <span className='absolute top-[6px] left-[6px] p-3 rounded-xl bg-light-blue'>
-            <Image src='/icons/snowflake.svg' alt='snowflake' width={24} height={24} />
-        </span>,
-        // Medium
-        <span className='absolute top-[6px] left-[6px] p-3 rounded-xl bg-light-orange'>
-            <Image src='/icons/smile.svg' alt='smile' width={24} height={24} />
-        </span>,
-        // Hot
-        <span className='absolute top-[6px] left-[6px] p-3 rounded-xl bg-light-red'>
+        <span key={3} className={classNames({
+            'p-3 rounded-xl bg-light-red': true,
+            'absolute top-[6px] left-[6px]': absolute
+        })}>
             <Image src='/icons/fire.svg' alt='fire' width={24} height={24} />
         </span>,
     ]
     
-    return absolute
-        ? iconsAbsolute[level - 1]
-        : icons[level - 1]
+    return icons[level - 1]
 }

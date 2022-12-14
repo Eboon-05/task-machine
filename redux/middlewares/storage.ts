@@ -2,7 +2,7 @@ import { Middleware } from '@reduxjs/toolkit'
 
 import { AppState } from 'redux/store'
 
-export const storage: Middleware<{}, AppState> = store => next => action => {
+export const storage: Middleware<object, AppState> = store => next => action => {
     // calls all the other middlewares and reducers
     next(action)
 

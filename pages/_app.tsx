@@ -28,7 +28,7 @@ const InitState: FC = () => {
         ) {
             dispatch(setTasks(storageState))
         }
-    }, [])
+    }, [dispatch])
 
     return <></>
 }

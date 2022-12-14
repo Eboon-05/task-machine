@@ -1,9 +1,8 @@
-import Image from 'next/image'
 import { FC, useState } from 'react'
 
 import classNames from 'classnames'
 
-import { HandThumbUpIcon, ChevronDownIcon } from '@heroicons/react/24/solid'
+import { ChevronDownIcon } from '@heroicons/react/24/solid'
 import { getLevelIcon } from 'utils/getLevelIcon'
 
 interface Props {
