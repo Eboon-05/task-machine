@@ -1,19 +1,29 @@
+import classNames from 'classnames'
 import { ButtonHTMLAttributes, DetailedHTMLProps, FC } from 'react'
 
-const Button: FC<
-    DetailedHTMLProps<
+interface Props
+    extends DetailedHTMLProps<
         ButtonHTMLAttributes<HTMLButtonElement>,
         HTMLButtonElement
-    >
-> = props => {
+    > {
+    color?: 'primary' | 'light' | 'danger'
+    shadow?: true
+}
+
+const Button: FC<Props> = props => {
     return (
         <button
             {...props}
-            className={`
-            bg-dark-blue rounded-[1.25rem] shadow-md p-3 h-14 w-14 text-white
-            flex items-center justify-center
-            ${props.className}
-        `}
+            className={classNames({
+                [`
+                    rounded-2xl p-3 h-14 w-14 flex items-center
+                    justify-center ${props.className}
+                `]: true,
+                'bg-dark-blue text-white': props.color === 'primary',
+                'bg-light-gray': props.color === 'light',
+                'bg-light-red': props.color === 'danger',
+                'shadow-md': props.shadow
+            })}
         >
             {props.children}
         </button>

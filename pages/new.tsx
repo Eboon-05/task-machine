@@ -78,7 +78,7 @@ const New: NextPage = () => {
             <MyHead title='Create a new task' />
             <div className='p-5 sm:flex justify-between items-center'>
                 <h1 className='text-4xl mb-2 font-varela'>Create a new task</h1>
-                <Button className='m-auto sm:m-0' onClick={onCreate}>
+                <Button className='m-auto sm:m-0' onClick={onCreate} color='primary'>
                     <ArrowRightIcon className='h-6 w-6' />
                 </Button>
             </div>

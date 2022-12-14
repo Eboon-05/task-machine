@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router'
-import { FC, useRef } from 'react'
+import { FC, useMemo, useRef, useState } from 'react'
 
 import {
     MagnifyingGlassIcon,
@@ -10,53 +10,61 @@ import {
 import { Input } from './Input'
 import { Button } from './Button'
 
-import { search } from 'redux/taskSlice'
-import { useAppDispatch } from 'hooks'
-
 interface Props {
     active: boolean
     onClose: () => void
+    onSubmit: (value: string) => void
 }
 
-const SearchBar: FC<Props> = ({ active, onClose }) => {
+const SearchBar: FC<Props> = ({ active, onClose, onSubmit }) => {
     const ref = useRef<HTMLInputElement | null>(null)
     const router = useRouter()
-    const dispatch = useAppDispatch()
+
+    const [animation, setAnimation] = useState('animate__bounceIn')
 
     const onSearch = () => {
-        if (ref.current) {
-            if (ref.current.value !== '') {
-                dispatch(search(ref.current.value))
-            }
-        }
-
-        onClose()
+        onSubmit(`${ref.current.value}`)
+        onExit()
     }
+
+    const onExit = () => {
+        setAnimation('animate__bounceOut')
+        setTimeout(() => {
+            setAnimation('animate__bounceIn')
+            onClose()
+        }, 500)
+    }
+
+    const text = useMemo(() => {
+        return `Search for a ${router.route === '/habits' ? 'habit' : 'task'}`
+    }, [router.route])
 
     return active ? (
         <>
             <div
                 className='
                 fixed inset-0 backdrop-blur-sm z-[3] flex justify-center items-center
+                
             '
             >
-                <div className='p-8 relative'>
-                    <h1 className='text-center text-3xl mb-2 font-varela'>
-                        Search for a {router.route === '/habits' ? 'habit' : 'task'}
-                    </h1>
+                <div
+                    className={`p-8 relative bg-white rounded-xl shadow-md animate__animated animate__faster ${animation}`}
+                >
+                    <p className='text-center text-3xl font-varela mb-2'>
+                        {text}
+                    </p>
 
                     <Input ref={ref} Icon={MagnifyingGlassIcon} autoFocus />
 
-                    <Button className='m-auto mt-2' onClick={onSearch}>
-                        <ArrowRightIcon className='h-6 w-6' />
-                    </Button>
+                    <div className='mt-2 flex justify-center'>
+                        <Button onClick={onExit} className='mr-2'>
+                            <XMarkIcon className='h-8 w-8' />
+                        </Button>
 
-                    <button
-                        className='absolute top-0 right-2'
-                        onClick={onClose}
-                    >
-                        <XMarkIcon className='h-8 w-8' />
-                    </button>
+                        <Button onClick={onSearch} color='primary'>
+                            <ArrowRightIcon className='h-6 w-6' />
+                        </Button>
+                    </div>
                 </div>
             </div>
         </>

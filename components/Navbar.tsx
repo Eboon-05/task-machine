@@ -9,7 +9,6 @@ import {
     PlusIcon,
 } from '@heroicons/react/24/solid'
 
-import { SearchBar } from './SearchBar'
 import classNames from 'classnames'
 
 const links = [
@@ -85,8 +84,6 @@ const Navbar = () => {
                     </Link>
                 </div>
             </nav>
-
-            <SearchBar onClose={() => setSearch(false)} active={search} />
         </footer>
     )
 }

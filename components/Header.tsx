@@ -1,9 +1,13 @@
 import { FC, useState } from 'react'
+import classNames from 'classnames'
 
 import { MagnifyingGlassIcon } from '@heroicons/react/24/outline'
 
 import { SearchBar } from './SearchBar'
-import classNames from 'classnames'
+import { Button } from './Button'
+
+import { search as searchReducer } from 'redux/taskSlice'
+import { useAppDispatch } from 'hooks'
 
 interface Props {
     title: string
@@ -12,6 +16,13 @@ interface Props {
 
 const Header: FC<Props> = ({ title, search }) => {
     const [searchActive, setSearchActive] = useState(false)
+    const dispatch = useAppDispatch()
+
+    const onSearchSubmit = (value: string) => {
+        if (value) {
+            dispatch(searchReducer(value))
+        }
+    }
 
     return (
         <header
@@ -23,15 +34,17 @@ const Header: FC<Props> = ({ title, search }) => {
         >
             <h1 className='text-4xl font-varela'>{title}</h1>
             {search ? (
-                <button
-                    className='mt-2 sm:m-0 bg-light-gray p-3 rounded-xl'
+                <Button
+                    className='mt-2 sm:m-0'
                     onClick={() => setSearchActive(true)}
+                    color='light'
                 >
                     <MagnifyingGlassIcon className='h-7 w-7' />
-                </button>
+                </Button>
             ) : null}
 
             <SearchBar
+                onSubmit={onSearchSubmit}
                 onClose={() => setSearchActive(false)}
                 active={searchActive}
             />
