@@ -43,7 +43,6 @@ const SearchBar: FC<Props> = ({ active, onClose, onSubmit }) => {
         if (ref.current) {
             ref.current.onkeyup = (ev) => {
                 ev.preventDefault()
-                console.log(ev.key)                    
                 if (ev.key === 'Enter') {
                     onSearch()
                 } else if (ev.key === 'Escape') {
