@@ -10,7 +10,9 @@ interface Props {
 
 const Select: FC<Props> = ({ options, value, onChange }) => {
     const [active, setActive] = useState(false)
-    const [selected, setSelected] = useState(options.find(o => o.value === value))
+    const [selected, setSelected] = useState(
+        options.find(o => o.value === value),
+    )
 
     return (
         <div

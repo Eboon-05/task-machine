@@ -76,7 +76,10 @@ const Navbar = () => {
 
                     <div></div>
 
-                    <Button className='p-0 absolute top-[6px] -right-8 h-14 w-14' color='primary'>
+                    <Button
+                        className='p-0 absolute top-[6px] -right-8 h-14 w-14'
+                        color='primary'
+                    >
                         <Link
                             href={newLink}
                             className='p-3 h-full w-full flex items-center justify-center'

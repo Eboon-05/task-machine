@@ -94,7 +94,7 @@ const New: NextPage = () => {
     useEffect(() => {
         if (name.current) {
             name.current.focus()
-            name.current.onkeydown = (ev) => {
+            name.current.onkeydown = ev => {
                 if (ev.key === 'Enter') {
                     onCreate()
                 }

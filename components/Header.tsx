@@ -31,7 +31,7 @@ const Header: FC<Props> = ({ title, search }) => {
             setSearchActive(!searchActive)
         }
         hotkeys('ctrl+k', handler)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     return (

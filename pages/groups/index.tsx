@@ -9,7 +9,10 @@ import MyHead from 'components/MyHead'
 import { Header } from 'components/Header'
 
 const Groups: NextPage = () => {
-    const { task, theme: { dark }} = useAppSelector(s => s)
+    const {
+        task,
+        theme: { dark },
+    } = useAppSelector(s => s)
 
     return (
         <section className='p-2 min-h-screen flex flex-col justify-between'>

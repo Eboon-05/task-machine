@@ -12,7 +12,10 @@ import MyHead from 'components/MyHead'
 import { Header } from 'components/Header'
 
 const Habits = () => {
-    const { task, theme: { dark }} = useAppSelector(s => s)
+    const {
+        task,
+        theme: { dark },
+    } = useAppSelector(s => s)
     const dispatch = useAppDispatch()
 
     const [filtered, setFiltered] = useState([])

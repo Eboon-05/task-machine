@@ -145,9 +145,9 @@ const New: NextPage = () => {
     }, [dispatch, level, group, router])
 
     useEffect(() => {
-        if (name.current) {            
+        if (name.current) {
             name.current.focus()
-            name.current.onkeydown = (ev) => {
+            name.current.onkeydown = ev => {
                 if (ev.key === 'Enter') {
                     onCreate()
                 }
@@ -156,7 +156,6 @@ const New: NextPage = () => {
 
         hotkeys('Enter', onCreate)
     }, [name, onCreate])
-
 
     return (
         <section className='p-2 h-screen flex flex-col justify-start'>

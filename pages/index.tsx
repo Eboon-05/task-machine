@@ -13,7 +13,10 @@ import MyHead from 'components/MyHead'
 import { Header } from 'components/Header'
 
 const Home: NextPage = () => {
-    const { task: taskState, theme: { dark }} = useAppSelector(state => state)
+    const {
+        task: taskState,
+        theme: { dark },
+    } = useAppSelector(state => state)
     const dispatch = useAppDispatch()
 
     const [filtered, setFiltered] = useState([])

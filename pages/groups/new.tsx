@@ -28,43 +28,43 @@ const New: NextPage = () => {
             name: '#e63946',
             value: '#e63946',
             color: '#e63946',
-            icon: <SwatchIcon className='h-6 w-6' />
+            icon: <SwatchIcon className='h-6 w-6' />,
         },
         {
             name: '#1d3557',
             value: '#1d3557',
             color: '#1d3557',
-            icon: <SwatchIcon className='h-6 w-6' />
+            icon: <SwatchIcon className='h-6 w-6' />,
         },
         {
             name: '#ff5678',
             value: '#ff5678',
             color: '#ff5678',
-            icon: <SwatchIcon className='h-6 w-6' />
+            icon: <SwatchIcon className='h-6 w-6' />,
         },
         {
             name: '#2a9d8f',
             value: '#2a9d8f',
             color: '#2a9d8f',
-            icon: <SwatchIcon className='h-6 w-6' />
+            icon: <SwatchIcon className='h-6 w-6' />,
         },
         {
             name: '#5a189a',
             value: '#5a189a',
             color: '#5a189a',
-            icon: <SwatchIcon className='h-6 w-6' />
+            icon: <SwatchIcon className='h-6 w-6' />,
         },
         {
             name: '#000000',
             value: '#000000',
             color: '#000000',
-            icon: <SwatchIcon className='h-6 w-6' />
+            icon: <SwatchIcon className='h-6 w-6' />,
         },
         {
             name: '#22577a',
             value: '#22577a',
             color: '#22577a',
-            icon: <SwatchIcon className='h-6 w-6' />
+            icon: <SwatchIcon className='h-6 w-6' />,
         },
     ]
 
@@ -91,7 +91,7 @@ const New: NextPage = () => {
     useEffect(() => {
         if (name.current) {
             name.current.focus()
-            name.current.onkeydown = (ev) => {
+            name.current.onkeydown = ev => {
                 if (ev.key === 'Enter') {
                     onCreate()
                 }
@@ -118,7 +118,12 @@ const New: NextPage = () => {
             </div>
             <div className='grid grid-cols-1 gap-2'>
                 <span>Name:</span>
-                <Input ref={name} Icon={PlusIcon} placeholder='Group name' autoFocus />
+                <Input
+                    ref={name}
+                    Icon={PlusIcon}
+                    placeholder='Group name'
+                    autoFocus
+                />
 
                 <span>Color:</span>
                 <Select value={color} onChange={setColor} options={colors} />
