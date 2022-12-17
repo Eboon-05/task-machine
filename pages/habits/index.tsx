@@ -45,7 +45,7 @@ const Habits = () => {
 
                 <div>
                     {task.query ? (
-                        <div className='flex justify-between items-center bg-light-gray p-5 mb-6 rounded-xl'>
+                        <div className='flex justify-between items-center bg-light-gray p-5 mb-6 rounded-xl dark:text-black'>
                             <span>Looking for &quot;{task.query}&quot;</span>
                             <button onClick={clearQuery}>
                                 <XMarkIcon className='h-6 w-6' />

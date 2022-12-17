@@ -1,7 +1,7 @@
 import { NextPage } from 'next'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
-import { useEffect, useMemo, useRef, useState } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { nanoid } from '@reduxjs/toolkit'
 import { DateTime } from 'luxon'
 
@@ -15,6 +15,7 @@ import { useAppDispatch } from 'hooks'
 import { addHabit } from 'redux/slices/task'
 import MyHead from 'components/MyHead'
 import { Select } from 'components/Select'
+import hotkeys from 'hotkeys-js'
 
 const New: NextPage = () => {
     const dispatch = useAppDispatch()
@@ -71,7 +72,7 @@ const New: NextPage = () => {
         [],
     )
 
-    const onCreate = () => {
+    const onCreate = useCallback(() => {
         if (name.current) {
             if (!name.current.value) {
                 return setError(`Habit name can't be empty.`)
@@ -88,13 +89,20 @@ const New: NextPage = () => {
             dispatch(addHabit(newHabit))
             router.push('/habits')
         }
-    }
+    }, [dispatch, level, router])
 
     useEffect(() => {
         if (name.current) {
             name.current.focus()
+            name.current.onkeydown = (ev) => {
+                if (ev.key === 'Enter') {
+                    onCreate()
+                }
+            }
         }
-    }, [name])
+
+        hotkeys('Enter', onCreate)
+    }, [name, onCreate])
 
     return (
         <section className='p-2 h-screen flex flex-col justify-start'>

@@ -1,4 +1,4 @@
-import { FC, useState } from 'react'
+import { FC, useEffect, useState } from 'react'
 import classNames from 'classnames'
 
 import { MagnifyingGlassIcon } from '@heroicons/react/24/outline'
@@ -8,6 +8,7 @@ import { Button } from './Button'
 
 import { search as searchReducer } from 'redux/slices/task'
 import { useAppDispatch } from 'hooks'
+import hotkeys from 'hotkeys-js'
 
 interface Props {
     title: string
@@ -23,6 +24,15 @@ const Header: FC<Props> = ({ title, search }) => {
             dispatch(searchReducer(value))
         }
     }
+
+    useEffect(() => {
+        const handler = (ev: KeyboardEvent) => {
+            ev.preventDefault()
+            setSearchActive(!searchActive)
+        }
+        hotkeys('ctrl+k', handler)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
 
     return (
         <header

@@ -1,6 +1,6 @@
 import { NextPage } from 'next'
 import { useRouter } from 'next/router'
-import { useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import { nanoid } from '@reduxjs/toolkit'
 
 import { ArrowRightIcon, PlusIcon, SwatchIcon } from '@heroicons/react/24/solid'
@@ -14,6 +14,7 @@ import { addGroup } from 'redux/slices/task'
 
 import MyHead from 'components/MyHead'
 import { Select } from 'components/Select'
+import hotkeys from 'hotkeys-js'
 
 const New: NextPage = () => {
     const dispatch = useAppDispatch()
@@ -69,7 +70,7 @@ const New: NextPage = () => {
 
     const [color, setColor] = useState(colors[0].value)
 
-    const onCreate = () => {
+    const onCreate = useCallback(() => {
         if (name.current) {
             if (!name.current.value) {
                 return setError(`Group name can't be empty.`)
@@ -85,13 +86,20 @@ const New: NextPage = () => {
             dispatch(addGroup(newGroup))
             router.push('/groups')
         }
-    }
+    }, [color, dispatch, router])
 
     useEffect(() => {
         if (name.current) {
             name.current.focus()
+            name.current.onkeydown = (ev) => {
+                if (ev.key === 'Enter') {
+                    onCreate()
+                }
+            }
         }
-    }, [name])
+
+        hotkeys('Enter', onCreate)
+    }, [name, onCreate])
 
     return (
         <section className='p-2 h-screen flex flex-col justify-start'>

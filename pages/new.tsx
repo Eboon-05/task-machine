@@ -1,7 +1,7 @@
 import { NextPage } from 'next'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
-import { useEffect, useMemo, useRef, useState } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { nanoid } from '@reduxjs/toolkit'
 import { DateTime } from 'luxon'
 
@@ -20,6 +20,7 @@ import { addTask } from 'redux/slices/task'
 import { Toast } from 'components/Toast'
 import MyHead from 'components/MyHead'
 import { Select } from 'components/Select'
+import hotkeys from 'hotkeys-js'
 
 const New: NextPage = () => {
     const dispatch = useAppDispatch()
@@ -109,7 +110,7 @@ const New: NextPage = () => {
     const name = useRef<HTMLInputElement>(null)
     const date = useRef<HTMLInputElement>(null)
 
-    const onCreate = () => {
+    const onCreate = useCallback(() => {
         if (name.current && date.current) {
             if (!name.current.value) {
                 return setError(`Task name can't be empty.`)
@@ -141,13 +142,21 @@ const New: NextPage = () => {
                 router.push('/')
             }
         }
-    }
+    }, [dispatch, level, group, router])
 
     useEffect(() => {
-        if (name.current) {
+        if (name.current) {            
             name.current.focus()
+            name.current.onkeydown = (ev) => {
+                if (ev.key === 'Enter') {
+                    onCreate()
+                }
+            }
         }
-    }, [name])
+
+        hotkeys('Enter', onCreate)
+    }, [name, onCreate])
+
 
     return (
         <section className='p-2 h-screen flex flex-col justify-start'>

@@ -46,7 +46,7 @@ const Home: NextPage = () => {
 
                 <div>
                     {taskState.query ? (
-                        <div className='flex justify-between items-center bg-light-gray p-5 mb-6 rounded-xl'>
+                        <div className='flex justify-between items-center bg-light-gray p-5 mb-6 rounded-xl dark:text-black'>
                             <span>
                                 Looking for &quot;{taskState.query}&quot;
                             </span>
