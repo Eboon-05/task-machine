@@ -26,3 +26,10 @@ interface Habit {
     level: 1 | 2 | 3
     lastChecked: string
 }
+
+interface Option {
+    name: string
+    value: string
+    color?: string
+    icon?: JSX.Element
+}

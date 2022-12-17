@@ -48,11 +48,13 @@ const InitState: FC = () => {
 
 function MyApp({ Component, pageProps }: AppProps) {
     return (
-        <main className='font-roboto max-w-[768px] m-auto dark:bg-black dark:text-white'>
-            <Provider store={store}>
-                <InitState />
-                <Component {...pageProps} />
-            </Provider>
+        <main className=' dark:bg-black dark:text-white'>
+            <section className='font-roboto max-w-[768px] m-auto'>
+                <Provider store={store}>
+                    <InitState />
+                    <Component {...pageProps} />
+                </Provider>
+            </section>
         </main>
     )
 }

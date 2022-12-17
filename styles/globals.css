@@ -21,3 +21,11 @@ body {
     font-weight: 400;
     font-style: normal;
 }
+
+@layer base {
+    :root {
+        --light-blue: 214 242 255;
+        --light-orange: 255 228 199;
+        --light-red: 255 204 210;
+    }
+}

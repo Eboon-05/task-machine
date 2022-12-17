@@ -1,6 +1,7 @@
 import { NextPage } from 'next'
+import Image from 'next/image'
 import { useRouter } from 'next/router'
-import { useRef, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { nanoid } from '@reduxjs/toolkit'
 import { DateTime } from 'luxon'
 
@@ -12,8 +13,8 @@ import { Toast } from 'components/Toast'
 
 import { useAppDispatch } from 'hooks'
 import { addHabit } from 'redux/slices/task'
-import { LevelSelect } from 'components/LevelSelect'
 import MyHead from 'components/MyHead'
+import { Select } from 'components/Select'
 
 const New: NextPage = () => {
     const dispatch = useAppDispatch()
@@ -22,7 +23,53 @@ const New: NextPage = () => {
     const name = useRef<HTMLInputElement>(null)
 
     const [error, setError] = useState<string>('')
-    const [level, setLevel] = useState<Task['level']>(2)
+    const [level, setLevel] = useState<'1' | '2' | '3'>('1')
+
+    // Make an Option list based on possible levels
+    const levelOptions: Option[] = useMemo(
+        () => [
+            {
+                value: '1',
+                name: 'Low',
+                color: 'rgb(var(--light-blue))',
+                icon: (
+                    <Image
+                        src='/icons/snowflake.svg'
+                        alt='snowflake'
+                        width={24}
+                        height={24}
+                    />
+                ),
+            },
+            {
+                value: '2',
+                name: 'Medium',
+                color: 'rgb(var(--light-orange))',
+                icon: (
+                    <Image
+                        src='/icons/smile.svg'
+                        alt='smile'
+                        width={24}
+                        height={24}
+                    />
+                ),
+            },
+            {
+                value: '3',
+                name: 'Hard',
+                color: 'rgb(var(--light-red))',
+                icon: (
+                    <Image
+                        src='/icons/fire.svg'
+                        alt='fire'
+                        width={24}
+                        height={24}
+                    />
+                ),
+            },
+        ],
+        [],
+    )
 
     const onCreate = () => {
         if (name.current) {
@@ -34,7 +81,7 @@ const New: NextPage = () => {
                 id: nanoid(),
                 name: name.current.value,
                 done: false,
-                level,
+                level: parseInt(level) as Task['level'],
                 lastChecked: DateTime.now().toISO(),
             }
 
@@ -42,6 +89,12 @@ const New: NextPage = () => {
             router.push('/habits')
         }
     }
+
+    useEffect(() => {
+        if (name.current) {
+            name.current.focus()
+        }
+    }, [name])
 
     return (
         <section className='p-2 h-screen flex flex-col justify-start'>
@@ -63,7 +116,11 @@ const New: NextPage = () => {
                 <Input ref={name} Icon={PlusIcon} placeholder='Habit name' />
 
                 <span>Difficulty:</span>
-                <LevelSelect level={level} onChange={setLevel} />
+                <Select
+                    value={level}
+                    options={levelOptions}
+                    onChange={setLevel as (v: string) => void}
+                />
             </div>
 
             {error ? (
