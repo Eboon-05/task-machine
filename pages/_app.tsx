@@ -6,16 +6,18 @@ import { useAppDispatch } from 'hooks'
 
 import { store } from 'redux/store'
 import { setTasks } from 'redux/slices/task'
+import { dark, light } from 'redux/slices/theme'
+import {setHabits} from 'redux/slices/habit'
 
 import 'animate.css'
 import '../styles/globals.css'
-import { dark, light } from 'redux/slices/theme'
+
 
 const InitState: FC = () => {
     const dispatch = useAppDispatch()
 
     useEffect(() => {
-        const { task, theme } = store.getState()
+        const { task, theme, habit: { habits } } = store.getState()
 
         const storageTask = JSON.parse(localStorage.getItem('tasks')) || {
             list: [],
@@ -28,9 +30,10 @@ const InitState: FC = () => {
         if (
             task.list !== storageTask.list ||
             task.groups !== storageTask.groups ||
-            task.habits !== storageTask.habits
+            habits !== storageTask.habits
         ) {
             dispatch(setTasks(storageTask))
+            dispatch(setHabits(storageTask))
         }
 
         if (theme.dark === undefined && typeof storageDark === 'boolean') {

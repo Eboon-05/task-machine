@@ -12,7 +12,7 @@ import { Input } from 'components/Input'
 import { Toast } from 'components/Toast'
 
 import { useAppDispatch } from 'hooks'
-import { addHabit } from 'redux/slices/task'
+import { addHabit } from 'redux/slices/habit'
 import MyHead from 'components/MyHead'
 import { Select } from 'components/Select'
 import hotkeys from 'hotkeys-js'

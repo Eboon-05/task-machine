@@ -15,26 +15,27 @@ const Habits = () => {
     const {
         task,
         theme: { dark },
+        habit
     } = useAppSelector(s => s)
     const dispatch = useAppDispatch()
 
     const [filtered, setFiltered] = useState([])
 
     useLayoutEffect(() => {
-        if (task.habits) {
+        if (habit.habits) {
             if (task.query !== '') {
                 setFiltered(
-                    task.habits.filter(t => {
+                    habit.habits.filter(t => {
                         return t.name
                             .toLowerCase()
                             .includes(task.query.toLowerCase())
                     }),
                 )
             } else {
-                setFiltered(task.habits)
+                setFiltered(habit.habits)
             }
         }
-    }, [task.query, task.habits])
+    }, [task.query, habit.habits])
 
     const clearQuery = () => {
         dispatch(search(''))

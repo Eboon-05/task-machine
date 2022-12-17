@@ -1,10 +1,8 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { DateTime } from 'luxon'
 
 export interface TaskState {
     list?: Task[]
     groups?: Group[]
-    habits?: Habit[]
     query: string
     user?: User
 }
@@ -43,9 +41,6 @@ export const taskSlice = createSlice({
         },
         addGroup(state, action: PayloadAction<Group, 'ADD_GROUP'>) {
             state.groups.push(action.payload)
-        },
-        addHabit(state, action: PayloadAction<Habit, 'ADD_HABIT'>) {
-            state.habits.push(action.payload)
         },
         toggleTask(
             state,
@@ -89,19 +84,6 @@ export const taskSlice = createSlice({
 
                     state.list = newList
                 }
-            }
-        },
-        toggleHabit(state, action: PayloadAction<Habit, 'TOGGLE_HABIT'>) {
-            const newHabits: Habit[] = [...state.habits]
-            const i = newHabits.findIndex(t => t.id === action.payload.id)
-
-            if (i !== -1) {
-                newHabits[i] = {
-                    ...newHabits[i],
-                    done: !newHabits[i].done,
-                }
-
-                state.habits = newHabits
             }
         },
         removeTask(
@@ -152,30 +134,6 @@ export const taskSlice = createSlice({
                 state.groups = newGroups
             }
         },
-        removeHabit(state, action: PayloadAction<Habit, 'DELETE_HABIT'>) {
-            const newHabits: Habit[] = [...state.habits]
-            const i = newHabits.findIndex(t => t.id === action.payload.id)
-
-            if (i !== -1) {
-                newHabits.splice(i, 1)
-
-                state.habits = newHabits
-            }
-        },
-        checkHabit(state, action: PayloadAction<Habit, 'CHECK_HABIT'>) {
-            const newHabits: Habit[] = [...state.habits]
-            const i = newHabits.findIndex(t => t.id === action.payload.id)
-
-            if (i !== -1) {
-                newHabits[i] = {
-                    ...newHabits[i],
-                    done: false,
-                    lastChecked: DateTime.now().toISO(),
-                }
-
-                state.habits = newHabits
-            }
-        },
         search(state, action: PayloadAction<string, 'SEARCH'>) {
             state.query = action.payload
         },
@@ -192,9 +150,6 @@ export const taskSlice = createSlice({
             if (action.payload.groups) {
                 state.groups = action.payload.groups
             }
-            if (action.payload.habits) {
-                state.habits = action.payload.habits
-            }
         },
     },
 })
@@ -202,13 +157,9 @@ export const taskSlice = createSlice({
 export const {
     addTask,
     addGroup,
-    addHabit,
     toggleTask,
-    toggleHabit,
     removeTask,
     removeGroup,
-    removeHabit,
-    checkHabit,
     search,
     setTasks,
 } = taskSlice.actions

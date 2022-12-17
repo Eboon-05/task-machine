@@ -8,7 +8,7 @@ import { Check } from './Check'
 import { getLevelIcon } from 'utils/getLevelIcon'
 
 import { useAppDispatch } from 'hooks'
-import { checkHabit, removeHabit, toggleHabit } from 'redux/slices/task'
+import { checkHabit, removeHabit, toggleHabit } from 'redux/slices/habit'
 
 interface Props {
     habit: Habit
