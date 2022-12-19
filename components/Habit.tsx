@@ -60,7 +60,8 @@ const Habit: FC<Props> = ({ habit, dark }) => {
             <div
                 className={classNames({
                     'absolute my-auto left-2': true,
-                    'opacity-60 pointer-events-none': !habit.days.includes(today),
+                    'opacity-60 pointer-events-none':
+                        !habit.days.includes(today),
                 })}
             >
                 <Check dark={dark} checked={done} onChange={complete} />

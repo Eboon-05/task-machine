@@ -156,8 +156,8 @@ const New: NextPage = () => {
         }
 
         hotkeys('Enter', onCreate)
-    // This should run just once, when the page loads
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+        // This should run just once, when the page loads
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     return (

@@ -28,7 +28,7 @@ const Task: FC<Props> = ({ task, dark, group }) => {
     }
 
     return (
-        <div 
+        <div
             className='grid grid-cols-1 grid-rows-2 gap-1 sm:flex 
             justify-between items-center border-l-4 rounded-l 
             border-light-gray dark:border-dark-gray pl-2

@@ -6,7 +6,11 @@ import { nanoid } from '@reduxjs/toolkit'
 import { DateTime } from 'luxon'
 import hotkeys from 'hotkeys-js'
 
-import { ArrowLeftIcon, ArrowRightIcon, PlusIcon } from '@heroicons/react/24/outline'
+import {
+    ArrowLeftIcon,
+    ArrowRightIcon,
+    PlusIcon,
+} from '@heroicons/react/24/outline'
 
 import { Button } from 'components/Button'
 import { Input } from 'components/Input'
@@ -111,8 +115,8 @@ const New: NextPage = () => {
         }
 
         hotkeys('Enter', onCreate)
-    // This should run just once, when the page loads
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+        // This should run just once, when the page loads
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     return (
