@@ -27,7 +27,10 @@ const Select: FC<Props> = ({ options, value, onChange }) => {
             {/* Selected option */}
             <span
                 className='p-3 rounded-xl absolute top-[6px] left-[6px]'
-                style={{ backgroundColor: selected?.color || '#FFF' }}
+                style={{
+                    backgroundColor: selected?.color || '#FFF',
+                    color: selected?.color ? '#FFF' : '#000',
+                }}
             >
                 {selected?.icon}
             </span>

@@ -2,19 +2,19 @@ import { NextPage } from 'next'
 import { useRouter } from 'next/router'
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { nanoid } from '@reduxjs/toolkit'
+import hotkeys from 'hotkeys-js'
 
-import { ArrowRightIcon, PlusIcon, SwatchIcon } from '@heroicons/react/24/solid'
+import { ArrowLeftIcon, ArrowRightIcon, PlusIcon, SwatchIcon } from '@heroicons/react/24/solid'
 
 import { Button } from 'components/Button'
 import { Input } from 'components/Input'
 import { Toast } from 'components/Toast'
+import MyHead from 'components/MyHead'
+import { Select } from 'components/Select'
 
 import { useAppDispatch } from 'hooks'
 import { addGroup } from 'redux/slices/task'
 
-import MyHead from 'components/MyHead'
-import { Select } from 'components/Select'
-import hotkeys from 'hotkeys-js'
 
 const New: NextPage = () => {
     const dispatch = useAppDispatch()
@@ -108,13 +108,22 @@ const New: NextPage = () => {
                 <h1 className='text-4xl mb-2 font-varela'>
                     Create a new group
                 </h1>
-                <Button
-                    className='m-auto sm:m-0'
-                    onClick={onCreate}
-                    color='primary'
-                >
-                    <ArrowRightIcon className='h-6 w-6' />
-                </Button>
+                <div className='grid grid-cols-2 gap-2'>
+                    <Button
+                        className='p-0'
+                        color='light'
+                        onClick={() => router.back()}
+                    >
+                        <ArrowLeftIcon className='h-7 w-7' />
+                    </Button>
+                    <Button
+                        className='m-auto sm:m-0'
+                        onClick={onCreate}
+                        color='primary'
+                    >
+                        <ArrowRightIcon className='h-6 w-6' />
+                    </Button>
+                </div>
             </div>
             <div className='grid grid-cols-1 gap-2'>
                 <span>Name:</span>

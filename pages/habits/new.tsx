@@ -4,8 +4,9 @@ import { useRouter } from 'next/router'
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { nanoid } from '@reduxjs/toolkit'
 import { DateTime } from 'luxon'
+import hotkeys from 'hotkeys-js'
 
-import { ArrowRightIcon, PlusIcon } from '@heroicons/react/24/solid'
+import { ArrowLeftIcon, ArrowRightIcon, PlusIcon } from '@heroicons/react/24/outline'
 
 import { Button } from 'components/Button'
 import { Input } from 'components/Input'
@@ -15,7 +16,6 @@ import { useAppDispatch } from 'hooks'
 import { addHabit } from 'redux/slices/habit'
 import MyHead from 'components/MyHead'
 import { Select } from 'components/Select'
-import hotkeys from 'hotkeys-js'
 import { WeekdayPicker } from 'components/WeekdayPicker'
 
 const New: NextPage = () => {
@@ -120,13 +120,22 @@ const New: NextPage = () => {
                 <h1 className='text-4xl mb-2 font-varela'>
                     Create a new habit
                 </h1>
-                <Button
-                    className='m-auto sm:m-0'
-                    onClick={onCreate}
-                    color='primary'
-                >
-                    <ArrowRightIcon className='h-6 w-6' />
-                </Button>
+                <div className='grid grid-cols-2 gap-2'>
+                    <Button
+                        className='p-0'
+                        color='light'
+                        onClick={() => router.back()}
+                    >
+                        <ArrowLeftIcon className='h-7 w-7' />
+                    </Button>
+                    <Button
+                        className='m-auto sm:m-0'
+                        onClick={onCreate}
+                        color='primary'
+                    >
+                        <ArrowRightIcon className='h-6 w-6' />
+                    </Button>
+                </div>
             </div>
             <div className='grid grid-cols-1 gap-2'>
                 <span>Name:</span>

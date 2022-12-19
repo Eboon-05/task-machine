@@ -68,7 +68,7 @@ const Home: NextPage = () => {
                 </div>
             </div>
 
-            {filtered.length === 0 ? (
+            {taskState.list.length === 0 ? (
                 <div className='text-center'>
                     <Image
                         src={dark ? '/dark/ice-cream.svg' : '/ice-cream.svg'}

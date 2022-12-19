@@ -15,27 +15,27 @@ const Habits = () => {
     const {
         task,
         theme: { dark },
-        habit,
+        habit: { habits },
     } = useAppSelector(s => s)
     const dispatch = useAppDispatch()
 
     const [filtered, setFiltered] = useState([])
 
     useEffect(() => {
-        if (habit.habits) {
+        if (habits) {
             if (task.query !== '') {
                 setFiltered(
-                    habit.habits.filter(t => {
+                    habits.filter(t => {
                         return t.name
                             .toLowerCase()
                             .includes(task.query.toLowerCase())
                     }),
                 )
             } else {
-                setFiltered(habit.habits)
+                setFiltered(habits)
             }
         }
-    }, [task.query, habit.habits])
+    }, [task.query, habits])
 
     const clearQuery = () => {
         dispatch(search(''))
@@ -66,7 +66,7 @@ const Habits = () => {
                 </div>
             </div>
 
-            {filtered.length === 0 ? (
+            {habits.length === 0 ? (
                 <div className='text-center'>
                     <Image
                         src={dark ? '/dark/plant.svg' : '/plant.svg'}

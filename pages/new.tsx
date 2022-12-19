@@ -4,9 +4,11 @@ import { useRouter } from 'next/router'
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { nanoid } from '@reduxjs/toolkit'
 import { DateTime } from 'luxon'
+import hotkeys from 'hotkeys-js'
 
 import {
     ArrowRightIcon,
+    ArrowLeftIcon,
     PlusIcon,
     CalendarIcon,
     Square2StackIcon,
@@ -20,7 +22,6 @@ import { addTask } from 'redux/slices/task'
 import { Toast } from 'components/Toast'
 import MyHead from 'components/MyHead'
 import { Select } from 'components/Select'
-import hotkeys from 'hotkeys-js'
 
 const New: NextPage = () => {
     const dispatch = useAppDispatch()
@@ -162,13 +163,22 @@ const New: NextPage = () => {
             <MyHead title='Create a new task' />
             <div className='p-5 sm:flex justify-between items-center'>
                 <h1 className='text-4xl mb-2 font-varela'>Create a new task</h1>
-                <Button
-                    className='m-auto sm:m-0'
-                    onClick={onCreate}
-                    color='primary'
-                >
-                    <ArrowRightIcon className='h-6 w-6' />
-                </Button>
+                <div className='grid grid-cols-2 gap-2'>
+                    <Button
+                        className='p-0'
+                        color='light'
+                        onClick={() => router.back()}
+                    >
+                        <ArrowLeftIcon className='h-7 w-7' />
+                    </Button>
+                    <Button
+                        className='m-auto sm:m-0'
+                        onClick={onCreate}
+                        color='primary'
+                    >
+                        <ArrowRightIcon className='h-6 w-6' />
+                    </Button>
+                </div>
             </div>
             <div className='grid grid-cols-1 gap-2'>
                 <span>Name</span>

@@ -19,7 +19,7 @@ const Button: FC<Props> = props => {
                     rounded-2xl p-3 h-14 w-14 flex items-center
                     justify-center ${props.className} dark:text-black
                 `]: true,
-                'bg-dark-blue text-white dark:bg-sky':
+                'bg-dark-blue text-white dark:bg-pink':
                     props.color === 'primary',
                 // 'dark:text-black': props.color !== 'primary',
                 'bg-light-gray': props.color === 'light',
