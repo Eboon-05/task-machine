@@ -8,6 +8,14 @@ interface Props {
 const MyHead: FC<Props> = ({ title }) => {
     return (
         <Head>
+            <meta charSet='utf-8' />
+            <meta http-equiv='x-ua-compatible' content='ie=edge' />
+            <meta
+                name='viewport'
+                content='width=device-width, height=device-height, viewport-fit=cover, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no'
+            />
+            <meta name='mobile-web-app-capable' content='yes' />
+            <meta name='apple-mobile-web-app-capable' content='yes' />
             <title>
                 {title}
                 {title ? ' - ' : ''}Task Machine
