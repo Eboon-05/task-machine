@@ -116,14 +116,14 @@ const New: NextPage = () => {
                 </h1>
                 <div className='grid grid-cols-2 gap-2'>
                     <Button
-                        className='p-0'
+                        className='ml-auto'
                         color='light'
                         onClick={() => router.back()}
                     >
                         <ArrowLeftIcon className='h-7 w-7' />
                     </Button>
                     <Button
-                        className='m-auto sm:m-0'
+                        className='mr-auto'
                         onClick={onCreate}
                         color='primary'
                     >

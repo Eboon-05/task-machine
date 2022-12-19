@@ -32,12 +32,13 @@ const Task: FC<Props> = ({ task, dark, group }) => {
             className='grid grid-cols-1 grid-rows-2 gap-1 sm:flex 
             justify-between items-center border-l-4 rounded-l 
             border-light-gray dark:border-dark-gray pl-2
+            relative
             animate__animated animate__fadeIn'
         >
-            <div className='flex justify-start items-center'>
-                <div className='mr-2'>
-                    <Check dark={dark} checked={done} onChange={complete} />
-                </div>
+            <div className='absolute my-auto left-2'>
+                <Check dark={dark} checked={done} onChange={complete} />
+            </div>
+            <div className='ml-10'>
                 <div>
                     <div className={`${done && 'line-through'}`}>{name}</div>
                     {task.due ? (

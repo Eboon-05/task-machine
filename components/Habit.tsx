@@ -54,21 +54,21 @@ const Habit: FC<Props> = ({ habit, dark }) => {
             className='grid grid-cols-1 grid-rows-2 gap-1 sm:flex 
             justify-between items-center border-l-4 rounded-l 
             border-light-gray dark:border-dark-gray pl-2
+            relative
             animate__animated animate__fadeIn'
         >
-            <div className='flex justify-start items-center relative'>
-                <div
-                    className={classNames({
-                        'mr-2': true,
-                        'opacity-60 pointer-events-none': !habit.days.includes(today),
-                    })}
-                >
-                    <Check dark={dark} checked={done} onChange={complete} />
-                </div>
+            <div
+                className={classNames({
+                    'absolute my-auto left-2': true,
+                    'opacity-60 pointer-events-none': !habit.days.includes(today),
+                })}
+            >
+                <Check dark={dark} checked={done} onChange={complete} />
+            </div>
+            <div className='ml-10'>
                 <div className='w-full '>
                     <div
                         className={classNames({
-                            'text-lg': true,
                             'line-through': done,
                             'opacity-60': !habit.days.includes(today),
                         })}
