@@ -36,7 +36,7 @@ const WeekdayPicker: FC<Props> = ({ days, onChange }) => {
             <ul
                 className={classNames({
                     [`
-                        p-4 border-2 border-light-gray rounded-xl w-full text-lg 
+                        p-4 border-2 border-light-gray dark:border-dark-gray rounded-xl w-full text-lg 
                         dark:bg-black dark:text-white grid grid-cols-7 
                         justify-between gap-2
                     `]: true,
@@ -49,7 +49,7 @@ const WeekdayPicker: FC<Props> = ({ days, onChange }) => {
                         className={classNames({
                             'py-3 sm:p-3 rounded-xl dark:text-white text-center cursor-pointer select-none':
                                 true,
-                            'bg-light-gray dark:text-black':
+                            'bg-light-gray dark:bg-dark-gray':
                                 !everyday && days.includes(i),
                         })}
                         onClick={() => {

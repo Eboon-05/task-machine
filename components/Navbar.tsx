@@ -51,7 +51,7 @@ const Navbar = () => {
 
             <nav className='fixed bottom-2 inset-x-2 pr-1 w-[80%] mx-auto'>
                 <div
-                    className='bg-light-gray dark:text-black py-2 pr-3 sm:py-5 sm:px-8 rounded-2xl grid justify-center 
+                    className='bg-light-gray dark:bg-dark-gray py-2 pr-3 sm:py-5 sm:px-8 rounded-2xl grid justify-center 
                     items-center justify-items-center max-w-[400px] grid-cols-3 font-varela
                     w-full h-full relative mx-auto'
                 >

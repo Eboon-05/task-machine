@@ -11,6 +11,7 @@ import { useAppDispatch } from 'hooks'
 import { checkHabit, removeHabit, toggleHabit } from 'redux/slices/habit'
 import classNames from 'classnames'
 import { capitalize } from 'capitalize-ts'
+import { Button } from './Button'
 
 interface Props {
     habit: Habit
@@ -31,46 +32,45 @@ const Habit: FC<Props> = ({ habit, dark }) => {
     }
 
     useLayoutEffect(() => {
-        const today = DateTime.now().day
-        const checkedDay = DateTime.fromISO(lastChecked).day
+        const now = DateTime.now()
 
-        if (today !== checkedDay) {
+        const checked = DateTime.fromISO(lastChecked)
+
+        if (now.day !== checked.day) {
             dispatch(checkHabit(habit))
         }
     }, [dispatch, habit, lastChecked])
-
-    const isToday = useMemo(
-        () => habit.days.includes(DateTime.now().weekday - 1),
-        [habit.days],
-    )
 
     const weekdays = useMemo(() => {
         return Info.weekdays('narrow').map(d => capitalize(d))
     }, [])
 
     const today = useMemo(() => {
-        return DateTime.now().weekday
+        return DateTime.now().weekday - 1
     }, [])
 
     return (
-        <div className='grid grid-cols-1 grid-rows-2 gap-1 sm:flex justify-between items-center animate__animated animate__fadeIn'>
-            <div
-                className={classNames({
-                    'flex justify-start items-center': true,
-                })}
-            >
+        <div
+            className='grid grid-cols-1 grid-rows-2 gap-1 sm:flex 
+            justify-between items-center border-l-4 rounded-l 
+            border-light-gray dark:border-dark-gray pl-2
+            animate__animated animate__fadeIn'
+        >
+            <div className='flex justify-start items-center relative'>
                 <div
-                    className={`mr-2 ${
-                        !isToday && 'pointer-events-none opacity-60'
-                    }`}
+                    className={classNames({
+                        'mr-2': true,
+                        'opacity-60 pointer-events-none': !habit.days.includes(today),
+                    })}
                 >
                     <Check dark={dark} checked={done} onChange={complete} />
                 </div>
-                <div className='w-full'>
+                <div className='w-full '>
                     <div
                         className={classNames({
+                            'text-lg': true,
                             'line-through': done,
-                            'opacity-60': !isToday,
+                            'opacity-60': !habit.days.includes(today),
                         })}
                     >
                         {name}
@@ -84,17 +84,17 @@ const Habit: FC<Props> = ({ habit, dark }) => {
                                     className={classNames({
                                         'text-center rounded-lg p-2': true,
                                         // The weekday is included in habit days but is not today
-                                        'bg-light-gray dark:text-black':
+                                        'bg-light-gray dark:bg-dark-gray':
                                             habit.days.includes(i) &&
                                             i !== today,
                                         // The weekday is today but is not included in habit days
                                         'bg-pink text-white':
-                                            i === today - 1 &&
+                                            i === today &&
                                             !habit.days.includes(i),
                                         // The weekday is today and is included in habit days
-                                        'bg-light-gray text-pink dark:text-pink':
+                                        'bg-light-gray dark:bg-dark-gray text-pink dark:text-pink':
                                             habit.days.includes(i) &&
-                                            i === today - 1,
+                                            i === today,
                                     })}
                                 >
                                     {d}
@@ -110,14 +110,11 @@ const Habit: FC<Props> = ({ habit, dark }) => {
                     )}
                 </div>
             </div>
-            <div className='flex justify-center'>
+            <div className='flex justify-center my-auto'>
                 {getLevelIcon(level)}
-                <button
-                    onClick={onRemove}
-                    className='ml-2 px-3 bg-pink rounded-xl'
-                >
+                <Button onClick={onRemove} className='ml-2' color='danger'>
                     <TrashIcon className='h-6 w-6 text-white' />
-                </button>
+                </Button>
             </div>
         </div>
     )

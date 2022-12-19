@@ -6,6 +6,7 @@ import { useAppDispatch } from 'hooks'
 import { Check } from './Check'
 import { removeTask, toggleTask } from 'redux/slices/task'
 import { getLevelIcon } from 'utils/getLevelIcon'
+import { Button } from './Button'
 
 interface Props {
     task: Task
@@ -27,7 +28,12 @@ const Task: FC<Props> = ({ task, dark, group }) => {
     }
 
     return (
-        <div className='flex justify-between items-center animate__animated animate__fadeIn'>
+        <div 
+            className='grid grid-cols-1 grid-rows-2 gap-1 sm:flex 
+            justify-between items-center border-l-4 rounded-l 
+            border-light-gray dark:border-dark-gray pl-2
+            animate__animated animate__fadeIn'
+        >
             <div className='flex justify-start items-center'>
                 <div className='mr-2'>
                     <Check dark={dark} checked={done} onChange={complete} />
@@ -42,11 +48,11 @@ const Task: FC<Props> = ({ task, dark, group }) => {
                     ) : null}
                 </div>
             </div>
-            <div className='flex'>
+            <div className='flex justify-center my-auto'>
                 {getLevelIcon(level)}
-                <button onClick={onRemove} className='ml-2'>
+                <Button color='danger' onClick={onRemove} className='ml-2 px-3'>
                     <TrashIcon className='h-6 w-6' />
-                </button>
+                </Button>
             </div>
         </div>
     )

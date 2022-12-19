@@ -23,7 +23,7 @@ const Button: FC<Props> = props => {
                     props.color === 'primary',
                 // 'dark:text-black': props.color !== 'primary',
                 'bg-light-gray dark:bg-dark-gray dark:text-white': props.color === 'light',
-                'bg-light-red': props.color === 'danger',
+                'bg-pink text-white': props.color === 'danger',
                 'shadow-md': props.shadow,
             })}
         >
