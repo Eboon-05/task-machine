@@ -37,6 +37,7 @@ const Groups: NextPage = () => {
                         width={400}
                         height={400}
                         className='h-auto w-auto sm:max-w-[400px] m-auto'
+                        priority
                     />
                     <p>
                         You haven&apos;t created any group yet. Separating your

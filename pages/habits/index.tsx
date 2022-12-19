@@ -66,7 +66,7 @@ const Habits = () => {
                 </div>
             </div>
 
-            {habits.length === 0 ? (
+            {habits?.length === 0 ? (
                 <div className='text-center'>
                     <Image
                         src={dark ? '/dark/plant.svg' : '/plant.svg'}
@@ -74,6 +74,7 @@ const Habits = () => {
                         width={400}
                         height={400}
                         className='h-auto w-auto sm:max-w-[400px] m-auto'
+                        priority
                     />
                     <p>
                         You have no habits. Habits are the key for building a

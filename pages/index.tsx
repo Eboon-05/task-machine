@@ -68,7 +68,7 @@ const Home: NextPage = () => {
                 </div>
             </div>
 
-            {taskState.list.length === 0 ? (
+            {taskState.list?.length === 0 ? (
                 <div className='text-center'>
                     <Image
                         src={dark ? '/dark/ice-cream.svg' : '/ice-cream.svg'}
@@ -76,6 +76,7 @@ const Home: NextPage = () => {
                         width={400}
                         height={400}
                         className='h-auto w-auto sm:max-w-[400px] m-auto'
+                        priority
                     />
                     <p>
                         Seems like you have no tasks. You can create one, or go
