@@ -19,8 +19,9 @@ const Select: FC<Props> = ({ options, value, onChange }) => {
             className={classNames({
                 [`
                 p-4 pl-16 border-2 border-light-gray outline-none rounded-xl w-full text-lg
-                relative cursor-pointer
+                relative cursor-pointer dark:border-dark-gray 
             `]: true,
+                'dark:border-b-0 dark:rounded-b-none': active,
             })}
             onClick={() => setActive(!active)}
         >
@@ -48,8 +49,9 @@ const Select: FC<Props> = ({ options, value, onChange }) => {
             </span>
             {active ? (
                 <ul
-                    className='absolute w-full shadow-md bg-white inset-x-0 rounded-xl top-[64px] z-10
-                    dark:bg-black dark:border-2 dark:border-light-gray'
+                    className='absolute w-full shadow-md bg-white right-0 -left-[2px] rounded-xl top-[60px] z-10
+                    dark:bg-black dark:border-2 dark:border-dark-gray box-content dark:border-t-0 
+                    dark:shadow-none dark:rounded-t-none'
                 >
                     {options.map((opt, i) => (
                         <li

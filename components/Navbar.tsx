@@ -77,8 +77,9 @@ const Navbar = () => {
                     <div></div>
 
                     <Button
-                        className='p-0 absolute top-[6px] -right-8 h-14 w-14'
+                        className='absolute top-[6px] -right-8 h-14 w-14'
                         color='primary'
+                        style={{ padding: 0 }}
                     >
                         <Link
                             href={newLink}

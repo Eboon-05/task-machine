@@ -16,13 +16,13 @@ const Button: FC<Props> = props => {
             {...props}
             className={classNames({
                 [`
-                    rounded-2xl p-3 h-14 w-14 flex items-center
-                    justify-center ${props.className} dark:text-black
+                    rounded-2xl p-3 h-14 w-14 flex items-center 
+                    justify-center ${props.className} 
                 `]: true,
-                'bg-dark-blue text-white dark:bg-pink':
+                'bg-dark-blue text-white dark:bg-purple':
                     props.color === 'primary',
                 // 'dark:text-black': props.color !== 'primary',
-                'bg-light-gray': props.color === 'light',
+                'bg-light-gray dark:bg-dark-gray dark:text-white': props.color === 'light',
                 'bg-light-red': props.color === 'danger',
                 'shadow-md': props.shadow,
             })}

@@ -22,8 +22,9 @@ module.exports = {
             'light-blue': 'rgb(var(--light-blue))',
             'light-orange': 'rgb(var(--light-orange))',
             'light-red': 'rgb(var(--light-red))',
-            sky: '#82C3EC',
+            purple: '#453C67',
             pink: '#ff5678',
+            'dark-gray': '#2C3333'
         },
     },
     safelist: [{ pattern: /^bg-light/ }],
