@@ -156,7 +156,9 @@ const New: NextPage = () => {
         }
 
         hotkeys('Enter', onCreate)
-    }, [name, onCreate])
+    // This should run just once, when the page loads
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
 
     return (
         <section className='p-2 h-screen flex flex-col justify-start'>

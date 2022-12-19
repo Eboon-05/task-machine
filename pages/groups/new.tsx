@@ -4,7 +4,12 @@ import { useCallback, useEffect, useRef, useState } from 'react'
 import { nanoid } from '@reduxjs/toolkit'
 import hotkeys from 'hotkeys-js'
 
-import { ArrowLeftIcon, ArrowRightIcon, PlusIcon, SwatchIcon } from '@heroicons/react/24/solid'
+import {
+    ArrowLeftIcon,
+    ArrowRightIcon,
+    PlusIcon,
+    SwatchIcon,
+} from '@heroicons/react/24/solid'
 
 import { Button } from 'components/Button'
 import { Input } from 'components/Input'
@@ -14,7 +19,6 @@ import { Select } from 'components/Select'
 
 import { useAppDispatch } from 'hooks'
 import { addGroup } from 'redux/slices/task'
-
 
 const New: NextPage = () => {
     const dispatch = useAppDispatch()
@@ -99,7 +103,9 @@ const New: NextPage = () => {
         }
 
         hotkeys('Enter', onCreate)
-    }, [name, onCreate])
+        // This should run just once, when the page loads
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
 
     return (
         <section className='p-2 h-screen flex flex-col justify-start'>
