@@ -53,10 +53,7 @@ export const habitSlice = createSlice({
         },
         setHabits(
             state,
-            action: PayloadAction<
-                { habits?: Habit[] },
-                'SET_HABITS'
-            >,
+            action: PayloadAction<{ habits?: Habit[] }, 'SET_HABITS'>,
         ) {
             if (action.payload.habits) {
                 state.habits = action.payload.habits
@@ -65,10 +62,5 @@ export const habitSlice = createSlice({
     },
 })
 
-export const {
-    addHabit,
-    toggleHabit,
-    removeHabit,
-    checkHabit,
-    setHabits,
-} = habitSlice.actions
+export const { addHabit, toggleHabit, removeHabit, checkHabit, setHabits } =
+    habitSlice.actions

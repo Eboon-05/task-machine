@@ -24,6 +24,7 @@ interface Habit {
     name: string
     done: boolean
     level: 1 | 2 | 3
+    days: number[]
     lastChecked: string
 }
 

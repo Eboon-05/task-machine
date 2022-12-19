@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import { useLayoutEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import { XMarkIcon } from '@heroicons/react/24/outline'
 
@@ -15,13 +15,13 @@ const Habits = () => {
     const {
         task,
         theme: { dark },
-        habit
+        habit,
     } = useAppSelector(s => s)
     const dispatch = useAppDispatch()
 
     const [filtered, setFiltered] = useState([])
 
-    useLayoutEffect(() => {
+    useEffect(() => {
         if (habit.habits) {
             if (task.query !== '') {
                 setFiltered(

@@ -8,7 +8,11 @@ export const storage: Middleware<object, AppState> =
         next(action)
 
         // then runs its code
-        const { task, theme, habit: { habits } } = store.getState()
+        const {
+            task,
+            theme,
+            habit: { habits },
+        } = store.getState()
         // const storageState = JSON.parse(localStorage.getItem('tasks')) || null
 
         if (task.list && task.groups && habits) {

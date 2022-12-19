@@ -16,6 +16,7 @@ import { addHabit } from 'redux/slices/habit'
 import MyHead from 'components/MyHead'
 import { Select } from 'components/Select'
 import hotkeys from 'hotkeys-js'
+import { WeekdayPicker } from 'components/WeekdayPicker'
 
 const New: NextPage = () => {
     const dispatch = useAppDispatch()
@@ -25,6 +26,7 @@ const New: NextPage = () => {
 
     const [error, setError] = useState<string>('')
     const [level, setLevel] = useState<'1' | '2' | '3'>('1')
+    const [days, setDays] = useState<Habit['days']>([])
 
     // Make an Option list based on possible levels
     const levelOptions: Option[] = useMemo(
@@ -78,18 +80,25 @@ const New: NextPage = () => {
                 return setError(`Habit name can't be empty.`)
             }
 
+            if (days.length === 0) {
+                return setError(
+                    `What's the point of a habit if you're not gonna repeat it? Please select at least one day.`,
+                )
+            }
+
             const newHabit: Habit = {
                 id: nanoid(),
                 name: name.current.value,
                 done: false,
                 level: parseInt(level) as Task['level'],
+                days,
                 lastChecked: DateTime.now().toISO(),
             }
 
             dispatch(addHabit(newHabit))
             router.push('/habits')
         }
-    }, [dispatch, level, router])
+    }, [days, dispatch, level, router])
 
     useEffect(() => {
         if (name.current) {
@@ -129,6 +138,9 @@ const New: NextPage = () => {
                     options={levelOptions}
                     onChange={setLevel as (v: string) => void}
                 />
+
+                <span>Days:</span>
+                <WeekdayPicker days={days} onChange={setDays} />
             </div>
 
             {error ? (
