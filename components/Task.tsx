@@ -1,4 +1,5 @@
-import { FC } from 'react'
+import { FC, useMemo } from 'react'
+import { Tooltip } from 'react-tooltip'
 
 import { TrashIcon, CalendarIcon } from '@heroicons/react/24/solid'
 
@@ -27,6 +28,20 @@ const Task: FC<Props> = ({ task, dark, group }) => {
         dispatch(removeTask({ task, group }))
     }
 
+    const anchorId = useMemo(() => `${task.id}-anchor`, [task.id])
+    const content = useMemo(() => {
+        let str = 'Difficulty: '
+
+        switch (level) {
+            case 1:
+                return str += 'Low'
+            case 2:
+                return str += 'Medium'
+            case 3:
+                return str += 'High'
+        }
+    }, [level])
+
     return (
         <div
             className='grid grid-cols-1 grid-rows-2 gap-1 sm:flex 
@@ -50,11 +65,14 @@ const Task: FC<Props> = ({ task, dark, group }) => {
                 </div>
             </div>
             <div className='flex justify-center my-auto'>
-                {getLevelIcon(level)}
+                <a id={anchorId}>
+                    {getLevelIcon(level)}
+                </a>
                 <Button color='danger' onClick={onRemove} className='ml-2 px-3'>
                     <TrashIcon className='h-6 w-6' />
                 </Button>
             </div>
+            <Tooltip anchorId={anchorId} content={content} />
         </div>
     )
 }

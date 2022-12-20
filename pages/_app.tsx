@@ -10,6 +10,7 @@ import { dark, light } from 'redux/slices/theme'
 import { setHabits } from 'redux/slices/habit'
 
 import 'animate.css'
+import 'react-tooltip/dist/react-tooltip.css'
 import '../styles/globals.css'
 
 const InitState: FC = () => {

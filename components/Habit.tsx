@@ -1,5 +1,6 @@
 import { FC, useLayoutEffect, useMemo } from 'react'
 import { DateTime, Info } from 'luxon'
+import { Tooltip } from 'react-tooltip'
 
 import { TrashIcon } from '@heroicons/react/24/solid'
 
@@ -48,6 +49,20 @@ const Habit: FC<Props> = ({ habit, dark }) => {
     const today = useMemo(() => {
         return DateTime.now().weekday - 1
     }, [])
+
+    const anchorId = useMemo(() => `${habit.id}-anchor`, [habit.id])
+    const content = useMemo(() => {
+        let str = 'Difficulty: '
+
+        switch (level) {
+            case 1:
+                return str += 'Low'
+            case 2:
+                return str += 'Medium'
+            case 3:
+                return str += 'High'
+        }
+    }, [level])
 
     return (
         <div
@@ -112,11 +127,14 @@ const Habit: FC<Props> = ({ habit, dark }) => {
                 </div>
             </div>
             <div className='flex justify-center my-auto'>
-                {getLevelIcon(level)}
+                <a id={anchorId}>
+                    {getLevelIcon(level)}
+                </a>
                 <Button onClick={onRemove} className='ml-2' color='danger'>
                     <TrashIcon className='h-6 w-6 text-white' />
                 </Button>
             </div>
+            <Tooltip anchorId={anchorId} content={content} />
         </div>
     )
 }
