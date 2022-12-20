@@ -1,9 +1,10 @@
+import { useRouter } from 'next/router'
 import { FC, useEffect, useState } from 'react'
 import classNames from 'classnames'
 import { DateTime } from 'luxon'
 import hotkeys from 'hotkeys-js'
 
-import { MagnifyingGlassIcon } from '@heroicons/react/24/outline'
+import { MagnifyingGlassIcon, Cog6ToothIcon } from '@heroicons/react/24/outline'
 
 import { SearchBar } from './SearchBar'
 import { Button } from './Button'
@@ -17,8 +18,10 @@ interface Props {
 }
 
 const Header: FC<Props> = ({ title, search }) => {
-    const [searchActive, setSearchActive] = useState(false)
+    const { push } = useRouter()
     const dispatch = useAppDispatch()
+
+    const [searchActive, setSearchActive] = useState(false)
 
     const onSearchSubmit = (value: string) => {
         if (value) {
@@ -41,19 +44,28 @@ const Header: FC<Props> = ({ title, search }) => {
                 className={classNames({
                     'p-5 flex flex-col sm:flex-row sm:justify-between justify-start items-center':
                         true,
-                    'h-[52px] box-content': !search,
                 })}
             >
                 <h1 className='text-4xl font-varela'>{title}</h1>
-                {search ? (
+                <div className='mt-2 sm:m-0 flex'>
                     <Button
-                        className='mt-2 sm:m-0'
-                        onClick={() => setSearchActive(true)}
-                        color='light'
+                        className={classNames({
+                            'mr-2': search,
+                        })}
+                        onClick={() => push('/config')}
+                        color='primary'
                     >
-                        <MagnifyingGlassIcon className='h-7 w-7' />
+                        <Cog6ToothIcon className='h-7 w-7' />
                     </Button>
-                ) : null}
+                    {search ? (
+                        <Button
+                            onClick={() => setSearchActive(true)}
+                            color='light'
+                        >
+                            <MagnifyingGlassIcon className='h-7 w-7' />
+                        </Button>
+                    ) : null}
+                </div>
 
                 <SearchBar
                     onSubmit={onSearchSubmit}

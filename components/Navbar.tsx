@@ -31,7 +31,7 @@ const links = [
 ]
 
 const Navbar = () => {
-    const { route } = useRouter()
+    const { route, push } = useRouter()
 
     const newLink = useMemo(() => {
         switch (route) {
@@ -80,13 +80,9 @@ const Navbar = () => {
                         className='absolute top-[6px] -right-8 h-14 w-14'
                         color='primary'
                         style={{ padding: 0 }}
+                        onClick={() => push(newLink)}
                     >
-                        <Link
-                            href={newLink}
-                            className='p-3 h-full w-full flex items-center justify-center'
-                        >
-                            <PlusIcon className='h-7 w-7 text-white' />
-                        </Link>
+                        <PlusIcon className='h-7 w-7 text-white' />
                     </Button>
                 </div>
             </nav>
