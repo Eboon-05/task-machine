@@ -21,7 +21,7 @@ const Group: FC<Group> = ({ name, color, id, list }) => {
     }
 
     return (
-        <div className='group p-2 rounded-xl mb-6 animate__animated animate__fadeIn'>
+        <div className='group p-2 rounded-xl mb-6 animate__animated animate__fadeIn' id={id}>
             {/* Header of the group card */}
             <div className='flex justify-between items-center'>
                 <div className='text-white text-2xl flex justify-start items-center'>
