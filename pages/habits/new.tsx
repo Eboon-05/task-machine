@@ -121,7 +121,7 @@ const New: NextPage = () => {
 
     return (
         <section className='p-2 h-screen flex flex-col justify-start'>
-            <MyHead title='Create a new habit' />
+            <MyHead title={messages.newHabit.toString()} />
             <div className='p-5 sm:flex justify-between items-center'>
                 <h1 className='text-4xl mb-2 font-varela'>
                     <FormattedMessage id='newHabit' />

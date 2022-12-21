@@ -1,4 +1,9 @@
-module.exports = {
+const withPWA = require('next-pwa')({
+    dest: 'public',
+    swSrc: 'sw.js'
+})
+
+module.exports = withPWA({
     reactStrictMode: true,
     typescript: {
         // !! WARN !!
@@ -11,4 +16,4 @@ module.exports = {
         locales: ['en', 'es-AR', 'es',],
         defaultLocale: 'en',
     },
-}
+})

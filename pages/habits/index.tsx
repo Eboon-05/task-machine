@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import { useEffect, useState } from 'react'
-import { FormattedMessage } from 'react-intl'
+import { FormattedMessage, useIntl } from 'react-intl'
 
 import { XMarkIcon } from '@heroicons/react/24/outline'
 
@@ -12,6 +12,9 @@ import { Habit } from 'components/Habit'
 import MyHead from 'components/MyHead'
 import { Header } from 'components/Header'
 
+import plant from 'public/plant.svg'
+import plantDark from 'public/dark/plant.svg'
+
 const Habits = () => {
     const {
         task,
@@ -19,6 +22,7 @@ const Habits = () => {
         habit: { habits },
     } = useAppSelector(s => s)
     const dispatch = useAppDispatch()
+    const { messages } = useIntl()
 
     const [filtered, setFiltered] = useState([])
 
@@ -44,7 +48,7 @@ const Habits = () => {
 
     return (
         <section className='p-2 min-h-screen flex flex-col justify-between'>
-            <MyHead title='Habits' />
+            <MyHead title={messages.habits.toString()} />
             <div>
                 <Header title='habits' search />
 
@@ -70,7 +74,7 @@ const Habits = () => {
             {habits?.length === 0 ? (
                 <div className='text-center'>
                     <Image
-                        src={dark ? '/dark/plant.svg' : '/plant.svg'}
+                        src={dark ? plantDark : plant}
                         alt='plant'
                         width={400}
                         height={400}

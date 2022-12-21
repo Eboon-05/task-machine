@@ -1,6 +1,8 @@
 import { useRouter } from 'next/router'
 import Image from 'next/image'
 import { FC, useState } from 'react'
+import { FormattedMessage } from 'react-intl'
+import classNames from 'classnames'
 
 import {
     Square2StackIcon,
@@ -13,9 +15,9 @@ import { Task } from './Task'
 
 import { useAppDispatch } from 'hooks'
 import { removeGroup } from 'redux/slices/task'
-import { FormattedMessage } from 'react-intl'
 import { Button } from './Button'
-import classNames from 'classnames'
+
+import dancing from 'public/dark/dancing.svg'
 
 const Group: FC<Group> = ({ name, id, list }) => {
     const dispatch = useAppDispatch()
@@ -69,7 +71,7 @@ const Group: FC<Group> = ({ name, id, list }) => {
                     {list.length === 0 ? (
                         <div className='text-center'>
                             <Image
-                                src='/dark/dancing.svg'
+                                src={dancing}
                                 alt='dancing'
                                 width={350}
                                 height={350}

@@ -13,6 +13,9 @@ import MyHead from 'components/MyHead'
 import { Header } from 'components/Header'
 import { FormattedMessage } from 'react-intl'
 
+import ice from 'public/ice-cream.svg'
+import iceDark from 'public/dark/ice-cream.svg'
+
 const Home: NextPage = () => {
     const {
         task: taskState,
@@ -77,7 +80,7 @@ const Home: NextPage = () => {
             {taskState.list?.length === 0 ? (
                 <div className='text-center'>
                     <Image
-                        src={dark ? '/dark/ice-cream.svg' : '/ice-cream.svg'}
+                        src={dark ? iceDark : ice}
                         alt='ice-cream'
                         width={400}
                         height={400}

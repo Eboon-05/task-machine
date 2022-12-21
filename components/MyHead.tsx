@@ -1,6 +1,5 @@
 import Head from 'next/head'
 import { FC } from 'react'
-import { FormattedMessage } from 'react-intl'
 
 interface Props {
     title?: string
@@ -17,8 +16,15 @@ const MyHead: FC<Props> = ({ title }) => {
             />
             <meta name='mobile-web-app-capable' content='yes' />
             <meta name='apple-mobile-web-app-capable' content='yes' />
+            <meta name="theme-color" content="#FFFFFF"/>
+
+            <link rel="apple-touch-icon" href="/icons/maskable_icon_x512.png" />
+
+            <link rel="manifest" href="/manifest.json" />
+            <link rel="shortcut icon" href="/icons/maskable_icon_x512.png" type="image/png" />
+
             <title>
-                <FormattedMessage id={title} />
+                {title || 'Task machine'}
             </title>
         </Head>
     )

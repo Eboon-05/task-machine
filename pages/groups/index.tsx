@@ -1,5 +1,6 @@
 import { NextPage } from 'next'
 import Image from 'next/image'
+import { FormattedMessage, useIntl } from 'react-intl'
 
 import { Navbar } from 'components/Navbar'
 import { useAppSelector } from 'hooks'
@@ -7,17 +8,20 @@ import { useAppSelector } from 'hooks'
 import Group from 'components/Group'
 import MyHead from 'components/MyHead'
 import { Header } from 'components/Header'
-import { FormattedMessage } from 'react-intl'
+
+import meditating from 'public/meditating.svg'
+import meditatingDark from 'public/dark/meditating.svg'
 
 const Groups: NextPage = () => {
     const {
         task,
         config: { dark },
     } = useAppSelector(s => s)
+    const { messages } = useIntl()
 
     return (
         <section className='p-2 min-h-screen flex flex-col justify-between'>
-            <MyHead title='Groups' />
+            <MyHead title={messages.groups.toString()} />
             <div>
                 <Header title='groups' />
 
@@ -33,7 +37,7 @@ const Groups: NextPage = () => {
             {task.groups?.length === 0 ? (
                 <div className='text-center'>
                     <Image
-                        src={dark ? '/dark/meditating.svg' : '/meditating.svg'}
+                        src={dark ? meditatingDark : meditating}
                         alt='meditating'
                         width={400}
                         height={400}

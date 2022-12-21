@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router'
-import { FormattedMessage } from 'react-intl'
+import { FormattedMessage, useIntl } from 'react-intl'
 
 import { ArrowLeftIcon } from '@heroicons/react/24/outline'
 
@@ -15,10 +15,11 @@ const Config = () => {
     const config = useAppSelector(s => s.config)
     const { dark, habitReminder } = config
     const dispatch = useAppDispatch()
+    const { messages } = useIntl()
 
     return (
         <section className='p-2 min-h-screen'>
-            <MyHead title='Config' />
+            <MyHead title={messages.config.toString()} />
             <div className='flex items-center p-5'>
                 <Button color='light' onClick={back} className='mr-2'>
                     <ArrowLeftIcon className='h-7 w-7' />

@@ -16,7 +16,7 @@ import { Toast } from 'components/Toast'
 export const Init: FC = () => {
     const dispatch = useAppDispatch()
     const state = useAppSelector(s => s)
-    const router = useRouter()
+    const { push } = useRouter()
 
     const { messages } = useIntl()
 
@@ -133,7 +133,7 @@ export const Init: FC = () => {
                     title={messages.reminderTitle.toString()}
                     body={remember}
                     confirmIcon={<ArrowRightIcon className='h-7 w-7' />}
-                    onConfirm={() => router.push('/habits')}
+                    onConfirm={() => push('/habits')}
                     onClose={() => setRemember(null)}
                     cancelIcon={<BellSlashIcon className='h-7 w-7' />}
                     onCancel={() => {

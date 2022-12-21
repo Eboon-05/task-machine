@@ -1,6 +1,10 @@
 import classNames from 'classnames'
 import Image from 'next/image'
 
+import snowflake from 'public/icons/snowflake.svg'
+import smile from 'public/icons/smile.svg'
+import fire from 'public/icons/fire.svg'
+
 export const getLevelIcon = (level: Task['level'], absolute?: boolean) => {
     const icons = [
         // Cold
@@ -13,7 +17,7 @@ export const getLevelIcon = (level: Task['level'], absolute?: boolean) => {
             })}
         >
             <Image
-                src='/icons/snowflake.svg'
+                src={snowflake}
                 alt='snowflake'
                 width={24}
                 height={24}
@@ -30,7 +34,7 @@ export const getLevelIcon = (level: Task['level'], absolute?: boolean) => {
             })}
         >
             <Image
-                src='/icons/smile.svg'
+                src={smile}
                 alt='smile'
                 width={24}
                 height={24}
@@ -47,7 +51,7 @@ export const getLevelIcon = (level: Task['level'], absolute?: boolean) => {
             })}
         >
             <Image
-                src='/icons/fire.svg'
+                src={fire}
                 alt='fire'
                 width={24}
                 height={24}
