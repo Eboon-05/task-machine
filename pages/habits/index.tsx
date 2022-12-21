@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import { useEffect, useState } from 'react'
+import { FormattedMessage } from 'react-intl'
 
 import { XMarkIcon } from '@heroicons/react/24/outline'
 
@@ -45,7 +46,7 @@ const Habits = () => {
         <section className='p-2 min-h-screen flex flex-col justify-between'>
             <MyHead title='Habits' />
             <div>
-                <Header title='Habits' search />
+                <Header title='habits' search />
 
                 <div>
                     {task.query ? (
@@ -77,9 +78,7 @@ const Habits = () => {
                         priority
                     />
                     <p>
-                        You have no habits. Habits are the key for building a
-                        better you! Try something like &quot;water my
-                        plants&quot; or &quot;read for 10 minutes&quot;.
+                        <FormattedMessage id='noHabits' />
                     </p>
                 </div>
             ) : null}

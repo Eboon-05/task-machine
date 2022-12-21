@@ -8,6 +8,7 @@ import { Check } from './Check'
 import { removeTask, toggleTask } from 'redux/slices/task'
 import { getLevelIcon } from 'utils/getLevelIcon'
 import { Button } from './Button'
+import { useIntl } from 'react-intl'
 
 interface Props {
     task: Task
@@ -16,9 +17,11 @@ interface Props {
 }
 
 const Task: FC<Props> = ({ task, dark, group }) => {
+    const dispatch = useAppDispatch()
+    const { messages } = useIntl()
+
     const { done, name, level } = task
 
-    const dispatch = useAppDispatch()
 
     const complete = () => {
         dispatch(toggleTask({ task, group }))
@@ -30,17 +33,15 @@ const Task: FC<Props> = ({ task, dark, group }) => {
 
     const anchorId = useMemo(() => `${task.id}-anchor`, [task.id])
     const content = useMemo(() => {
-        let str = 'Difficulty: '
-
         switch (level) {
             case 1:
-                return str += 'Low'
+                return messages.dEasy.toString()
             case 2:
-                return str += 'Medium'
+                return messages.dMedium.toString()
             case 3:
-                return str += 'High'
+                return messages.dHard.toString()
         }
-    }, [level])
+    }, [level, messages.dEasy, messages.dHard, messages.dMedium])
 
     return (
         <div

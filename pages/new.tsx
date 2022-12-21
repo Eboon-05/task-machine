@@ -5,6 +5,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { nanoid } from '@reduxjs/toolkit'
 import { DateTime } from 'luxon'
 import hotkeys from 'hotkeys-js'
+import { FormattedMessage, useIntl } from 'react-intl'
 
 import {
     ArrowRightIcon,
@@ -31,10 +32,17 @@ const New: NextPage = () => {
     const [level, setLevel] = useState<'1' | '2' | '3'>('1')
     const [error, setError] = useState<string>('')
 
+    const { messages } = useIntl()
+
     // Make an Option list based on the state groups
     const groupOptions: Option[] = useMemo(() => {
         if (groups && groups.length > 0) {
-            const opts: Option[] = []
+            const opts: Option[] = [
+                {
+                    name: messages.noGroup.toString(),
+                    value: ''
+                }
+            ]
 
             if (groups) {
                 groups.forEach(g => {
@@ -51,14 +59,14 @@ const New: NextPage = () => {
         } else {
             return []
         }
-    }, [groups])
+    }, [groups, messages.noGroup])
 
     // Make an Option list based on possible levels
     const levelOptions: Option[] = useMemo(
         () => [
             {
                 value: '1',
-                name: 'Low',
+                name: messages.easy.toString(),
                 color: 'rgb(var(--light-blue))',
                 icon: (
                     <Image
@@ -71,7 +79,7 @@ const New: NextPage = () => {
             },
             {
                 value: '2',
-                name: 'Medium',
+                name: messages.medium.toString(),
                 color: 'rgb(var(--light-orange))',
                 icon: (
                     <Image
@@ -84,7 +92,7 @@ const New: NextPage = () => {
             },
             {
                 value: '3',
-                name: 'Hard',
+                name: messages.hard.toString(),
                 color: 'rgb(var(--light-red))',
                 icon: (
                     <Image
@@ -96,7 +104,7 @@ const New: NextPage = () => {
                 ),
             },
         ],
-        [],
+        [messages.easy, messages.hard, messages.medium],
     )
 
     // State of the selected group using its ID
@@ -162,9 +170,11 @@ const New: NextPage = () => {
 
     return (
         <section className='p-2 h-screen flex flex-col justify-start'>
-            <MyHead title='Create a new task' />
+            <MyHead title='newTask' />
             <div className='p-5 sm:flex justify-between items-center'>
-                <h1 className='text-4xl mb-2 font-varela'>Create a new task</h1>
+                <h1 className='text-4xl mb-2 font-varela'>
+                    <FormattedMessage id='newTask' />
+                </h1>
                 <div className='grid grid-cols-2 gap-2'>
                     <Button
                         className='ml-auto'
@@ -183,16 +193,26 @@ const New: NextPage = () => {
                 </div>
             </div>
             <div className='grid grid-cols-1 gap-2'>
-                <span>Name</span>
-                <Input ref={name} Icon={PlusIcon} placeholder='Task name' />
+                <span>
+                    <FormattedMessage id='name' />
+                </span>
+                <Input
+                    ref={name}
+                    Icon={PlusIcon}
+                    placeholder={messages.name.toString()}
+                />
 
-                <span>Date:</span>
+                <span>
+                    <FormattedMessage id='date' />
+                </span>
                 <Input ref={date} Icon={CalendarIcon} type='date' />
                 <span className='text-sm opacity-60'>
-                    You can leave date empty
+                    <FormattedMessage id='emptyDate' />
                 </span>
 
-                <span>Difficulty:</span>
+                <span>
+                    <FormattedMessage id='difficulty' />
+                </span>
                 <Select
                     value={level}
                     options={levelOptions}
@@ -201,7 +221,9 @@ const New: NextPage = () => {
 
                 {groups?.length > 0 ? (
                     <>
-                        <span>Group:</span>
+                        <span>
+                            <FormattedMessage id='group' />
+                        </span>
                         <Select
                             options={groupOptions}
                             value={group}

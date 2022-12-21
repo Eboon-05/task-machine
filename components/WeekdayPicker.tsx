@@ -1,9 +1,11 @@
+import { useRouter } from 'next/router'
 import { FC, useMemo, useState } from 'react'
 import classNames from 'classnames'
 import { capitalize } from 'capitalize-ts'
 import { Info } from 'luxon'
 
 import { Check } from './Check'
+import { FormattedMessage } from 'react-intl'
 
 interface Props {
     days: Habit['days']
@@ -11,11 +13,12 @@ interface Props {
 }
 
 const WeekdayPicker: FC<Props> = ({ days, onChange }) => {
+    const { locale } = useRouter()
     const [everyday, setEveryday] = useState(false)
 
     const weekdays = useMemo(() => {
-        return Info.weekdays('short').map(d => capitalize(d))
-    }, [])
+        return Info.weekdays('short', { locale }).map(d => capitalize(d))
+    }, [locale])
 
     return (
         <>
@@ -31,7 +34,9 @@ const WeekdayPicker: FC<Props> = ({ days, onChange }) => {
                         setEveryday(!everyday)
                     }}
                 />
-                <span className='ml-2'>Everyday</span>
+                <span className='ml-2'>
+                    <FormattedMessage id='everyday' />
+                </span>
             </div>
             <ul
                 className={classNames({

@@ -1,5 +1,6 @@
 import Head from 'next/head'
 import { FC } from 'react'
+import { FormattedMessage } from 'react-intl'
 
 interface Props {
     title?: string
@@ -17,8 +18,7 @@ const MyHead: FC<Props> = ({ title }) => {
             <meta name='mobile-web-app-capable' content='yes' />
             <meta name='apple-mobile-web-app-capable' content='yes' />
             <title>
-                {title}
-                {title ? ' - ' : ''}Task Machine
+                <FormattedMessage id={title} />
             </title>
         </Head>
     )

@@ -11,21 +11,22 @@ import {
 
 import classNames from 'classnames'
 import { Button } from './Button'
+import { FormattedMessage } from 'react-intl'
 
 const links = [
     {
         path: '/',
-        name: 'Home',
+        name: 'home',
         icon: <HomeIcon className='h-7 w-7' />,
     },
     {
         path: '/groups',
-        name: 'Groups',
+        name: 'groups',
         icon: <Square2StackIcon className='h-7 w-7' />,
     },
     {
         path: '/habits',
-        name: 'Habits',
+        name: 'habits',
         icon: <ArrowPathRoundedSquareIcon className='h-7 w-7' />,
     },
 ]
@@ -62,14 +63,13 @@ const Navbar = () => {
                             className={classNames({
                                 'grid justify-center justify-items-center items-center':
                                     true,
-                                'opacity-50': route !== l.path,
-                                'grid-rows-2 sm:grid-rows-1 sm:grid-cols-2':
+                                'grid-rows-2 sm:grid-rows-1 sm:grid-cols-2 text-pink':
                                     route === l.path,
                             })}
                         >
                             <span>{l.icon}</span>
                             <span className='animate__animated animate__fadeInUp'>
-                                {l.path === route ? l.name : null}
+                                {l.path === route ? <FormattedMessage id={l.name} /> : null}
                             </span>
                         </Link>
                     ))}

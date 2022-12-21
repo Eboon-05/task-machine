@@ -8,7 +8,7 @@ module.exports = {
         ignoreBuildErrors: true,
     },
     i18n: {
-        locales: ['en', 'es'],
+        locales: ['en', 'es-AR', 'es',],
         defaultLocale: 'en',
     },
 }

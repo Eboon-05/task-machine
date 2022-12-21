@@ -1,6 +1,8 @@
+import { useRouter } from 'next/router'
 import { FC, useLayoutEffect, useMemo } from 'react'
 import { DateTime, Info } from 'luxon'
 import { Tooltip } from 'react-tooltip'
+import { useIntl } from 'react-intl'
 
 import { TrashIcon } from '@heroicons/react/24/solid'
 
@@ -20,6 +22,9 @@ interface Props {
 }
 
 const Habit: FC<Props> = ({ habit, dark }) => {
+    const { locale } = useRouter()
+    const { messages } = useIntl()
+
     const { name, done, lastChecked, level } = habit
 
     const dispatch = useAppDispatch()
@@ -43,8 +48,8 @@ const Habit: FC<Props> = ({ habit, dark }) => {
     }, [dispatch, habit, lastChecked])
 
     const weekdays = useMemo(() => {
-        return Info.weekdays('narrow').map(d => capitalize(d))
-    }, [])
+        return Info.weekdays('narrow', { locale }).map(d => capitalize(d))
+    }, [locale])
 
     const today = useMemo(() => {
         return DateTime.now().weekday - 1
@@ -52,17 +57,15 @@ const Habit: FC<Props> = ({ habit, dark }) => {
 
     const anchorId = useMemo(() => `${habit.id}-anchor`, [habit.id])
     const content = useMemo(() => {
-        let str = 'Difficulty: '
-
         switch (level) {
             case 1:
-                return str += 'Low'
+                return messages.dEasy.toString()
             case 2:
-                return str += 'Medium'
+                return messages.dMedium.toString()
             case 3:
-                return str += 'High'
+                return messages.dHard.toString()
         }
-    }, [level])
+    }, [level, messages.dEasy, messages.dHard, messages.dMedium])
 
     return (
         <div
@@ -120,8 +123,7 @@ const Habit: FC<Props> = ({ habit, dark }) => {
                     ) : (
                         // If the habit is everyday
                         <p className='opacity-70 italic'>
-                            Repeat this{' '}
-                            <span className='text-pink'>everyday</span>!
+                            {messages.repeatEveryday.toString()}
                         </p>
                     )}
                 </div>

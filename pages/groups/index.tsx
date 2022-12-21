@@ -7,6 +7,7 @@ import { useAppSelector } from 'hooks'
 import Group from 'components/Group'
 import MyHead from 'components/MyHead'
 import { Header } from 'components/Header'
+import { FormattedMessage } from 'react-intl'
 
 const Groups: NextPage = () => {
     const {
@@ -18,7 +19,7 @@ const Groups: NextPage = () => {
         <section className='p-2 min-h-screen flex flex-col justify-between'>
             <MyHead title='Groups' />
             <div>
-                <Header title='Groups' />
+                <Header title='groups' />
 
                 {task.groups ? (
                     <div>
@@ -40,9 +41,7 @@ const Groups: NextPage = () => {
                         priority
                     />
                     <p>
-                        You haven&apos;t created any group yet. Separating your
-                        tasks into groups can make things easier. Try creating a
-                        group for work and another for pets!
+                        <FormattedMessage id='noGroups' />
                     </p>
                 </div>
             ) : null}

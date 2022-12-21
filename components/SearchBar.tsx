@@ -1,5 +1,6 @@
 import { useRouter } from 'next/router'
-import { FC, useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import { FC, useCallback, useEffect, useRef, useState } from 'react'
+import { FormattedMessage } from 'react-intl'
 
 import {
     MagnifyingGlassIcon,
@@ -18,7 +19,7 @@ interface Props {
 
 const SearchBar: FC<Props> = ({ active, onClose, onSubmit }) => {
     const ref = useRef<HTMLInputElement | null>(null)
-    const router = useRouter()
+    const { route } = useRouter()
 
     const [animation, setAnimation] = useState('animate__bounceIn')
 
@@ -34,10 +35,6 @@ const SearchBar: FC<Props> = ({ active, onClose, onSubmit }) => {
         onSubmit(`${ref.current.value}`)
         onExit()
     }, [onExit, onSubmit])
-
-    const text = useMemo(() => {
-        return `Search for a ${router.route === '/habits' ? 'habit' : 'task'}`
-    }, [router.route])
 
     useEffect(() => {
         if (ref.current) {
@@ -64,7 +61,7 @@ const SearchBar: FC<Props> = ({ active, onClose, onSubmit }) => {
                     className={`p-8 relative bg-white dark:bg-black rounded-xl shadow-md animate__animated animate__faster ${animation}`}
                 >
                     <p className='text-center text-3xl font-varela mb-2'>
-                        {text}
+                        <FormattedMessage id={route === '/' ? 'searchTask' : 'searchHabit'} />
                     </p>
 
                     <Input ref={ref} Icon={MagnifyingGlassIcon} autoFocus />

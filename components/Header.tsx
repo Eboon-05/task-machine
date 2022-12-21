@@ -11,14 +11,15 @@ import { Button } from './Button'
 
 import { search as searchReducer } from 'redux/slices/task'
 import { useAppDispatch } from 'hooks'
+import { FormattedMessage } from 'react-intl'
 
 interface Props {
-    title: string
+    title?: string
     search?: boolean
 }
 
 const Header: FC<Props> = ({ title, search }) => {
-    const { push } = useRouter()
+    const { push, locale } = useRouter()
     const dispatch = useAppDispatch()
 
     const [searchActive, setSearchActive] = useState(false)
@@ -46,7 +47,13 @@ const Header: FC<Props> = ({ title, search }) => {
                         true,
                 })}
             >
-                <h1 className='text-4xl font-varela'>{title}</h1>
+                <h1 className='text-4xl font-varela'>
+                    {title ? (
+                        <FormattedMessage id={title} defaultMessage={title} />
+                    ) : (
+                        'Task machine'
+                    )}
+                </h1>
                 <div className='mt-2 sm:m-0 flex'>
                     <Button
                         className={classNames({
@@ -75,11 +82,16 @@ const Header: FC<Props> = ({ title, search }) => {
             </header>
             <div className='mb-2'>
                 <p className='text-lg text-center font-varela'>
-                    Today is{' '}
-                    <span className='text-pink'>
-                        {DateTime.now().weekdayLong}
-                    </span>{' '}
-                    {DateTime.now().toFormat('DDD')}.
+                    <FormattedMessage
+                        id='todayIs'
+                        values={{
+                            day: DateTime.now().setLocale(locale).weekdayLong,
+                            date: DateTime.now()
+                                .setLocale(locale)
+                                .toFormat('DDD'),
+                        }}
+                    />
+                    .
                 </p>
             </div>
         </>

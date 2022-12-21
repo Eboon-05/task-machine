@@ -1,4 +1,5 @@
 import { useRouter } from 'next/router'
+import { FormattedMessage } from 'react-intl'
 
 import { ArrowLeftIcon } from '@heroicons/react/24/outline'
 
@@ -22,26 +23,29 @@ const Config = () => {
                 <Button color='light' onClick={back} className='mr-2'>
                     <ArrowLeftIcon className='h-7 w-7' />
                 </Button>
-                <span className='font-varela text-3xl'>Configuration</span>
+                <span className='font-varela text-3xl'>
+                    <FormattedMessage id='config' />
+                </span>
             </div>
 
             {dark !== undefined && habitReminder !== undefined ? (
                 <ul className='mt-3 px-6 flex flex-col items-center'>
                     <li className='flex justify-between items-center font-varela w-full sm:w-[500px] mb-6'>
-                        <span className='text-lg font-bold'>Dark mode</span>
+                        <span className='text-lg font-bold'>
+                            <FormattedMessage id='darkMode' />
+                        </span>
                         <Switch
                             checked={dark}
                             onChange={() => dispatch(toggleTheme())}
                         />
                     </li>
                     <li className='flex justify-between items-center font-varela w-full sm:w-[500px] mb-6'>
-                        <div className='max-w-sm'>
+                        <div className='max-w-[200px] sm:max-w-sm'>
                             <span className='text-lg font-bold'>
-                                Habit reminder
+                                <FormattedMessage id='habitReminder' />
                             </span>
                             <p className='font-roboto'>
-                                A dialog box that shows up every time you open
-                                the app for the first time in a day.
+                                <FormattedMessage id='reminderDescription' />
                             </p>
                         </div>
                         <Switch

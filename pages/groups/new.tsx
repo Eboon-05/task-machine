@@ -3,6 +3,7 @@ import { useRouter } from 'next/router'
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { nanoid } from '@reduxjs/toolkit'
 import hotkeys from 'hotkeys-js'
+import { FormattedMessage, useIntl } from 'react-intl'
 
 import {
     ArrowLeftIcon,
@@ -23,6 +24,8 @@ import { addGroup } from 'redux/slices/task'
 const New: NextPage = () => {
     const dispatch = useAppDispatch()
     const router = useRouter()
+
+    const { messages } = useIntl()
 
     const name = useRef<HTMLInputElement>(null)
     const [error, setError] = useState<string>('')
@@ -75,10 +78,11 @@ const New: NextPage = () => {
     const [color, setColor] = useState(colors[0].value)
 
     const onCreate = useCallback(() => {
-        if (name.current) {
+        if (name.current) {           
             if (!name.current.value) {
-                return setError(`Group name can't be empty.`)
+                return setError(messages.emptyNameError.toString())
             }
+            
 
             const newGroup: Group = {
                 id: nanoid(),
@@ -90,7 +94,7 @@ const New: NextPage = () => {
             dispatch(addGroup(newGroup))
             router.push('/groups')
         }
-    }, [color, dispatch, router])
+    }, [color, dispatch, messages.emptyNameError, router])
 
     useEffect(() => {
         if (name.current) {
@@ -112,7 +116,7 @@ const New: NextPage = () => {
             <MyHead title='Create a new group' />
             <div className='p-5 sm:flex justify-between items-center'>
                 <h1 className='text-4xl mb-2 font-varela'>
-                    Create a new group
+                    <FormattedMessage id='newGroup' />
                 </h1>
                 <div className='grid grid-cols-2 gap-2'>
                     <Button
@@ -132,21 +136,24 @@ const New: NextPage = () => {
                 </div>
             </div>
             <div className='grid grid-cols-1 gap-2'>
-                <span>Name:</span>
+                <span>
+                    <FormattedMessage id='name' />:
+                </span>
                 <Input
                     ref={name}
                     Icon={PlusIcon}
-                    placeholder='Group name'
-                    autoFocus
+                    placeholder={messages.name.toString()}
                 />
 
-                <span>Color:</span>
+                <span>
+                    <FormattedMessage id='color' />:
+                </span>
                 <Select value={color} onChange={setColor} options={colors} />
             </div>
 
             {error ? (
                 <Toast
-                    title='Error!'
+                    title={messages.error.toString()}
                     body={error}
                     type='error'
                     onClose={() => setError('')}

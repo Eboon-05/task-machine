@@ -11,6 +11,7 @@ import { Task } from 'components/Task'
 import { Navbar } from 'components/Navbar'
 import MyHead from 'components/MyHead'
 import { Header } from 'components/Header'
+import { FormattedMessage } from 'react-intl'
 
 const Home: NextPage = () => {
     const {
@@ -45,13 +46,18 @@ const Home: NextPage = () => {
         <section className='p-2 min-h-screen flex flex-col justify-between'>
             <MyHead />
             <div>
-                <Header title='Task machine' search />
+                <Header search />
 
                 <div>
                     {taskState.query ? (
-                        <div className='flex justify-between items-center bg-light-gray p-5 mb-6 rounded-xl dark:text-black'>
+                        <div className='flex justify-between items-center bg-light-gray dark:bg-dark-gray p-5 mb-6 rounded-xl'>
                             <span>
-                                Looking for &quot;{taskState.query}&quot;
+                                <FormattedMessage 
+                                    id='lookingFor'
+                                    values={{
+                                        query: taskState.query
+                                    }}
+                                />
                             </span>
                             <button onClick={clearQuery}>
                                 <XMarkIcon className='h-6 w-6' />
@@ -79,8 +85,7 @@ const Home: NextPage = () => {
                         priority
                     />
                     <p>
-                        Seems like you have no tasks. You can create one, or go
-                        and get an ice cream!
+                        <FormattedMessage id='noTasks' />
                     </p>
                 </div>
             ) : null}

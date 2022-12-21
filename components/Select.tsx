@@ -19,7 +19,7 @@ const Select: FC<Props> = ({ options, value, onChange }) => {
             className={classNames({
                 [`
                 p-4 pl-16 border-2 border-light-gray outline-none rounded-xl w-full text-lg
-                relative cursor-pointer dark:border-dark-gray 
+                relative cursor-pointer dark:border-dark-gray h-16
             `]: true,
                 'dark:border-b-0 dark:rounded-b-none': active,
             })}
@@ -27,7 +27,7 @@ const Select: FC<Props> = ({ options, value, onChange }) => {
         >
             {/* Selected option */}
             <span
-                className='p-3 rounded-xl absolute top-[6px] left-[6px]'
+                className='p-3 rounded-xl absolute top-[6px] left-[6px] h-12 w-12'
                 style={{
                     backgroundColor: selected?.color || '#FFF',
                     color: selected?.color ? '#FFF' : '#000',

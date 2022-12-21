@@ -1,6 +1,7 @@
 import { useRouter } from 'next/router'
 import { FC, useEffect, useState } from 'react'
 import { DateTime } from 'luxon'
+import { FormattedMessage, useIntl } from 'react-intl'
 
 import { useAppDispatch, useAppSelector } from 'hooks'
 
@@ -16,6 +17,8 @@ export const Init: FC = () => {
     const dispatch = useAppDispatch()
     const state = useAppSelector(s => s)
     const router = useRouter()
+
+    const { messages } = useIntl()
 
     const [remember, setRemember] = useState<JSX.Element>(null)
     // Just a boolean for the second toast
@@ -107,21 +110,17 @@ export const Init: FC = () => {
                 let count = 0
 
                 for (const h of habits) {
-                    if (h.days.includes(now.weekday - 1)) {
-                        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+                    if (h.days.includes(now.weekday - 1) && !h.done) {
                         count++
                     }
                 }
 
                 if (count > 0) {
                     setRemember(
-                        <>
-                            You have <span className='text-pink'>{count}</span>{' '}
-                            pending habit{count === 1 ? null : 's'}.
-                        </>,
+                        <FormattedMessage id='reminderContent' values={{ count }} />,
                     )
 
-                    // localStorage.setItem('remember', now.toISO())
+                    localStorage.setItem('remember', now.toISO())
                 }
             }
         }
@@ -131,7 +130,7 @@ export const Init: FC = () => {
         <>
             {remember ? (
                 <Toast
-                    title='You have to do some habits for today!'
+                    title={messages.reminderTitle.toString()}
                     body={remember}
                     confirmIcon={<ArrowRightIcon className='h-7 w-7' />}
                     onConfirm={() => router.push('/habits')}
@@ -145,8 +144,8 @@ export const Init: FC = () => {
             ) : null}
             {second ? (
                 <Toast
-                    title='Disabled'
-                    body='You can turn this notification on again in the config page. Look for the "habit reminder" option.'
+                    title={messages.disabled.toString()}
+                    body={messages.reminderTurnOn.toString()}
                     onClose={() => setSecond(false)}
                 />
             ) : null}

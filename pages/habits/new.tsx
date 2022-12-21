@@ -5,6 +5,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { nanoid } from '@reduxjs/toolkit'
 import { DateTime } from 'luxon'
 import hotkeys from 'hotkeys-js'
+import { FormattedMessage, useIntl } from 'react-intl'
 
 import {
     ArrowLeftIcon,
@@ -25,6 +26,7 @@ import { WeekdayPicker } from 'components/WeekdayPicker'
 const New: NextPage = () => {
     const dispatch = useAppDispatch()
     const router = useRouter()
+    const { messages } = useIntl()
 
     const name = useRef<HTMLInputElement>(null)
 
@@ -37,7 +39,7 @@ const New: NextPage = () => {
         () => [
             {
                 value: '1',
-                name: 'Low',
+                name: messages.easy.toString(),
                 color: 'rgb(var(--light-blue))',
                 icon: (
                     <Image
@@ -50,7 +52,7 @@ const New: NextPage = () => {
             },
             {
                 value: '2',
-                name: 'Medium',
+                name: messages.medium.toString(),
                 color: 'rgb(var(--light-orange))',
                 icon: (
                     <Image
@@ -63,7 +65,7 @@ const New: NextPage = () => {
             },
             {
                 value: '3',
-                name: 'Hard',
+                name: messages.hard.toString(),
                 color: 'rgb(var(--light-red))',
                 icon: (
                     <Image
@@ -75,19 +77,17 @@ const New: NextPage = () => {
                 ),
             },
         ],
-        [],
+        [messages.easy, messages.hard, messages.medium],
     )
 
     const onCreate = useCallback(() => {
         if (name.current) {
             if (!name.current.value) {
-                return setError(`Habit name can't be empty.`)
+                return setError(messages.emptyNameError.toString())
             }
 
             if (days.length === 0) {
-                return setError(
-                    `What's the point of a habit if you're not gonna repeat it? Please select at least one day.`,
-                )
+                return setError(messages.emptyDaysError.toString())
             }
 
             const newHabit: Habit = {
@@ -102,7 +102,7 @@ const New: NextPage = () => {
             dispatch(addHabit(newHabit))
             router.push('/habits')
         }
-    }, [days, dispatch, level, router])
+    }, [days, dispatch, level, messages.emptyDaysError, messages.emptyNameError, router])
 
     useEffect(() => {
         if (name.current) {
@@ -124,7 +124,7 @@ const New: NextPage = () => {
             <MyHead title='Create a new habit' />
             <div className='p-5 sm:flex justify-between items-center'>
                 <h1 className='text-4xl mb-2 font-varela'>
-                    Create a new habit
+                    <FormattedMessage id='newHabit' />
                 </h1>
                 <div className='grid grid-cols-2 gap-2'>
                     <Button
@@ -144,23 +144,29 @@ const New: NextPage = () => {
                 </div>
             </div>
             <div className='grid grid-cols-1 gap-2'>
-                <span>Name:</span>
-                <Input ref={name} Icon={PlusIcon} placeholder='Habit name' />
+                <span>
+                    {messages.name.toString()}
+                </span>
+                <Input ref={name} Icon={PlusIcon} placeholder={messages.name.toString()} />
 
-                <span>Difficulty:</span>
+                <span>
+                    {messages.difficulty.toString()}
+                </span>
                 <Select
                     value={level}
                     options={levelOptions}
                     onChange={setLevel as (v: string) => void}
                 />
 
-                <span>Days:</span>
+                <span>
+                    {messages.days.toString()}
+                </span>
                 <WeekdayPicker days={days} onChange={setDays} />
             </div>
 
             {error ? (
                 <Toast
-                    title='Error!'
+                    title={messages.error.toString()}
                     body={error}
                     type='error'
                     onClose={() => setError('')}
