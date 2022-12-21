@@ -11,7 +11,7 @@ import { Header } from 'components/Header'
 const Groups: NextPage = () => {
     const {
         task,
-        theme: { dark },
+        config: { dark },
     } = useAppSelector(s => s)
 
     return (
@@ -36,7 +36,7 @@ const Groups: NextPage = () => {
                         alt='meditating'
                         width={400}
                         height={400}
-                        className='h-auto w-auto sm:max-w-[400px] m-auto'
+                        className='h-auto w-auto m-auto'
                         priority
                     />
                     <p>

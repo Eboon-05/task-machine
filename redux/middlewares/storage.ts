@@ -10,7 +10,7 @@ export const storage: Middleware<object, AppState> =
         // then runs its code
         const {
             task,
-            theme,
+            config,
             habit: { habits },
         } = store.getState()
         // const storageState = JSON.parse(localStorage.getItem('tasks')) || null
@@ -28,7 +28,11 @@ export const storage: Middleware<object, AppState> =
             )
         }
 
-        if (theme.dark !== undefined) {
-            localStorage.setItem('dark', `${theme.dark}`)
+        if (config !== undefined) {
+            localStorage.setItem('config', JSON.stringify({
+                dark: false,
+                habitReminder: true,
+                ...config
+            }))
         }
     }

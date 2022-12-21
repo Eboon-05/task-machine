@@ -15,7 +15,7 @@ import { Header } from 'components/Header'
 const Home: NextPage = () => {
     const {
         task: taskState,
-        theme: { dark },
+        config: { dark },
     } = useAppSelector(state => state)
     const dispatch = useAppDispatch()
 
@@ -75,7 +75,7 @@ const Home: NextPage = () => {
                         alt='ice-cream'
                         width={400}
                         height={400}
-                        className='h-auto w-auto sm:max-w-[400px] m-auto'
+                        className='h-auto w-auto m-auto'
                         priority
                     />
                     <p>

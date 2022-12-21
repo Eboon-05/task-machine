@@ -14,7 +14,7 @@ import { Header } from 'components/Header'
 const Habits = () => {
     const {
         task,
-        theme: { dark },
+        config: { dark },
         habit: { habits },
     } = useAppSelector(s => s)
     const dispatch = useAppDispatch()
@@ -73,7 +73,7 @@ const Habits = () => {
                         alt='plant'
                         width={400}
                         height={400}
-                        className='h-auto w-auto sm:max-w-[400px] m-auto'
+                        className='h-auto w-auto m-auto'
                         priority
                     />
                     <p>
